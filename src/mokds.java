@@ -1,5 +1,7 @@
 public class mokds {
-    int sdlkfjks;
-    int kdsm;
+    public static void main(String[] args) {
+
+    }
+
 }
 
