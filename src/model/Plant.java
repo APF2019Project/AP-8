@@ -7,15 +7,81 @@ public class Plant extends Card {
     private Turn cooLDown;
     private Turn coolDownCeil;
     private Sun plantingPrice;
-    private Coin shopingPrice;
     private Turn sunOutTurn;
     private Home position;
+    //getters and setters
+    public PlantType getPlantType() {
+        return plantType;
+    }
+
+    public void setPlantType(PlantType plantType) {
+        this.plantType = plantType;
+    }
+
+
+    public Turn getCooLDown() {
+        return cooLDown;
+    }
+
+    public void setCooLDown(Turn cooLDown) {
+        this.cooLDown = cooLDown;
+    }
+
+    public Turn getCoolDownCeil() {
+        return coolDownCeil;
+    }
+
+    public void setCoolDownCeil(Turn coolDownCeil) {
+        this.coolDownCeil = coolDownCeil;
+    }
+
+    public Sun getPlantingPrice() {
+        return plantingPrice;
+    }
+
+    public void setPlantingPrice(Sun plantingPrice) {
+        this.plantingPrice = plantingPrice;
+    }
+
+
+    public Turn getSunOutTurn() {
+        return sunOutTurn;
+    }
+
+    public void setSunOutTurn(Turn sunOutTurn) {
+        this.sunOutTurn = sunOutTurn;
+    }
+
+    public Home getPosition() {
+        return position;
+    }
+
+    public void setPosition(Home position) {
+        this.position = position;
+    }
+
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public void setCondition(Condition condition) {
+        this.condition = condition;
+    }
 
     private Condition condition = Condition.LIVE;
 
     public void setCondition() {
-        if(this.health<=0)
-            this.condition=Condition.DEAD;
+        if (this.health <= 0)
+            this.condition = Condition.DEAD;
     }
-
+    //constructor
+    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, Turn coolDownIncreasePerTurn, Turn coolDownCeil, Sun plantingPrice, Coin shopingPrice1, Turn sunOutTurn, Home position) {
+        super(name, cardType, shopingPrice);
+        this.plantType = plantType;
+        this.coolDownIncreasePerTurn = coolDownIncreasePerTurn;
+        this.coolDownCeil = coolDownCeil;
+        this.plantingPrice = plantingPrice;
+        this.sunOutTurn = sunOutTurn;
+        this.position = position;
+    }
 }
