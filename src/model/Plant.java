@@ -8,7 +8,7 @@ public class Plant extends Card {
     private Turn coolDownCeil;
     private Sun plantingPrice;
     private Turn sunOutTurn;
-    private Home position;
+    private Cell position;
     //getters and setters
     public PlantType getPlantType() {
         return plantType;
@@ -52,11 +52,11 @@ public class Plant extends Card {
         this.sunOutTurn = sunOutTurn;
     }
 
-    public Home getPosition() {
+    public Cell getPosition() {
         return position;
     }
 
-    public void setPosition(Home position) {
+    public void setPosition(Cell position) {
         this.position = position;
     }
 
@@ -75,7 +75,7 @@ public class Plant extends Card {
             this.condition = Condition.DEAD;
     }
     //constructor
-    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, Turn coolDownIncreasePerTurn, Turn coolDownCeil, Sun plantingPrice, Coin shopingPrice1, Turn sunOutTurn, Home position) {
+    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, Turn coolDownIncreasePerTurn, Turn coolDownCeil, Sun plantingPrice, Coin shopingPrice1, Turn sunOutTurn, Cell position) {
         super(name, cardType, shopingPrice);
         this.plantType = plantType;
         this.coolDownIncreasePerTurn = coolDownIncreasePerTurn;
