@@ -1,31 +1,37 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Cell {
-    private double x;
-    private double y;
+    ArrayList<Integer> Xs = new ArrayList<Integer>(16);
+    ArrayList<Integer> Ys = new ArrayList<Integer>(9);
+    private int x;
+    private int y;
     private CellType cellType;
 
     public Cell() {
     }
 
-    public Cell(double x, double y) {
+    public Cell(int x, int y) {
         this.x = x;
         this.y = y;
+        Xs.add(x);
+        Ys.add(y);
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(int x) {
         this.x = x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(int y) {
         this.y = y;
     }
 
