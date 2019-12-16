@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Collection {
     private Card type;
     private int maxSize;
-    private ArrayList<Card> cards = new ArrayList<Card>();
+    private ArrayList<Card> selectedCards = new ArrayList<Card>();
 
     public Card getType() {
         return type;
@@ -23,11 +23,25 @@ public class Collection {
         this.maxSize = maxSize;
     }
 
-    public ArrayList<Card> getCards() {
-        return cards;
+    public ArrayList<Card> getSelectedCards() {
+        return selectedCards;
     }
 
-    public void setCards(ArrayList<Card> cards) {
-        this.cards = cards;
+    public void setSelectedCards(ArrayList<Card> cards) {
+        this.selectedCards = cards;
+    }
+    public boolean selectCard(Card newCard){
+        System.out.println("selectCard start");
+        if(selectedCards.size()==this.maxSize||newCard.isSelected()){
+            System.out.println("selectCard finsh by returning false");
+            return false;
+        }
+        else{
+            System.out.println("selectCard finish by returning true");
+            newCard.setSelected(true);
+            this.selectedCards.add(newCard);
+            return true;
+        }
+
     }
 }

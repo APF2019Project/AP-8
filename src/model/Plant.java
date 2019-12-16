@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Plant extends Card {
     private int health = 100;
     private PlantType plantType;
@@ -9,6 +11,7 @@ public class Plant extends Card {
     private Sun plantingPrice;
     private Turn sunOutTurn;
     private Cell position;
+    private Shot shot;
     //getters and setters
     public PlantType getPlantType() {
         return plantType;
@@ -75,13 +78,16 @@ public class Plant extends Card {
             this.condition = Condition.DEAD;
     }
     //constructor
-    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, Turn coolDownIncreasePerTurn, Turn coolDownCeil, Sun plantingPrice, Coin shopingPrice1, Turn sunOutTurn, Cell position) {
-        super(name, cardType, shopingPrice);
+    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, Turn coolDownIncreasePerTurn, Turn coolDownCeil, Sun plantingPrice, Coin shopingPrice1, Turn sunOutTurn, Cell position , ArrayList<String> doOptions , Shot shot) {
+        super(name, cardType, shopingPrice , doOptions);
         this.plantType = plantType;
         this.coolDownIncreasePerTurn = coolDownIncreasePerTurn;
         this.coolDownCeil = coolDownCeil;
         this.plantingPrice = plantingPrice;
         this.sunOutTurn = sunOutTurn;
         this.position = position;
+        this.shot= shot;
     }
+    // finishing genrate setters and other shit methods
+
 }
