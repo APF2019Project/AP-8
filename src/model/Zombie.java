@@ -1,7 +1,16 @@
 package model;
 
-public class Zombie {
-    private Plant plant;
+public class Zombie extends Card{
+    private Cell position ;
+    public Cell getPosition() {
+        return position;
+    }
+
+    public void setPosition(Cell position) {
+        this.position = position;
+    }
+
+    /**    private Plant plant;
     private int x;
     private int y;
     private int dx;
@@ -24,6 +33,7 @@ public class Zombie {
         this.y = dy + y;
         cell = new Cell(x , y);
         System.out.println("moveFinished");
-    }
+    }**/
+
 
 }

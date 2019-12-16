@@ -1,5 +1,5 @@
 package model;
 
 public enum CellType {
-    LAND,WATER;
+    LAND,WATER,WATER_WITH_LILY_PAD;
 }

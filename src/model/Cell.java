@@ -3,20 +3,22 @@ package model;
 import java.util.ArrayList;
 
 public class Cell {
-    ArrayList<Integer> Xs = new ArrayList<Integer>(16);
-    ArrayList<Integer> Ys = new ArrayList<Integer>(9);
+   // ArrayList<Integer> Xs = new ArrayList<Integer>(16);
+    //ArrayList<Integer> Ys = new ArrayList<Integer>(9);
     private int x;
     private int y;
     private CellType cellType;
-
+    private boolean hasPlant = false ;
+    ArrayList<Card> cards = new ArrayList<>(); // har khune tedadi glule o plant o zombie dare ke inja mizarim , va khob put card haye motfavet ro tu in class miznm ke put haye mokhtalef niaz nabashe
     public Cell() {
     }
 
-    public Cell(int x, int y) {
+    public Cell(int x, int y , CellType cellType) {
         this.x = x;
         this.y = y;
-        Xs.add(x);
-        Ys.add(y);
+        this.cellType = cellType;
+        // Xs.add(x);
+        // Ys.add(y);
     }
 
     public int getX() {
@@ -41,5 +43,26 @@ public class Cell {
 
     public void setCellType(CellType cellType) {
         this.cellType = cellType;
+    }
+
+    public boolean putCard( Card card){
+    if(card instanceof Plant){
+        if((this.x%2==0)&&(!this.hasPlant)&&(this.cellType!=CellType.WATER)){
+            ((Plant) card).setPosition(this);
+            this.cards.add(card);
+            this.hasPlant=true;
+            return true;
+        }
+    }else if (card instanceof  Shot){
+        ((Shot) card).setPosition(this);
+        this.cards.add(card);
+        return true;
+    }
+    else if(card instanceof Zombie){
+        ((Zombie) card).setPosition(this);
+        this.cards.add(card);
+        return true;
+    }
+        return false;
     }
 }

@@ -1,5 +1,5 @@
 package model;
 
 public enum CardType {
-    ZOMBIE , PLANT
+    ZOMBIE , PLANT , SHOT
 }

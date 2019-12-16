@@ -3,10 +3,13 @@ package model;
 import java.util.ArrayList;
 
 public class Map {
-    private int [][] matrixOfCells;
-    private ArrayList<Cell> landCells = new ArrayList<Cell>();
-    private ArrayList<Cell> wateerCells = new ArrayList<Cell>();
-    public void  (){
+    private Cell [][] matrixOfCell =new Cell[6][19] ;
+    // in tabe garare ba tvajoh be tagirati ke yu cell bayad dade beshe har kune ro update kone
+    public void  update(){
+        for (Cell[] t: matrixOfCell) {
+            for (Cell cell :t) {
 
+            }
+        }
     }
 }

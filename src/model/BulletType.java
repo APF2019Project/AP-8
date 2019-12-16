@@ -1,5 +1,5 @@
 package model;
 
 public enum BulletType {
-    NOKHODI , BALAL ,MAGNET_SHROOM
+    PEA, BALAL ,MAGNET_SHROOM,MELLON,SNOW_PEA,EXPLODE_O_NOT
 }
