@@ -14,8 +14,8 @@ public class Shot extends Card {
         this.position = position;
     }
 
-    public Shot(String name, CardType cardType, Coin shopingPrice, ArrayList<String> doOptions, int damage, int speed, int lifeTime, Cell position, BulletType bulletType) {
-        super(name, cardType, shopingPrice, doOptions);
+    public Shot(String name, CardType cardType, Coin shopingPrice,  int damage, int speed, int lifeTime, Cell position, BulletType bulletType) {
+        super(name, cardType, shopingPrice);
         this.damage = damage;
         this.speed = speed;
         this.lifeTime = lifeTime;
@@ -25,7 +25,7 @@ public class Shot extends Card {
 
     public static Shot getShot(BulletType bulletType , Cell cell){
         if(bulletType==BulletType.PEA){
-            Shot = new Shot("pea", CardType.SHOT , 0 , );
+            Shot newShot= new Shot("pea", CardType.SHOT , 0, 1 , 3 , 1 , cell, bulletType);
         }
     }
 
