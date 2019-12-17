@@ -11,7 +11,7 @@ public class Plant extends Card {
     private Sun plantingPrice;
     private int sunOutTurn;
     private Cell position;
-    private Shot shot;
+    private BulletType bulletType;
     //getters and setters
     public PlantType getPlantType() {
         return plantType;
@@ -78,14 +78,14 @@ public class Plant extends Card {
             this.condition = Condition.DEAD;
     }
     //constructor
-    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, int coolDownIncreasePerTurn, int coolDownCeil, Sun plantingPrice, Coin shopingPrice1, int sunOutTurn , Shot shot) {
+    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, int coolDownIncreasePerTurn, int coolDownCeil, Sun plantingPrice, Coin shopingPrice1, int sunOutTurn , BulletType bulletType) {
         super(name, cardType );
         this.plantType = plantType;
         this.coolDownIncreasePerTurn = coolDownIncreasePerTurn;
         this.coolDownCeil = coolDownCeil;
         this.plantingPrice = plantingPrice;
         this.sunOutTurn = sunOutTurn;
-        this.shot= shot;
+        this.bulletType= bulletType;
     }
     // finishing genrate setters and other shit methods
 
