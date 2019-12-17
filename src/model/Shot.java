@@ -3,6 +3,7 @@ package model;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
+
 public class Shot extends Card {
     // this shit is nokhods and shits to fucking zombies
     private int damage;
