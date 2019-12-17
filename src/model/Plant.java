@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Plant extends Card {
     private int health = 100;
     private PlantType plantType;
-    private Turn coolDownIncreasePerTurn;
-    private Turn cooLDown;
-    private Turn coolDownCeil;
+    private int coolDownIncreasePerTurn;
+    private int cooLDown;
+    private int coolDownCeil;
     private Sun plantingPrice;
-    private Turn sunOutTurn;
+    private int sunOutTurn;
     private Cell position;
     private Shot shot;
     //getters and setters
@@ -22,19 +22,19 @@ public class Plant extends Card {
     }
 
 
-    public Turn getCooLDown() {
+    public int getCooLDown() {
         return cooLDown;
     }
 
-    public void setCooLDown(Turn cooLDown) {
+    public void setCooLDown(int cooLDown) {
         this.cooLDown = cooLDown;
     }
 
-    public Turn getCoolDownCeil() {
+    public int getCoolDownCeil() {
         return coolDownCeil;
     }
 
-    public void setCoolDownCeil(Turn coolDownCeil) {
+    public void setCoolDownCeil(int coolDownCeil) {
         this.coolDownCeil = coolDownCeil;
     }
 
@@ -47,11 +47,11 @@ public class Plant extends Card {
     }
 
 
-    public Turn getSunOutTurn() {
+    public int getSunOutTurn() {
         return sunOutTurn;
     }
 
-    public void setSunOutTurn(Turn sunOutTurn) {
+    public void setSunOutTurn(int sunOutTurn) {
         this.sunOutTurn = sunOutTurn;
     }
 
@@ -78,7 +78,7 @@ public class Plant extends Card {
             this.condition = Condition.DEAD;
     }
     //constructor
-    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, Turn coolDownIncreasePerTurn, Turn coolDownCeil, Sun plantingPrice, Coin shopingPrice1, Turn sunOutTurn , Shot shot) {
+    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, int coolDownIncreasePerTurn, int coolDownCeil, Sun plantingPrice, Coin shopingPrice1, int sunOutTurn , Shot shot) {
         super(name, cardType );
         this.plantType = plantType;
         this.coolDownIncreasePerTurn = coolDownIncreasePerTurn;
