@@ -13,6 +13,15 @@ public class Plant extends Card {
     private Cell position;
     private Shot shot;
     //getters and setters
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public PlantType getPlantType() {
         return plantType;
     }
@@ -78,6 +87,11 @@ public class Plant extends Card {
             this.condition = Condition.DEAD;
     }
     //constructor
+
+    public Plant(String name, CardType cardType) {
+        super(name, cardType);
+    }
+
     public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, Turn coolDownIncreasePerTurn, Turn coolDownCeil, Sun plantingPrice, Coin shopingPrice1, Turn sunOutTurn , ArrayList<String> doOptions , Shot shot) {
         super(name, cardType, shopingPrice , doOptions);
         this.plantType = plantType;
