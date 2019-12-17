@@ -31,6 +31,7 @@ public class Shot extends Card {
     }
 // this shit is for shot a bullet from plantse  , every shot will know how  to treat with every zombie;
     public static Shot getShot(BulletType bulletType , Cell cell){
+        System.out.println("start get shot method");
         if(bulletType==BulletType.PEA){
             return new Shot("pea", 1, 3 ,1, cell , false, bulletType , -1 , 0 );
         }else if(bulletType == BulletType.MAIZE){
@@ -46,6 +47,9 @@ public class Shot extends Card {
         }else if(bulletType == BulletType.WINTER_MELLON){
             return new Shot("winter_watermellon" , 3 , 3 , 1, cell ,  true , bulletType , 2 , -1 );//hamvare sorat zombie ra sefr mikonad
         }
+        return null;
     }
-
+    public void fuckZombie(){
+        //this method will fuck zombies:))
+    }
 }
