@@ -19,7 +19,7 @@ public class Card {
         this.shopingPrice = shopingPrice;
     }*/
 
-    public Card(String name, CardType cardType, Coin shopingPrice) {
+    public Card(String name, CardType cardType) {
         this.name = name;
         this.cardType = cardType;
        // this.shopingPrice = shopingPrice;
