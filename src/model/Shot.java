@@ -25,7 +25,6 @@ public class Shot extends Card {
         this.lifeTime = lifeTime;
         this.position = position;
         this.bulletType = bulletType;
-
         this.decreaseZombieSpeed = decreaseZombieSpeed;
         this.turnsDecreaseZombieSpeed= turnsDecreaseZombieSpeed;
     }
@@ -51,5 +50,16 @@ public class Shot extends Card {
     }
     public void fuckZombie(){
         //this method will fuck zombies:))
+        System.out.println("start fuckzomie method");
+        for (Card card: this.position.cards) {
+            if(card instanceof Zombie){
+                damageZombie((Zombie)card);
+                break;
+            }
+        }
+        System.out.println("finish fuckzombie method");
+    }
+    private void damageZombie(Zombie zombie){
+        //if(zombie.)
     }
 }

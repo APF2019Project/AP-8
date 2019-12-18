@@ -62,6 +62,7 @@ public class Zombie extends Card {
             this.bumper = 1;
             this.lifeNumber = 4;
         }
+
     }
 
     public void hurtPlants(Plant plant) {
