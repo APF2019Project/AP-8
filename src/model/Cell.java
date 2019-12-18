@@ -73,7 +73,7 @@ public class Cell {
         } else if (card instanceof Plant) {
             this.cards.remove(card);
 
-            return true
+            return true;
         }
         return false;
     }

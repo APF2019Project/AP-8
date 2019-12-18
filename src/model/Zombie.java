@@ -1,7 +1,6 @@
 package model;
 
 public class Zombie extends Card {
-    Plant plant = new Plant("plant ", CardType.PLANT);
     private int lifeNumber = 0;
     private boolean hasCAP; // kolah dare ya na.
     private int bumper; // har zombei momkene chnata separ dashte bashe.
@@ -15,14 +14,6 @@ public class Zombie extends Card {
 
     public void setPosition(Cell position) {
         this.position = position;
-    }
-
-    public Plant getPlant() {
-        return plant;
-    }
-
-    public void setPlant(Plant plant) {
-        this.plant = plant;
     }
 
     public int getLifeNumber() {
@@ -71,10 +62,9 @@ public class Zombie extends Card {
             this.bumper = 1;
             this.lifeNumber = 4;
         }
-
     }
 
-    public void hurtPlants() {
+    public void hurtPlants(Plant plant) {
         if (landZombeiType == LandZombeiType.GigaGargantuar && plant.getPosition() == this.position) {
             plant.setHealth(0);
         }
@@ -84,24 +74,30 @@ public class Zombie extends Card {
         }
     }
 
-    public void divVelocity() {
+    public void divVelocity(Plant plant) {
         if (plant.getPlantType() == PlantType.SNOW_PEA || plant.getPlantType() == PlantType.WINTERMELON) {
             this.speed = speed % 2;
         }
     }
 
-    public void hurtZombeiBYPlants() {
+    public void hurtZombeiBYPlants(Plant plant) {
         if (plant.getPlantType() == PlantType.CACTUS && this.getPosition() == plant.getPosition()) {
             this.lifeNumber -= 1;
         }
     }
 
     public boolean deadZombei() {
-        if (this.lifeNumber == 0){
-
-            return true;}
+        if (this.lifeNumber == 0) {
+            return true;
+        }
         return false;
     }
 
+    public void lehKrdan(Plant plant) {
+        if (this.getLandZombeiType() == LandZombeiType.Catapult) {
+            for (Card c : this.position.cards) {
 
+            }
+        }
+    }
 }
