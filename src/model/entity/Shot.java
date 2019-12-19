@@ -1,4 +1,4 @@
-package model;
+package model.entity;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

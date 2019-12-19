@@ -1,6 +1,4 @@
-package model;
-
-import java.util.ArrayList;
+package model.entity;
 
 public class Account {
     // list of  zombies and plants most be declare
@@ -9,7 +7,7 @@ public class Account {
     private String password;
     private int coins; //we have two modle coin one is this , that is usefull for shoping , other is in game type
     private int numberOfKiledZombies = 0;
-    private Collection Collection;
+    private model.repository.Collection Collection;
 
 
 }

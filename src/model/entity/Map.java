@@ -1,4 +1,6 @@
-package model;
+package model.entity;
+
+import model.entity.Cell;
 
 import java.util.ArrayList;
 

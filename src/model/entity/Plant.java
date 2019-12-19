@@ -1,6 +1,4 @@
-package model;
-
-import java.util.ArrayList;
+package model.entity;
 
 public class Plant extends Card {
     private int health = 100; // joone giyaha

@@ -1,6 +1,4 @@
-package model;
-
-import java.util.ArrayList;
+package model.entity;
 
 public class Card {
     private String name;

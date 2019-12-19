@@ -1,4 +1,4 @@
-package model;
+package model.entity;
 
 public enum PlantType {
     PEASHOOTER,SNOW_PEA,CABBAGE_PULT,REPEATER,THREEPEATER,
