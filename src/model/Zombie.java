@@ -1,12 +1,35 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Zombie extends Card {
     private int lifeNumber = 0;
     private boolean hasCAP; // kolah dare ya na.
     private int bumper; // har zombei momkene chnata separ dashte bashe.
     private ZombeiType zombeiType;
     private Cell position;
-    private int speed;
+    private int courentSpeed; // sorati ke har lahze dare
+    private int speed; //sora'ati ke aval bazi dare
+    private boolean hasArmor;// in barye moshakhas kardan zereh mibashad , ke zombie zereh darad ya na
+    public int getSpeed() {
+        return speed;
+    }
+    //this method is for update speed after turns that zombei speed decreased;
+    public void setSpeed() {
+        this.courentSpeed= speed;
+    }
+
+  //    this method is for decreas zombie speed by attention to shot they recived
+  /*  public void setSpeed(Shot shot) {
+        if(shot.getDecreaseZombieSpeed()==0){
+            if(shot.getTurnsDecreaseZombieSpeed()>0){
+                this.courentSpeed=0;
+
+            }
+        }
+    }
+*/
+
 
     public Zombie(String name, CardType cardType, int lifeNumber, boolean hasCAP, int bumper, ZombeiType zombeiType, Cell position, int speed) {
         super(name, cardType);
@@ -33,6 +56,9 @@ public class Zombie extends Card {
     public void setLifeNumber(int lifeNumber) {
         this.lifeNumber = lifeNumber;
     }
+    public void setLifeNumber ( Shot shot ){
+        this.lifeNumber -= shot.getDamage();
+    }
 
     public boolean isHasCAP() {
         return hasCAP;
@@ -56,6 +82,13 @@ public class Zombie extends Card {
 
     public void setZombeiType(ZombeiType zombeiType) {
         this.zombeiType = zombeiType;
+    }
+    public boolean isHasArmor() {
+        return hasArmor;
+    }
+
+    public void setHasArmor(boolean hasArmor) {
+        this.hasArmor = hasArmor;
     }
 
     public void giveBumperAndLIfe() {

@@ -77,5 +77,14 @@ public class Cell {
         }
         return false;
     }
-
+    // this method return zombies of each cell
+    public ArrayList<Zombie> getZombies(){
+        ArrayList<Zombie> result = new ArrayList<>();
+        for (Card card: this.cards) {
+            if(card instanceof Zombie){
+                result.add((Zombie)card);
+            }
+        }
+        return result;
+    }
 }

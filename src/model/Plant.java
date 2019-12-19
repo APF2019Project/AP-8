@@ -12,6 +12,8 @@ public class Plant extends Card {
     private int sunOutTurn;
     private Cell position;
     private BulletType bulletType;
+    private boolean isMagnate ;
+    private boolean isPrickly ; // inke giah tigh dar bashd
     //getters and setters
     public PlantType getPlantType() {
         return plantType;
@@ -86,7 +88,7 @@ public class Plant extends Card {
             this.condition = Condition.DEAD;
     }
     //constructor
-    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, int coolDownIncreasePerTurn, int coolDownCeil, Sun plantingPrice, Coin shopingPrice1, int sunOutTurn , BulletType bulletType) {
+    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, int coolDownIncreasePerTurn, int coolDownCeil, Sun plantingPrice, Coin shopingPrice1, int sunOutTurn , BulletType bulletType , boolean isMagnate) {
         super(name, cardType );
         this.plantType = plantType;
         this.coolDownIncreasePerTurn = coolDownIncreasePerTurn;
@@ -94,7 +96,27 @@ public class Plant extends Card {
         this.plantingPrice = plantingPrice;
         this.sunOutTurn = sunOutTurn;
         this.bulletType= bulletType;
+        this.isMagnate = isMagnate;
     }
     // finishing genrate setters and other shit methods
+
+    // in tabe glule i az noee glule haye khod ra dar cell khod put mikonad
+    public void shot(){
+        Shot.getShot(this.bulletType  , this.position);
+    }
+    public void magnating(){
+        if(this.isMagnate){
+            // inja ahan robyi giah ra piade khaham kard...
+        }
+    }
+    public void pricking(){
+        if(this.isPrickly){
+        for (Zombie zombie: this.position.getZombies()) {
+          if(!zombie.isHasArmor()){
+              zombie.setLifeNumber(zombie.getLifeNumber()-1);
+          }
+        }
+        }
+    }
 
 }
