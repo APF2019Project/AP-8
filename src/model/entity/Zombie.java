@@ -1,4 +1,4 @@
-package model;
+package model.entity;
 
 public class Zombie extends Card {
     private int lifeNumber = 0;
@@ -7,6 +7,7 @@ public class Zombie extends Card {
     private ZombeiType zombeiType;
     private Cell position;
     private int speed;
+    private boolean isBaloon = false;
 
     public Zombie(String name, CardType cardType, int lifeNumber, boolean hasCAP, int bumper, ZombeiType zombeiType, Cell position, int speed) {
         super(name, cardType);
@@ -109,9 +110,9 @@ public class Zombie extends Card {
         // leh kardan giyah tavasote mashine ghavi
         System.out.println("leh kardan giyah tavasote mashine ghavi start");
         if (this.getZombeiType() == ZombeiType.Zomboni) {
-            for (Card c : this.position.cards) {
-                if (c.getCardType() == CardType.PLANT) {
-                    this.position.cards.remove(c);
+            for (int i = 0; i < this.position.cards.size(); i++) {
+                if (CardType.PLANT == this.position.cards.get(i).getCardType()) {
+                    this.position.cards.remove(this.position.cards.get(i));
                     setZombeiType(ZombeiType.RegularZombei);
                 }
             }
@@ -123,9 +124,9 @@ public class Zombie extends Card {
         // leh kardan giyah tavasote mashine zaeef
         System.out.println("leh kardan giyah tavasote mashine zaeef start");
         if (this.getZombeiType() == ZombeiType.Zomboni) {
-            for (Card c : this.position.cards) {
-                if (c.getCardType() == CardType.PLANT) {
-                    this.position.cards.remove(c);
+            for (int i = 0; i < this.position.cards.size(); i++) {
+                if (CardType.PLANT == this.position.cards.get(i).getCardType()) {
+                    this.position.cards.remove(this.position.cards.get(i));
                 }
             }
         }
@@ -138,10 +139,4 @@ public class Zombie extends Card {
         return false;
     }
 
-    public boolean isBALOON() {
-        if (this.getZombeiType() == ZombeiType.Balloon) {
-            return true;
-        }
-        return false;
-    }
 }

@@ -1,4 +1,4 @@
-package model;
+package model.entity;
 
 public class Shot extends Card {
     // this shit is nokhods and shits to fucking zombies

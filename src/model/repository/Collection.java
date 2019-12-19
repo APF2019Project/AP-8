@@ -1,4 +1,6 @@
-package model;
+package model.repository;
+
+import model.entity.Card;
 
 import java.util.ArrayList;
 

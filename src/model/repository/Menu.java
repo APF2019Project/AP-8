@@ -1,4 +1,6 @@
-package model;
+package model.repository;
+
+import model.entity.Account;
 
 import java.util.HashMap;
 
