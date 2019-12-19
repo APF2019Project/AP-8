@@ -4,9 +4,19 @@ public class Zombie extends Card {
     private int lifeNumber = 0;
     private boolean hasCAP; // kolah dare ya na.
     private int bumper; // har zombei momkene chnata separ dashte bashe.
-    private LandZombeiType landZombeiType;
+    private ZombeiType zombeiType;
     private Cell position;
     private int speed;
+
+    public Zombie(String name, CardType cardType, int lifeNumber, boolean hasCAP, int bumper, ZombeiType zombeiType, Cell position, int speed) {
+        super(name, cardType);
+        this.lifeNumber = lifeNumber;
+        this.bumper = bumper;
+        this.hasCAP = hasCAP;
+        this.zombeiType = zombeiType;
+        this.position = position;
+        this.speed = speed;
+    }
 
     public Cell getPosition() {
         return position;
@@ -40,25 +50,24 @@ public class Zombie extends Card {
         this.bumper = bumper;
     }
 
-    public LandZombeiType getLandZombeiType() {
-        return landZombeiType;
+    public ZombeiType getZombeiType() {
+        return zombeiType;
     }
 
-    public void setLandZombeiType(LandZombeiType landZombeiType) {
-        this.landZombeiType = landZombeiType;
+    public void setZombeiType(ZombeiType zombeiType) {
+        this.zombeiType = zombeiType;
     }
 
     public void giveBumperAndLIfe() {
-        System.out.println("set some types of zombeis lifes & bumpers start");
-        if (landZombeiType == LandZombeiType.Newspaper) {
+        if (zombeiType == ZombeiType.Newspaper) {
             this.bumper = 1;
             this.lifeNumber = 2;
         }
-        if (landZombeiType == LandZombeiType.Target) {
+        if (zombeiType == ZombeiType.Target) {
             this.bumper = 1;
             this.lifeNumber = 3;
         }
-        if (landZombeiType == LandZombeiType.ScreenDoor) {
+        if (zombeiType == ZombeiType.ScreenDoor) {
             this.bumper = 1;
             this.lifeNumber = 4;
         }
@@ -66,22 +75,24 @@ public class Zombie extends Card {
     }
 
     public void hurtPlants(Plant plant) {
-        if (landZombeiType == LandZombeiType.GigaGargantuar && plant.getPosition() == this.position) {
+        if (zombeiType == ZombeiType.GigaGargantuar && plant.getPosition() == this.position) {
             plant.setHealth(0);
         }
-        if (landZombeiType == LandZombeiType.Zomboni && plant.getPosition() == this.position) {
+        if (zombeiType == ZombeiType.Zomboni && plant.getPosition() == this.position) {
             plant.setHealth(0);
-            this.landZombeiType = LandZombeiType.RegularZombei;
+            this.zombeiType = ZombeiType.RegularZombei;
         }
     }
 
     public void divVelocity(Plant plant) {
+        //soraat zombei ro kam mikone
         if (plant.getPlantType() == PlantType.SNOW_PEA || plant.getPlantType() == PlantType.WINTERMELON) {
             this.speed = speed % 2;
         }
     }
 
     public void hurtZombeiBYPlants(Plant plant) {
+        //nokhode tigh dar tigh hash b zombei ha sadame mizane,.
         if (plant.getPlantType() == PlantType.CACTUS && this.getPosition() == plant.getPosition()) {
             this.lifeNumber -= 1;
         }
@@ -94,11 +105,36 @@ public class Zombie extends Card {
         return false;
     }
 
-    public void lehKrdan(Plant plant) {
-        if (this.getLandZombeiType() == LandZombeiType.Catapult) {
+    public void lehKardan() {
+        // leh kardan giyah tavasote mashine ghavi
+        System.out.println("leh kardan giyah tavasote mashine ghavi start");
+        if (this.getZombeiType() == ZombeiType.Zomboni) {
             for (Card c : this.position.cards) {
-
+                if (c.getCardType() == CardType.PLANT) {
+                    this.position.cards.remove(c);
+                    setZombeiType(ZombeiType.RegularZombei);
+                }
             }
         }
+        System.out.println("leh kardan giyah tavasote mashine ghavi finished");
+    }
+
+    public void lehKardanByCatapult() {
+        // leh kardan giyah tavasote mashine zaeef
+        System.out.println("leh kardan giyah tavasote mashine zaeef start");
+        if (this.getZombeiType() == ZombeiType.Zomboni) {
+            for (Card c : this.position.cards) {
+                if (c.getCardType() == CardType.PLANT) {
+                    this.position.cards.remove(c);
+                }
+            }
+        }
+        System.out.println("leh kardan giyah tavasote mashine zaeef finished");
+    }
+
+    public Boolean isWaterZombei() {
+        if (this.getZombeiType() == ZombeiType.SNORKEL || this.getZombeiType() == ZombeiType.DOLPHINrIDER)
+            return true;
+        return false;
     }
 }

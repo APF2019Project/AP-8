@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 
 public class Plant extends Card {
-    private int health = 100;
-    private PlantType plantType;
+    private int health = 100; // joone giyaha
+    private PlantType plantType; // type
     private int coolDownIncreasePerTurn;
     private int cooLDown;
     private int coolDownCeil;
@@ -15,6 +15,14 @@ public class Plant extends Card {
     //getters and setters
     public PlantType getPlantType() {
         return plantType;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public void setPlantType(PlantType plantType) {

@@ -1,5 +1,7 @@
 package model;
 
 public enum ZombeiType {
-    LAND,WATER;
+    RegularZombei, Footballer, Buckethead, Conehead, Zomboni, Catapult, Bungee, Balloon, Newspaper, Target, ScreenDoor, GigaGargantuar,
+    Pogo , SNORKEL , DOLPHINrIDER;
+
 }

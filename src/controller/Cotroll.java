@@ -6,4 +6,4 @@ public class Cotroll {
     //in put card zadam fagat ye moshkeli dare nmidunm chejuri inke masaln befahmim ke age msln ab dare bekarim ya age msln golbarg dare bekharim....
 }
 
-}
+
