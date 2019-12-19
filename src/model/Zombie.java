@@ -133,8 +133,15 @@ public class Zombie extends Card {
     }
 
     public Boolean isWaterZombei() {
-        if (this.getZombeiType() == ZombeiType.SNORKEL || this.getZombeiType() == ZombeiType.DOLPHINrIDER)
+        if (this.getZombeiType() == ZombeiType.SNORKEL || this.getZombeiType() == ZombeiType.DOLPHINRIDER)
             return true;
+        return false;
+    }
+
+    public boolean isBALOON() {
+        if (this.getZombeiType() == ZombeiType.Balloon) {
+            return true;
+        }
         return false;
     }
 }
