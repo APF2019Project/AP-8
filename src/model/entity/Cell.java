@@ -1,5 +1,7 @@
 package model.entity;
 
+import model.Zombie;
+
 import java.util.ArrayList;
 
 public class Cell {
@@ -72,7 +74,6 @@ public class Cell {
             return true;
         } else if (card instanceof Plant) {
             this.cards.remove(card);
-
             return true;
         }
         return false;

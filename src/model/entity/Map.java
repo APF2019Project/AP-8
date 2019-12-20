@@ -1,16 +1,29 @@
 package model.entity;
 
-import model.entity.Cell;
 
 import java.util.ArrayList;
 
 public class Map {
     private ArrayList<ArrayList<Cell>> rows = new ArrayList<>(6);
-
-    public Map() {
-        for (ArrayList<Cell> row : this.rows) {
-            row = new ArrayList<Cell>(19);
+    private String mapType;
+    // this constructor make the map ,  this take a sting "land" for khoski and "water" for ab map
+    public Map(String mapType) {
+        for (int i =0 ; i<6 ; i++){
+            this.rows.add(new ArrayList<Cell>(19));
         }
+        if(mapType.matches("land")){
+            for (ArrayList<Cell> row: this.rows) {
+               row = getRow(CellType.LAND , this.rows.indexOf(row));
+            }
+        }else if(mapType.matches("water")){
+            for (int i = 0 ; i<6 ; i++){
+                if(i == 2  || i== 3){
+                    this.rows.add(i , this.getRow(CellType.WATER ,i)) ;
+                }else {
+                    this.rows.add(i , this.getRow(CellType.LAND ,i));
+                }
+            }
+        }else if()
     }
 
     // in tabe garare ba tvajoh be tagirati ke yu cell bayad dade beshe har kune ro update kone
@@ -57,5 +70,12 @@ public class Map {
             cells.add(this.rows.get(indexOfCellRow+i).get(indexOfCell));
         }
         return cells;
+    }
+    // this method get a row of cells , can be water cells or land cells
+    private static ArrayList<Cell> getRow(CellType cellType , int rowIndex){
+        ArrayList<Cell> row = new ArrayList<>(19);
+        for (Cell cell: row) {
+            cell = new Cell(row.indexOf(cell) , rowIndex ,cellType );
+        }
     }
 }

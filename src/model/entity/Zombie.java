@@ -1,5 +1,7 @@
 package model;
 
+import model.entity.*;
+
 import java.util.ArrayList;
 
 public class Zombie extends Card {
