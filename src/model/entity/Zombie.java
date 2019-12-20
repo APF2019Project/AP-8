@@ -1,8 +1,4 @@
-package model;
-
-import model.entity.*;
-
-import java.util.ArrayList;
+package model.entity;
 
 public class Zombie extends Card {
     private int lifeNumber = 0;
@@ -10,32 +6,10 @@ public class Zombie extends Card {
     private int bumper; // har zombei momkene chnata separ dashte bashe.
     private ZombeiType zombeiType;
     private Cell position;
-    private int courentSpeed; // sorati ke har lahze dare
-    private int speed; //sora'ati ke aval bazi dare
-    private boolean hasArmor;// in barye moshakhas kardan zereh mibashad , ke zombie zereh darad ya na
-    public int getSpeed() {
-        return speed;
-    }
-    //this method is for update speed after turns that zombei speed decreased;
-    public void setSpeed() {
-        this.courentSpeed= speed;
-    }
-
-  //    this method is for decreas zombie speed by attention to shot they recived
-  /*  public void setSpeed(Shot shot) {
-        if(shot.getDecreaseZombieSpeed()==0){
-            if(shot.getTurnsDecreaseZombieSpeed()>0){
-                this.courentSpeed=0;
-
-            }
-        }
-    }
-*/
-
     private int speed;
     private boolean isBaloon = false;
 
-    public Zombie(String name, CardType cardType, int lifeNumber, boolean hasCAP, int bumper, ZombeiType zombeiType, Cell position, int speed) {
+    public Zombie(String name, CardType cardType, int lifeNumber, boolean hasCAP, int bumper, ZombeiType zombeiType, Cell position, int speed, int bumperLife, boolean isWater, boolean isBaloon) {
         super(name, cardType);
         this.lifeNumber = lifeNumber;
         this.bumper = bumper;
@@ -43,33 +17,55 @@ public class Zombie extends Card {
         this.zombeiType = zombeiType;
         this.position = position;
         this.speed = speed;
+        this.bumperLife = bumperLife;
+        this.isWater = isWater;
+        this.isBaloon = isBaloon;
     }
 
-    public Cell getPosition() {
-        return position;
-    }
-
-    public void setPosition(Cell position) {
+    //for default zombeis
+    public Zombie(String name, CardType cardType, int bumper, ZombeiType zombeiType, Cell position, boolean isBaloon) {
+        super(name, cardType);
+        this.zombeiType = zombeiType;
+        this.getSpeedAndLifeNumber();
+        this.hasCapZmobei();
+        this.isWaterZombei();
+        this.giveBumperAndLIfe();
         this.position = position;
+        this.isBaloon = isBaloon;
     }
 
-    public int getLifeNumber() {
-        return lifeNumber;
+    public void getSpeedAndLifeNumber() {
+        if (this.zombeiType == ZombeiType.RegularZombei || this.zombeiType == ZombeiType.Newspaper || this.zombeiType == ZombeiType.ScreenDoor || this.zombeiType == ZombeiType.Pogo || this.zombeiType == ZombeiType.SNORKEL || this.zombeiType == ZombeiType.DOLPHINRIDER) {
+            this.lifeNumber = 2;
+            this.speed = 2;
+        } else if (this.zombeiType == ZombeiType.Footballer) {
+            this.lifeNumber = 4;
+            this.speed = 3;
+        } else if (this.zombeiType == ZombeiType.Buckethead) {
+            this.lifeNumber = 3;
+            this.speed = 2;
+        } else if (this.zombeiType == ZombeiType.Conehead || this.zombeiType == ZombeiType.Target) {
+            this.lifeNumber = 3;
+            this.speed = 2;
+        } else if (this.zombeiType == ZombeiType.Buckethead || this.zombeiType == ZombeiType.Zomboni || this.zombeiType == ZombeiType.Catapult || this.zombeiType == ZombeiType.Balloon) {
+            this.lifeNumber = 3;
+            this.speed = 2;
+        } else if (this.zombeiType == ZombeiType.GigaGargantuar) {
+            this.lifeNumber = 6;
+            this.speed = 1;
+        } else if (this.zombeiType == ZombeiType.Bungee) {
+            this.lifeNumber = 3;
+            this.speed = 0;
+        }
     }
 
-    public void setLifeNumber(int lifeNumber) {
-        this.lifeNumber = lifeNumber;
-    }
-    public void setLifeNumber ( Shot shot ){
-        this.lifeNumber -= shot.getDamage();
-    }
-
-    public boolean isHasCAP() {
-        return hasCAP;
-    }
-
-    public void setHasCAP(boolean hasCAP) {
-        this.hasCAP = hasCAP;
+    public boolean hasCapZmobei() {
+        this.hasCAP = false;
+        if (this.zombeiType == ZombeiType.Buckethead || this.zombeiType == ZombeiType.Conehead) {
+            this.hasCAP = true;
+            return this.hasCAP;
+        }
+        return this.hasCAP;
     }
 
     public int getBumper() {
@@ -98,15 +94,15 @@ public class Zombie extends Card {
     public void giveBumperAndLIfe() {
         if (zombeiType == ZombeiType.Newspaper) {
             this.bumper = 1;
-            this.lifeNumber = 2;
+            this.bumperLife = 2;
         }
         if (zombeiType == ZombeiType.Target) {
             this.bumper = 1;
-            this.lifeNumber = 3;
+            this.bumperLife = 3;
         }
         if (zombeiType == ZombeiType.ScreenDoor) {
             this.bumper = 1;
-            this.lifeNumber = 4;
+            this.bumperLife = 4;
         }
 
     }
@@ -170,15 +166,83 @@ public class Zombie extends Card {
     }
 
     public Boolean isWaterZombei() {
-        if (this.getZombeiType() == ZombeiType.SNORKEL || this.getZombeiType() == ZombeiType.DOLPHINRIDER)
-            return true;
-        return false;
+        this.isWater = false;
+        if (this.getZombeiType() == ZombeiType.SNORKEL || this.getZombeiType() == ZombeiType.DOLPHINRIDER) {
+            this.isWater = true;
+            return this.isWater;
+        }
+        return this.isWater;
+    }
+// getter and setters
+    public int getLifeNumber() {
+        return lifeNumber;
     }
 
-    public boolean isBALOON() {
-        if (this.getZombeiType() == ZombeiType.Balloon) {
-            return true;
-        }
-        return false;
+    public void setLifeNumber(int lifeNumber) {
+        this.lifeNumber = lifeNumber;
+    }
+
+    public boolean isHasCAP() {
+        return hasCAP;
+    }
+
+    public void setHasCAP(boolean hasCAP) {
+        this.hasCAP = hasCAP;
+    }
+
+    public int getBumper() {
+        return bumper;
+    }
+
+    public void setBumper(int bumper) {
+        this.bumper = bumper;
+    }
+
+    public ZombeiType getZombeiType() {
+        return zombeiType;
+    }
+
+    public void setZombeiType(ZombeiType zombeiType) {
+        this.zombeiType = zombeiType;
+    }
+
+    public Cell getPosition() {
+        return position;
+    }
+
+    public void setPosition(Cell position) {
+        this.position = position;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getBumperLife() {
+        return bumperLife;
+    }
+
+    public void setBumperLife(int bumperLife) {
+        this.bumperLife = bumperLife;
+    }
+
+    public boolean isWater() {
+        return isWater;
+    }
+
+    public void setWater(boolean water) {
+        isWater = water;
+    }
+
+    public boolean isBaloon() {
+        return isBaloon;
+    }
+
+    public void setBaloon(boolean baloon) {
+        isBaloon = baloon;
     }
 }
