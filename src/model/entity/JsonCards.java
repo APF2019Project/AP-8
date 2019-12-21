@@ -2,18 +2,26 @@ package model.entity;
 
 import jdk.nashorn.internal.parser.JSONParser;
 import org.json.simple.JSONArray;
-        import org.json.simple.JSONObject;
-        import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
 
 public class JsonCards {
-    public static void jsoncardsMethod(String[] args) throws Exception{
+    public static void jsoncardsMethod() throws Exception {
+        JSONArray jsonArray = new JSONArray();
 
-        String json="[{\"name\":\"*****\",\"cardType\":\"****\"},{\"name\":\"*****\",\"cardType\":\"*****\"}]";
-        JSONArray jsonArray = (JSONArray) new JSONParser().parse(json);
-        for (Object o : jsonArray) {
-            JSONObject jsonObject = (JSONObject) o;
-            System.out.println(jsonObject.get("name"));
-            System.out.println(jsonObject.get("family"));
+
+        JSONObject jsonObject1 = new JSONObject();
+        jsonObject1.put("name","***");
+        jsonObject1.put("cardType","***");
+
+
+        JSONObject jsonObject2 = new JSONObject();
+        jsonObject2.put("name","**");
+        jsonObject2.put("cardType","***");
+
+
+        jsonArray.add(jsonObject1);
+        jsonArray.add(jsonObject2);
+        System.out.println(jsonArray.toJSONString());
         }
     }
 }

@@ -8,6 +8,8 @@ public class Zombie extends Card {
     private Cell position;
     private int speed;
     private boolean isBaloon = false;
+    private int bumperLife;
+    private boolean isWater;
 
     public Zombie(String name, CardType cardType, int lifeNumber, boolean hasCAP, int bumper, ZombeiType zombeiType, Cell position, int speed, int bumperLife, boolean isWater, boolean isBaloon) {
         super(name, cardType);
@@ -68,13 +70,7 @@ public class Zombie extends Card {
         return this.hasCAP;
     }
 
-    public int getBumper() {
-        return bumper;
-    }
 
-    public void setBumper(int bumper) {
-        this.bumper = bumper;
-    }
 
     public ZombeiType getZombeiType() {
         return zombeiType;

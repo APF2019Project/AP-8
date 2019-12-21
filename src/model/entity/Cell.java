@@ -1,6 +1,5 @@
 package model.entity;
 
-import model.Zombie;
 
 import java.util.ArrayList;
 
