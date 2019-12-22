@@ -71,21 +71,21 @@ public class Zombie extends Card {
     }
 
 
-
-    public ZombeiType getZombeiType() {
-        return zombeiType;
-    }
-
-    public void setZombeiType(ZombeiType zombeiType) {
-        this.zombeiType = zombeiType;
-    }
-    public boolean isHasArmor() {
-        return hasArmor;
-    }
-
-    public void setHasArmor(boolean hasArmor) {
-        this.hasArmor = hasArmor;
-    }
+//
+//    public ZombeiType getZombeiType() {
+//        return zombeiType;
+//    }
+//
+//    public void setZombeiType(ZombeiType zombeiType) {
+//        this.zombeiType = zombeiType;
+//    }
+//    public boolean isHasArmor() {
+//        return hasArmor;
+//    }
+//
+//    public void setHasArmor(boolean hasArmor) {
+//        this.hasArmor = hasArmor;
+    //  }
 
     public void giveBumperAndLIfe() {
         if (zombeiType == ZombeiType.Newspaper) {
@@ -169,7 +169,8 @@ public class Zombie extends Card {
         }
         return this.isWater;
     }
-// getter and setters
+
+    // getter and setters
     public int getLifeNumber() {
         return lifeNumber;
     }

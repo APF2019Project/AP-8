@@ -10,8 +10,9 @@ public class DayGame extends Game {
         super(false, PlayerType.GIYAHKAR , PlayerType.ZOMBEI ,3);
     }
     ArrayList<Card> cards = new ArrayList<Card>();
-    //command methodes
-    public void showHands(){
+    // command method
+    public void showHand(){
+
     }
 
 }

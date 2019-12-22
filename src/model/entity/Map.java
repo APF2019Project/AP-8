@@ -23,7 +23,7 @@ public class Map {
                     this.rows.add(i , this.getRow(CellType.LAND ,i));
                 }
             }
-        }else if()
+        }
     }
 
     // in tabe garare ba tvajoh be tagirati ke yu cell bayad dade beshe har kune ro update kone

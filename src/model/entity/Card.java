@@ -49,4 +49,5 @@ public class Card {
 
     // finis declaring setters and getters
 
+
 }

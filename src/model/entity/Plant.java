@@ -116,5 +116,4 @@ public class Plant extends Card {
         }
         }
     }
-
 }
