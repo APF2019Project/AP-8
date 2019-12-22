@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             FileWriter file = new FileWriter("Zombeis.json");
-            file.write(getJson());
+            file.write(getJsonZombei());
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -18,7 +18,7 @@ public class Main {
 
     }
 
-    public static String getJson() {
+    public static String getJsonZombei() {
         JSONObject regularZombei = new JSONObject();
         regularZombei.put("lifeNumber", "2");
         regularZombei.put("speed", "2");
@@ -174,5 +174,159 @@ public class Main {
         return jsonArray.toJSONString();
 
     }
+
+    public static String getJsonPlants() {
+        JSONObject Peashooter = new JSONObject();
+        Peashooter.put("health", "2");
+        Peashooter.put("sun", "2");
+        Peashooter.put("coolDown", "2");
+
+        JSONObject SnowPea = new JSONObject();
+        SnowPea.put("health", "3");
+        SnowPea.put("sun", "3");
+        SnowPea.put("coolDown", "3");
+
+        JSONObject CabbagePult = new JSONObject();
+        CabbagePult.put("health", "2");
+        CabbagePult.put("sun", "2");
+        CabbagePult.put("coolDown", "3");
+
+        JSONObject Repeater = new JSONObject();
+        Repeater.put("health", "4");
+        Repeater.put("sun", "3");
+        Repeater.put("coolDown", "3");
+
+        JSONObject Threepeater = new JSONObject();
+        Threepeater.put("health", "5");
+        Threepeater.put("sun", "4");
+        Threepeater.put("coolDown", "4");
+
+        JSONObject Cactus = new JSONObject();
+        Cactus.put("health", "5");
+        Cactus.put("sun", "5");
+        Cactus.put("coolDown", "4");
+
+        JSONObject GatlingPea = new JSONObject();
+        GatlingPea.put("health", "5");
+        GatlingPea.put("sun", "5");
+        GatlingPea.put("coolDown", "4");
+
+        JSONObject ScaredyShroom = new JSONObject();
+        ScaredyShroom.put("health", "3");
+        ScaredyShroom.put("sun", "5");
+        ScaredyShroom.put("coolDown", "4");
+
+        JSONObject KernelPult = new JSONObject();
+        KernelPult.put("health", "1");
+        KernelPult.put("sun", "1");
+        KernelPult.put("coolDown", "2");
+
+        JSONObject SplitPea = new JSONObject();
+        SplitPea.put("health", "2");
+        SplitPea.put("sun", "3");
+        SplitPea.put("coolDown", "3");
+
+        JSONObject ExplodeOnut = new JSONObject();
+        ExplodeOnut.put("health", "3");
+        ExplodeOnut.put("sun", "4");
+        ExplodeOnut.put("coolDown", "4");
+
+        JSONObject MelonPult = new JSONObject();
+        MelonPult.put("health", "3");
+        MelonPult.put("sun", "4");
+        MelonPult.put("coolDown", "5");
+
+        JSONObject LilyPad = new JSONObject();
+        LilyPad.put("health", "3");
+        LilyPad.put("sun", "3");
+        LilyPad.put("coolDown", "3");
+
+        JSONObject WinterMelon = new JSONObject();
+        WinterMelon.put("health", "1");
+        WinterMelon.put("sun", "0");
+        WinterMelon.put("coolDown", "1");
+
+        JSONObject WallNut = new JSONObject();
+        WallNut.put("health", "3");
+        WallNut.put("sun", "4");
+        WallNut.put("coolDown", "5");
+
+        JSONObject TangleKelp = new JSONObject();
+        TangleKelp.put("health", "4");
+        TangleKelp.put("sun", "2");
+        TangleKelp.put("coolDown", "4");
+
+        JSONObject TallNut = new JSONObject();
+        TallNut.put("health", "0");
+        TallNut.put("sun", "3");
+        TallNut.put("coolDown", "3");
+
+        JSONObject Cattail = new JSONObject();
+        Cattail.put("health", "6");
+        Cattail.put("sun", "4");
+        Cattail.put("coolDown", "6");
+
+        JSONObject PotatoMine = new JSONObject();
+        PotatoMine.put("health", "3");
+        PotatoMine.put("sun", "5");
+        PotatoMine.put("coolDown", "5");
+
+        JSONObject cherryBomb = new JSONObject();
+        cherryBomb.put("health", "1");
+        cherryBomb.put("sun", "2");
+        cherryBomb.put("coolDown", "3");
+
+        JSONObject cherryBomb = new JSONObject();
+        cherryBomb.put("sun", "2");
+        cherryBomb.put("coolDown", "4");
+
+        JSONObject MagnetShroom = new JSONObject();
+        MagnetShroom.put("health", "2");
+        MagnetShroom.put("sun", "4");
+        MagnetShroom.put("coolDown", "4");
+
+        JSONObject Sunflower = new JSONObject();
+        Sunflower.put("health", "2");
+        Sunflower.put("sun", "1");
+        Sunflower.put("coolDown", "2");
+
+        JSONObject TwinSunflower = new JSONObject();
+        TwinSunflower.put("health", "2");
+        TwinSunflower.put("sun", "3");
+        TwinSunflower.put("coolDown", "5");
+
+        JSONObject Jalapeno = new JSONObject();
+        Jalapeno.put("sun", "4");
+        Jalapeno.put("coolDown", "5");
+
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.add(Peashooter);
+        jsonArray.add(SnowPea);
+        jsonArray.add(CabbagePult);
+        jsonArray.add(Repeater);
+        jsonArray.add(Threepeater);
+        jsonArray.add(Cactus);
+        jsonArray.add(GatlingPea);
+        jsonArray.add(ScaredyShroom);
+        jsonArray.add(KernelPult);
+        jsonArray.add(SplitPea);
+        jsonArray.add(ExplodeOnut);
+        jsonArray.add(MelonPult);
+        jsonArray.add(LilyPad);
+        jsonArray.add(WinterMelon);
+        jsonArray.add(WallNut);
+        jsonArray.add(TangleKelp);
+        jsonArray.add(TallNut);
+        jsonArray.add(Cattail);
+        jsonArray.add(PotatoMine);
+        jsonArray.add(cherryBomb);
+        jsonArray.add(MagnetShroom);
+        jsonArray.add(Sunflower);
+        jsonArray.add(TwinSunflower);
+        jsonArray.add(Jalapeno);
+
+        return jsonArray.toJSONString();
+    }
+
 
 }
