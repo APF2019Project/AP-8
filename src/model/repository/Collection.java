@@ -44,6 +44,6 @@ public class Collection {
             this.selectedCards.add(newCard);
             return true;
         }
-
     }
+
 }

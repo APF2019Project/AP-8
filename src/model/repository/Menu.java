@@ -9,7 +9,8 @@ public class Menu {
     private Account loggedInAccount;
     // a method to login with id and pass
     public boolean login(int id , String pass){
-       if ( accounts.containsKey(id)){
+        Account account = Account.getAccountById(id);
+       if (account!=null){
             if(this.accounts.get(id).chekPass(pass)){
                 System.out.println("----------Logged in--------------");
                 this.loggedInAccount = this.accounts.get(id);
