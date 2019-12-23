@@ -187,22 +187,6 @@ public class Zombie extends Card {
         this.hasCAP = hasCAP;
     }
 
-    public int getBumper() {
-        return bumper;
-    }
-
-    public void setBumper(int bumper) {
-        this.bumper = bumper;
-    }
-
-    public ZombeiType getZombeiType() {
-        return zombeiType;
-    }
-
-    public void setZombeiType(ZombeiType zombeiType) {
-        this.zombeiType = zombeiType;
-    }
-
     public Cell getPosition() {
         return position;
     }

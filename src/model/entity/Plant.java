@@ -1,17 +1,17 @@
 package model.entity;
 
 public class Plant extends Card {
-    private int health = 100; // joone giyaha
+    private int health ; // joone giyaha
     private PlantType plantType; // type
     private int coolDownIncreasePerTurn;
     private int cooLDown;
     private int coolDownCeil;
-    private Sun plantingPrice;
+    private int plantingPrice; // sun
     private int sunOutTurn;
     private Cell position;
     private BulletType bulletType;
     private boolean isMagnate ;
-    private boolean isPrickly ; // inke giah tigh dar bashd
+    private boolean isPrickly ;// inke giah tigh dar bashd
     //getters and setters
     public PlantType getPlantType() {
         return plantType;
@@ -46,11 +46,11 @@ public class Plant extends Card {
         this.coolDownCeil = coolDownCeil;
     }
 
-    public Sun getPlantingPrice() {
+    public int getPlantingPrice() {
         return plantingPrice;
     }
 
-    public void setPlantingPrice(Sun plantingPrice) {
+    public void setPlantingPrice(int plantingPrice) {
         this.plantingPrice = plantingPrice;
     }
 
@@ -86,8 +86,9 @@ public class Plant extends Card {
             this.condition = Condition.DEAD;
     }
     //constructor
-    public Plant(String name, CardType cardType, Coin shopingPrice, PlantType plantType, int coolDownIncreasePerTurn, int coolDownCeil, Sun plantingPrice, Coin shopingPrice1, int sunOutTurn , BulletType bulletType , boolean isMagnate) {
+    public Plant( String name, int health , CardType cardType, Coin shopingPrice, PlantType plantType, int coolDownIncreasePerTurn, int coolDownCeil, int plantingPrice,  int sunOutTurn , BulletType bulletType , boolean isMagnate , boolean isPrickly) {
         super(name, cardType );
+        this.health = health;
         this.plantType = plantType;
         this.coolDownIncreasePerTurn = coolDownIncreasePerTurn;
         this.coolDownCeil = coolDownCeil;
@@ -95,6 +96,7 @@ public class Plant extends Card {
         this.sunOutTurn = sunOutTurn;
         this.bulletType= bulletType;
         this.isMagnate = isMagnate;
+        this.isPrickly = isPrickly;
     }
     // finishing genrate setters and other shit methods
 
@@ -107,7 +109,7 @@ public class Plant extends Card {
             // inja ahan robyi giah ra piade khaham kard...
         }
     }
-    public void pricking(){
+  /*  public void pricking(){
         if(this.isPrickly){
         for (Zombie zombie: this.position.getZombies()) {
           if(!zombie.isHasArmor()){
@@ -115,5 +117,23 @@ public class Plant extends Card {
           }
         }
         }
+    }
+*/
+    @Override
+    public String toString() {
+        return "Plant{" +
+                "health=" + health +
+                ", plantType=" + plantType +
+                ", coolDownIncreasePerTurn=" + coolDownIncreasePerTurn +
+                ", cooLDown=" + cooLDown +
+                ", coolDownCeil=" + coolDownCeil +
+                ", plantingPrice=" + plantingPrice +
+                ", sunOutTurn=" + sunOutTurn +
+                ", position=" + position +
+                ", bulletType=" + bulletType +
+                ", isMagnate=" + isMagnate +
+                ", isPrickly=" + isPrickly +
+                ", condition=" + condition +
+                '}';
     }
 }

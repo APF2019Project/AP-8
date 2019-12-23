@@ -324,7 +324,6 @@ public class Main {
         jsonArray.add(Sunflower);
         jsonArray.add(TwinSunflower);
         jsonArray.add(Jalapeno);
-
         return jsonArray.toJSONString();
     }
 

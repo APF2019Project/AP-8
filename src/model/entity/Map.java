@@ -77,5 +77,7 @@ public class Map {
         for (Cell cell: row) {
             cell = new Cell(row.indexOf(cell) , rowIndex ,cellType );
         }
+        return row;
     }
+
 }
