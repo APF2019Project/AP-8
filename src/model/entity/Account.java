@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Account {
     // list of  zombies and plants most be declare
     private String name;
-    private int  id;
+    private int id;
     private String password;
     private int coins; //we have two modle coin one is this , that is usefull for shoping , other is in game type
     private int numberOfKiledZombies = 0;
@@ -32,10 +32,6 @@ public class Account {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getPassword() {
@@ -86,27 +82,27 @@ public class Account {
         Zombies = zombies;
     }
 
-    public Account(String name, int id, String password, int coins, int numberOfKiledZombies, ArrayList<String> plants, ArrayList<String> zombies) {
-        this.name = name;
-        if(this.setID(id)){
-            System.out.println("your account created");
-        }else{
-            System.out.println("invalid id : please give another id");
-        }
-        this.password = password;
-        this.coins = coins;
-        this.numberOfKiledZombies = numberOfKiledZombies;
-        this.plants = plants;
-        Zombies = zombies;
-        saveAccountInJson(this);
+    public Account(String name, String id, String password, int coins, int numberOfKiledZombies, ArrayList<String> plants, ArrayList<String> zombies) throws Exception {
+      try {
+          this.name = name;
+          this.setID(id);
+          this.password = password;
+          this.coins = coins;
+          this.numberOfKiledZombies = numberOfKiledZombies;
+          this.plants = plants;
+          Zombies = zombies;
+          saveAccountInJson(this);
+      }catch (Exception e){
+          throw e ;
+      }
     }
-    public boolean chekPass (String pass){
-        if(pass.matches(this.password)){
-            return true;
-        }
-        return false;
+    public boolean chekPass (String pass) throws Exception {
+           if(pass.matches(this.password))
+                 return true;
+           throw new Exception("InvalidPassWordExeption");
     }
-    public static Account getAccountById(int id){
+    public static Account getAccountById(String inputStr) throws IOException {
+        int id = Math.abs(inputStr.hashCode());
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(id+".json"));
             StringBuilder stringBuilder = new StringBuilder();
@@ -118,7 +114,7 @@ public class Account {
             return account;
         } catch (IOException e) {
             System.out.println("--invalid id , account not exist");
-            return null;
+            throw  e;
         }
     }
     private void saveAccountInJson(Account account){
@@ -132,12 +128,12 @@ public class Account {
             e.printStackTrace();
         }
     }
-    private boolean setID(int id){
-        FileWriter like ;
-        Path path = Paths.get("E:\\AP-8\\"+id +".json");
+    private boolean setID(String strId) throws Exception {
+        int id = Math.abs(strId.hashCode());
+        Path path = Paths.get(id +".json");
         if(Files.exists(path)){
-            System.out.println("id befor was used");
-            return false;
+            System.out.println("id befor was used , pelease inter another");
+            throw new Exception("InvalidIdExeption");
         }else {
             this.id=id;
             return true;

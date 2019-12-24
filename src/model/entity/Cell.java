@@ -11,14 +11,16 @@ public class Cell {
     private int y;
     private CellType cellType;
     private boolean hasPlant = false;
+    private Map map;
 
     public Cell() {
     }
 
-    public Cell(int x, int y, CellType cellType) {
+    public Cell(int x, int y, CellType cellType , Map map) {
         this.x = x;
         this.y = y;
         this.cellType = cellType;
+        this.map = map ;
         // Xs.add(x);
         // Ys.add(y);
     }

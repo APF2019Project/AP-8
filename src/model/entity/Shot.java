@@ -127,7 +127,7 @@ public class Shot extends Card {
         for (Card card: this.position.cards) {
             if(card instanceof Zombie){
                while (true){
-                   damageZombie((Zombie)card);
+ //                  damageZombie((Zombie)card);
                    this.lifeTime-=1;
                    if(lifeTime<=0){
                        break;
@@ -138,9 +138,10 @@ public class Shot extends Card {
         System.out.println("finish fuckzombie method");
     }
     // in gesmat bayad fekr shavad baad handle shavad
-    private void damageZombie(Zombie zombie){
-        if (zombie.getBumper()==0){
-            zombie.setLifeNumber(this);
-        }
-    }
+ //   private void damageZombie(Zombie zombie){
+ //
+ //       if (zombie.getBumper()==0){
+ //           zombie.setLifeNumber(this);
+ //       }
+ //   }
 }

@@ -1,6 +1,8 @@
 package model.entity;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class Map {
@@ -13,14 +15,14 @@ public class Map {
         }
         if(mapType.matches("land")){
             for (ArrayList<Cell> row: this.rows) {
-               row = getRow(CellType.LAND , this.rows.indexOf(row));
+               row = getRow(CellType.LAND , this.rows.indexOf(row) , this);
             }
         }else if(mapType.matches("water")){
             for (int i = 0 ; i<6 ; i++){
                 if(i == 2  || i== 3){
-                    this.rows.add(i , this.getRow(CellType.WATER ,i)) ;
+                    this.rows.add(i , this.getRow(CellType.WATER ,i , this)) ;
                 }else {
-                    this.rows.add(i , this.getRow(CellType.LAND ,i));
+                    this.rows.add(i , this.getRow(CellType.LAND ,i , this));
                 }
             }
         }
@@ -47,6 +49,8 @@ public class Map {
             if(row.contains(cell)){
                 if(row.indexOf(cell)>0){
                     return row.get(row.indexOf(cell)-1);
+                }else {
+                    return null;
                 }
             }
         }
@@ -72,10 +76,11 @@ public class Map {
         return cells;
     }
     // this method get a row of cells , can be water cells or land cells
-    private static ArrayList<Cell> getRow(CellType cellType , int rowIndex){
+    @NotNull
+    private static ArrayList<Cell> getRow(CellType cellType , int rowIndex , Map map ){
         ArrayList<Cell> row = new ArrayList<>(19);
         for (Cell cell: row) {
-            cell = new Cell(row.indexOf(cell) , rowIndex ,cellType );
+            cell = new Cell(row.indexOf(cell) , rowIndex ,cellType , map );
         }
         return row;
     }
