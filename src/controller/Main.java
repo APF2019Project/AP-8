@@ -2,25 +2,33 @@ package controller;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            FileWriter file = new FileWriter("Zombeis.json");
-            file.write(getJsonZombei());
-            file.flush();
+
+            // Writing to a file
+            File file=new File("JsonFile.json");
+            file.createNewFile();
+            FileWriter fileWriter = new FileWriter(file);
+            System.out.println("Writing JSON object to file");
+            System.out.println("-----------------------");
+
+            fileWriter.write(getJsonZombei());
+            fileWriter.flush();
+            fileWriter.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
     public static String getJsonZombei() {
         JSONObject regularZombei = new JSONObject();
         regularZombei.put("lifeNumber", "2");
+        regularZombei.put("cost","60");
         regularZombei.put("speed", "2");
         regularZombei.put("bumper", "0");
         regularZombei.put("hasCAP", "false");
@@ -30,6 +38,7 @@ public class Main {
 
         JSONObject FootballZombie = new JSONObject();
         FootballZombie.put("lifeNumber", "4");
+        FootballZombie.put("cost","150");
         FootballZombie.put("speed", "3");
         FootballZombie.put("bumper", "0");
         FootballZombie.put("hasCAP", "false");
@@ -39,6 +48,7 @@ public class Main {
 
         JSONObject BucketheadZombie = new JSONObject();
         BucketheadZombie.put("lifeNumber", "3");
+        BucketheadZombie.put("cost","80");
         BucketheadZombie.put("speed", "2");
         BucketheadZombie.put("bumper", "0");
         BucketheadZombie.put("hasCAP", "true");
@@ -48,6 +58,7 @@ public class Main {
 
         JSONObject ConeheadZombie = new JSONObject();
         ConeheadZombie.put("lifeNumber", "3");
+        ConeheadZombie.put("cost","80");
         ConeheadZombie.put("speed", "2");
         ConeheadZombie.put("bumper", "0");
         ConeheadZombie.put("hasCAP", "true");
@@ -57,6 +68,7 @@ public class Main {
 
         JSONObject Zomboni = new JSONObject();
         Zomboni.put("lifeNumber", "3");
+        Zomboni.put("cost","80");
         Zomboni.put("speed", "2");
         Zomboni.put("bumper", "0");
         Zomboni.put("hasCAP", "false");
@@ -66,6 +78,7 @@ public class Main {
 
         JSONObject CatapultZombie = new JSONObject();
         CatapultZombie.put("lifeNumber", "3");
+        CatapultZombie.put("cost","80");
         CatapultZombie.put("speed", "2");
         CatapultZombie.put("bumper", "0");
         CatapultZombie.put("hasCAP", "false");
@@ -75,6 +88,7 @@ public class Main {
 
         JSONObject BungeeZombie = new JSONObject();
         BungeeZombie.put("lifeNumber", "3");
+        BungeeZombie.put("cost","0");
         BungeeZombie.put("speed", "0");
         BungeeZombie.put("bumper", "0");
         BungeeZombie.put("hasCAP", "false");
@@ -84,6 +98,7 @@ public class Main {
 
         JSONObject BalloonZombie = new JSONObject();
         BalloonZombie.put("lifeNumber", "3");
+        BalloonZombie.put("cost","80");
         BalloonZombie.put("speed", "2");
         BalloonZombie.put("bumper", "0");
         BalloonZombie.put("hasCAP", "false");
@@ -93,6 +108,7 @@ public class Main {
 
         JSONObject NewspaperZombie = new JSONObject();
         NewspaperZombie.put("lifeNumber", "2");
+        NewspaperZombie.put("cost","60");
         NewspaperZombie.put("speed", "2");
         NewspaperZombie.put("bumper", "1");
         NewspaperZombie.put("hasCAP", "false");
@@ -102,6 +118,7 @@ public class Main {
 
         JSONObject TargetZombie = new JSONObject();
         TargetZombie.put("lifeNumber", "3");
+        TargetZombie.put("cost","80");
         TargetZombie.put("speed", "2");
         TargetZombie.put("bumper", "1");
         TargetZombie.put("hasCAP", "false");
@@ -111,6 +128,7 @@ public class Main {
 
         JSONObject ScreenDoorZombie = new JSONObject();
         ScreenDoorZombie.put("lifeNumber", "2");
+        ScreenDoorZombie.put("cost","60");
         ScreenDoorZombie.put("speed", "2");
         ScreenDoorZombie.put("bumper", "1");
         ScreenDoorZombie.put("hasCAP", "false");
@@ -120,6 +138,7 @@ public class Main {
 
         JSONObject GigaGargantuar = new JSONObject();
         GigaGargantuar.put("lifeNumber", "6");
+        ScreenDoorZombie.put("cost","70");
         GigaGargantuar.put("speed", "1");
         GigaGargantuar.put("bumper", "0");
         GigaGargantuar.put("hasCAP", "false");
@@ -129,6 +148,7 @@ public class Main {
 
         JSONObject pogoZombie = new JSONObject();
         pogoZombie.put("lifeNumber", "2");
+        pogoZombie.put("cost","60");
         pogoZombie.put("speed", "2");
         pogoZombie.put("bumper", "0");
         pogoZombie.put("hasCAP", "false");
@@ -138,6 +158,7 @@ public class Main {
 
         JSONObject SnorkelZombie = new JSONObject();
         SnorkelZombie.put("lifeNumber", "2");
+        SnorkelZombie.put("cost","60");
         SnorkelZombie.put("speed", "2");
         SnorkelZombie.put("bumper", "0");
         SnorkelZombie.put("hasCAP", "false");
@@ -147,6 +168,7 @@ public class Main {
 
         JSONObject DolphinRiderZombie = new JSONObject();
         DolphinRiderZombie.put("lifeNumber", "2");
+        DolphinRiderZombie.put("cost","60");
         DolphinRiderZombie.put("speed", "2");
         DolphinRiderZombie.put("bumper", "1");
         DolphinRiderZombie.put("hasCAP", "false");
@@ -272,11 +294,7 @@ public class Main {
         PotatoMine.put("coolDown", "5");
 
         JSONObject cherryBomb = new JSONObject();
-        cherryBomb.put("health", "1");
-        cherryBomb.put("sun", "2");
-        cherryBomb.put("coolDown", "3");
-
-        JSONObject cherryBomb = new JSONObject();
+        cherryBomb.put("health", "0");
         cherryBomb.put("sun", "2");
         cherryBomb.put("coolDown", "4");
 

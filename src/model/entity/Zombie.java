@@ -10,6 +10,7 @@ public class Zombie extends Card {
     private boolean isBaloon = false;
     private int bumperLife;
     private boolean isWater;
+    private int cost;
 
     public Zombie(String name, CardType cardType, int lifeNumber, boolean hasCAP, int bumper, ZombeiType zombeiType, Cell position, int speed, int bumperLife, boolean isWater, boolean isBaloon) {
         super(name, cardType);
@@ -30,7 +31,6 @@ public class Zombie extends Card {
         this.zombeiType = zombeiType;
         this.getSpeedAndLifeNumber();
         this.hasCapZmobei();
-        this.isWaterZombei();
         this.giveBumperAndLIfe();
         this.position = position;
         this.isBaloon = isBaloon;
@@ -134,41 +134,32 @@ public class Zombie extends Card {
         return false;
     }
 
-    public void lehKardan() {
-        // leh kardan giyah tavasote mashine ghavi
-        System.out.println("leh kardan giyah tavasote mashine ghavi start");
-        if (this.getZombeiType() == ZombeiType.Zomboni) {
-            for (int i = 0; i < this.position.cards.size(); i++) {
-                if (CardType.PLANT == this.position.cards.get(i).getCardType()) {
-                    this.position.cards.remove(this.position.cards.get(i));
-                    setZombeiType(ZombeiType.RegularZombei);
-                }
-            }
-        }
-        System.out.println("leh kardan giyah tavasote mashine ghavi finished");
-    }
+//    public void lehKardan() {
+//        // leh kardan giyah tavasote mashine ghavi
+//        System.out.println("leh kardan giyah tavasote mashine ghavi start");
+//        if (this.getZombeiType() == ZombeiType.Zomboni) {
+//            for (int i = 0; i < this.position.cards.size(); i++) {
+//                if (CardType.PLANT == this.position.cards.get(i).getCardType()) {
+//                    this.position.cards.remove(this.position.cards.get(i));
+//                    setZombeiType(ZombeiType.RegularZombei);
+//                }
+//            }
+//        }
+//        System.out.println("leh kardan giyah tavasote mashine ghavi finished");
+//    }
 
-    public void lehKardanByCatapult() {
-        // leh kardan giyah tavasote mashine zaeef
-        System.out.println("leh kardan giyah tavasote mashine zaeef start");
-        if (this.getZombeiType() == ZombeiType.Zomboni) {
-            for (int i = 0; i < this.position.cards.size(); i++) {
-                if (CardType.PLANT == this.position.cards.get(i).getCardType()) {
-                    this.position.cards.remove(this.position.cards.get(i));
-                }
-            }
-        }
-        System.out.println("leh kardan giyah tavasote mashine zaeef finished");
-    }
-
-    public Boolean isWaterZombei() {
-        this.isWater = false;
-        if (this.getZombeiType() == ZombeiType.SNORKEL || this.getZombeiType() == ZombeiType.DOLPHINRIDER) {
-            this.isWater = true;
-            return this.isWater;
-        }
-        return this.isWater;
-    }
+//    public void lehKardanByCatapult() {
+//        // leh kardan giyah tavasote mashine zaeef
+//        System.out.println("leh kardan giyah tavasote mashine zaeef start");
+//        if (this.getZombeiType() == ZombeiType.Zomboni) {
+//            for (int i = 0; i < this.position.cards.size(); i++) {
+//                if (CardType.PLANT == this.position.cards.get(i).getCardType()) {
+//                    this.position.cards.remove(this.position.cards.get(i));
+//                }
+//            }
+//        }
+//        System.out.println("leh kardan giyah tavasote mashine zaeef finished");
+//    }
 
     // getter and setters
     public int getLifeNumber() {
