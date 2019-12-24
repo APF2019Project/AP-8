@@ -87,4 +87,16 @@ public class Cell {
         }
         return result;
     }
+    public void removeCard(Card card){
+        this.cards.remove(card);
+    }
+    public ArrayList<Plant> getPlants(){
+        ArrayList<Plant> result = new ArrayList<>();
+        for (Card card: this.cards) {
+            if(card instanceof Plant){
+                result.add((Plant) card);
+            }
+        }
+        return result;
+    }
 }

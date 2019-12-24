@@ -1,8 +1,5 @@
 package model.entity;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
-
 
 public class Shot extends Card {
     // this shit is nokhods and shits to fucking zombies
@@ -14,6 +11,8 @@ public class Shot extends Card {
     private int decreaseZombieSpeed ;
     private int turnsDecreaseZombieSpeed;
     private BulletType bulletType;
+    private boolean direction = true;
+    private Map map;
     public void setPosition(Cell position) {
         this.position=position;
         position.putCard(this);
@@ -108,6 +107,19 @@ public class Shot extends Card {
             return new Shot("winter_watermellon" , 3 , 3 , 1, cell ,  true , bulletType , 2 , -2 );//hamvare sorat zombie ra sefr mikonad
         }
         return null;
+    }
+    public void moveOneCell(){
+        if(direction){
+            this.setPosition(map.getRight(this.position));
+        }else {
+            this.setPosition(map.getLeft(this.position));
+        }
+        this.fuckZombie();
+    }
+    public void move(){
+        for (int i = 0 ; i<speed ; i++){
+            this.moveOneCell();
+        }
     }
     public void fuckZombie(){
         //this method will fuck zombies:))
