@@ -9,15 +9,40 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
+    //    makeZombiesFile();
+    //    makePlantsFile();
+    }
+
+    private static void makeZombiesFile()
+    {
         try {
 
             // Writing to a file
-            File file = new File("JsonFile.json");
+            File file = new File("ZombieJsonFile.json");
             file.createNewFile();
             FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(getJsonZombei());
             fileWriter.flush();
             fileWriter.close();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void makePlantsFile()
+    {
+        try {
+
+            // Writing to a file
+            File file = new File("PlantsJsonFile.json");
+            file.createNewFile();
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(getJsonPlants());
+            fileWriter.flush();
+            fileWriter.close();
+
 
         } catch (IOException e) {
             e.printStackTrace();

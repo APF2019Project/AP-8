@@ -112,12 +112,12 @@ public class Account {
     public void loggIn(String id, String password) throws Exception {
         setLoggedInAccount(getAccountByIdAndPassword(id,password));
     }
-    private boolean chekPass (String pass) throws Exception {
+    public boolean chekPass(String pass) throws Exception {
            if(getStringHash(pass)==this.getPassword())
                  return true;
            throw new Exception("InvalidPassWordExeption");
     }
-    private  Account getAccountById(String inputStr) throws IOException {
+    public static Account getAccountById(String inputStr) throws IOException {
         int id = Math.abs(inputStr.hashCode());
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(id+".json"));

@@ -1,7 +1,6 @@
 package model.entity;
 
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -76,7 +75,6 @@ public class Map {
         return cells;
     }
     // this method get a row of cells , can be water cells or land cells
-    @NotNull
     private static ArrayList<Cell> getRow(CellType cellType , int rowIndex , Map map ){
         ArrayList<Cell> row = new ArrayList<>(19);
         for (Cell cell: row) {
