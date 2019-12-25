@@ -22,8 +22,15 @@ public class Account {
     private int numberOfKiledZombies = 0;
     private model.repository.Collection Collection;
     private ArrayList<String> plants ;
-    private ArrayList<String> Zombies;
+    private ArrayList<String> zombies;
 
+    private void addCardToAccountCards (Card card){
+        if(card instanceof Plant){
+            this.plants.add(card.getName());
+        }else{
+            this.zombies.add(card.getName());
+        }
+    }
     public String getName() {
         return name;
     }
@@ -77,11 +84,11 @@ public class Account {
     }
 
     public ArrayList<String> getZombies() {
-        return Zombies;
+        return zombies;
     }
 
     public void setZombies(ArrayList<String> zombies) {
-        Zombies = zombies;
+        zombies = zombies;
     }
 
     public static Account getLoggedInAccount() {
@@ -100,13 +107,17 @@ public class Account {
           this.coins = coins;
           this.numberOfKiledZombies = numberOfKiledZombies;
           this.plants = plants;
-          Zombies = zombies;
+          zombies = zombies;
           saveAccountInJson(this);
       }catch (Exception e){
           throw e ;
       }
     }
+    public Account(){
+
+    }
     public void logOut(){
+        this.saveAccountInJson(this);
         setLoggedInAccount(null);
     }
     public void loggIn(String id, String password) throws Exception {
