@@ -1,20 +1,44 @@
 package controller;
 
+import model.entity.Plant;
+import model.entity.Zombie;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-    //    makeZombiesFile();
-    //    makePlantsFile();
+    public static void main(String[] args)throws Exception {
+            makeZombiesFile();
+            makePlantsFile();
     }
 
-    private static void makeZombiesFile()
-    {
+    private static Zombie returnZombei(String name) throws Exception {
+        JSONArray jsonArray = (JSONArray) new JSONParser().parse(getJsonZombei());
+        for (Object o : jsonArray) {
+            JSONObject jsonObject = (JSONObject) o;
+            if (((JSONObject) o).get("name") == name) {
+                return (Zombie) o;
+            }
+        }
+        return null;
+    }
+
+    private static Plant returnPlant(String name) throws Exception {
+        JSONArray jsonArray = (JSONArray) new JSONParser().parse(getJsonPlants());
+        for (Object o : jsonArray) {
+            JSONObject jsonObject = (JSONObject) o;
+            if (((JSONObject) o).get("name") == name) {
+                return (Plant) o;
+            }
+        }
+        return null;
+    }
+
+    private static void makeZombiesFile() {
         try {
 
             // Writing to a file
@@ -31,8 +55,7 @@ public class Main {
         }
     }
 
-    private static void makePlantsFile()
-    {
+    private static void makePlantsFile() {
         try {
 
             // Writing to a file
@@ -51,6 +74,7 @@ public class Main {
 
     public static String getJsonZombei() {
         JSONObject regularZombei = new JSONObject();
+        regularZombei.put("name", "regularZombei");
         regularZombei.put("lifeNumber", "2");
         regularZombei.put("cost", "60");
         regularZombei.put("speed", "2");
@@ -61,6 +85,7 @@ public class Main {
         regularZombei.put("isWater", "false");
 
         JSONObject FootballZombie = new JSONObject();
+        FootballZombie.put("name", "FootballZombie");
         FootballZombie.put("lifeNumber", "4");
         FootballZombie.put("cost", "150");
         FootballZombie.put("speed", "3");
@@ -71,6 +96,7 @@ public class Main {
         FootballZombie.put("isWater", "false");
 
         JSONObject BucketheadZombie = new JSONObject();
+        BucketheadZombie.put("name", "BucketheadZombie");
         BucketheadZombie.put("lifeNumber", "3");
         BucketheadZombie.put("cost", "80");
         BucketheadZombie.put("speed", "2");
@@ -81,6 +107,7 @@ public class Main {
         BucketheadZombie.put("isWater", "false");
 
         JSONObject ConeheadZombie = new JSONObject();
+        ConeheadZombie.put("name", "ConeheadZombie");
         ConeheadZombie.put("lifeNumber", "3");
         ConeheadZombie.put("cost", "80");
         ConeheadZombie.put("speed", "2");
@@ -91,6 +118,7 @@ public class Main {
         ConeheadZombie.put("isWater", "false");
 
         JSONObject Zomboni = new JSONObject();
+        Zomboni.put("name", "Zomboni");
         Zomboni.put("lifeNumber", "3");
         Zomboni.put("cost", "80");
         Zomboni.put("speed", "2");
@@ -101,6 +129,7 @@ public class Main {
         Zomboni.put("isWater", "false");
 
         JSONObject CatapultZombie = new JSONObject();
+        CatapultZombie.put("name", "CatapultZombie");
         CatapultZombie.put("lifeNumber", "3");
         CatapultZombie.put("cost", "80");
         CatapultZombie.put("speed", "2");
@@ -111,6 +140,7 @@ public class Main {
         CatapultZombie.put("isWater", "false");
 
         JSONObject BungeeZombie = new JSONObject();
+        BungeeZombie.put("name", "BungeeZombie");
         BungeeZombie.put("lifeNumber", "3");
         BungeeZombie.put("cost", "0");
         BungeeZombie.put("speed", "0");
@@ -121,6 +151,7 @@ public class Main {
         BungeeZombie.put("isWater", "false");
 
         JSONObject BalloonZombie = new JSONObject();
+        BalloonZombie.put("name", "BalloonZombie");
         BalloonZombie.put("lifeNumber", "3");
         BalloonZombie.put("cost", "80");
         BalloonZombie.put("speed", "2");
@@ -131,6 +162,7 @@ public class Main {
         BalloonZombie.put("isWater", "false");
 
         JSONObject NewspaperZombie = new JSONObject();
+        NewspaperZombie.put("name", "NewspaperZombie");
         NewspaperZombie.put("lifeNumber", "2");
         NewspaperZombie.put("cost", "60");
         NewspaperZombie.put("speed", "2");
@@ -141,6 +173,7 @@ public class Main {
         NewspaperZombie.put("isWater", "false");
 
         JSONObject TargetZombie = new JSONObject();
+        TargetZombie.put("name", "TargetZombie");
         TargetZombie.put("lifeNumber", "3");
         TargetZombie.put("cost", "80");
         TargetZombie.put("speed", "2");
@@ -151,6 +184,7 @@ public class Main {
         TargetZombie.put("isWater", "false");
 
         JSONObject ScreenDoorZombie = new JSONObject();
+        ScreenDoorZombie.put("name", "ScreenDoorZombie");
         ScreenDoorZombie.put("lifeNumber", "2");
         ScreenDoorZombie.put("cost", "60");
         ScreenDoorZombie.put("speed", "2");
@@ -161,6 +195,7 @@ public class Main {
         ScreenDoorZombie.put("isWater", "false");
 
         JSONObject GigaGargantuar = new JSONObject();
+        GigaGargantuar.put("name", "GigaGargantuar");
         GigaGargantuar.put("lifeNumber", "6");
         ScreenDoorZombie.put("cost", "70");
         GigaGargantuar.put("speed", "1");
@@ -171,6 +206,7 @@ public class Main {
         GigaGargantuar.put("isWater", "false");
 
         JSONObject pogoZombie = new JSONObject();
+        pogoZombie.put("name", "pogoZombie");
         pogoZombie.put("lifeNumber", "2");
         pogoZombie.put("cost", "60");
         pogoZombie.put("speed", "2");
@@ -181,6 +217,7 @@ public class Main {
         pogoZombie.put("isWater", "false");
 
         JSONObject SnorkelZombie = new JSONObject();
+        SnorkelZombie.put("name", "SnorkelZombie");
         SnorkelZombie.put("lifeNumber", "2");
         SnorkelZombie.put("cost", "60");
         SnorkelZombie.put("speed", "2");
@@ -191,6 +228,7 @@ public class Main {
         SnorkelZombie.put("isWater", "true");
 
         JSONObject DolphinRiderZombie = new JSONObject();
+        DolphinRiderZombie.put("name", "DolphinRiderZombie");
         DolphinRiderZombie.put("lifeNumber", "2");
         DolphinRiderZombie.put("cost", "60");
         DolphinRiderZombie.put("speed", "2");
@@ -223,6 +261,7 @@ public class Main {
 
     public static String getJsonPlants() {
         JSONObject Peashooter = new JSONObject();
+        Peashooter.put("name", "Peashooter");
         Peashooter.put("health", "2");
         Peashooter.put("sun", "2");
         Peashooter.put("plantingPrice", "9");
@@ -233,6 +272,7 @@ public class Main {
         Peashooter.put("coolDown", "2");
 
         JSONObject SnowPea = new JSONObject();
+        SnowPea.put("name", "SnowPea");
         SnowPea.put("health", "3");
         SnowPea.put("sun", "3");
         SnowPea.put("plantingPrice", "28");
@@ -243,6 +283,7 @@ public class Main {
         SnowPea.put("coolDown", "3");
 
         JSONObject CabbagePult = new JSONObject();
+        CabbagePult.put("name", "CabbagePult");
         CabbagePult.put("health", "2");
         CabbagePult.put("sun", "2");
         CabbagePult.put("plantingPrice", "13");
@@ -253,6 +294,7 @@ public class Main {
         CabbagePult.put("coolDown", "3");
 
         JSONObject Repeater = new JSONObject();
+        Repeater.put("name", "Repeater");
         Repeater.put("health", "4");
         Repeater.put("sun", "3");
         Repeater.put("plantingPrice", "49");
@@ -263,6 +305,7 @@ public class Main {
         Repeater.put("coolDown", "3");
 
         JSONObject Threepeater = new JSONObject();
+        Threepeater.put("name", "Threepeater");
         Threepeater.put("health", "5");
         Threepeater.put("sun", "4");
         Threepeater.put("plantingPrice", "81");
@@ -273,6 +316,7 @@ public class Main {
         Threepeater.put("coolDown", "4");
 
         JSONObject Cactus = new JSONObject();
+        Cactus.put("name", "Cactus");
         Cactus.put("health", "5");
         Cactus.put("sun", "5");
         Cactus.put("plantingPrice", "101");
@@ -283,6 +327,7 @@ public class Main {
         Cactus.put("coolDown", "4");
 
         JSONObject GatlingPea = new JSONObject();
+        GatlingPea.put("name", "GatlingPea");
         GatlingPea.put("health", "3");
         GatlingPea.put("sun", "5");
         GatlingPea.put("plantingPrice", "61");
@@ -293,6 +338,7 @@ public class Main {
         GatlingPea.put("coolDown", "4");
 
         JSONObject ScaredyShroom = new JSONObject();
+        ScaredyShroom.put("name", "ScaredyShroom");
         ScaredyShroom.put("health", "1");
         ScaredyShroom.put("sun", "1");
         ScaredyShroom.put("plantingPrice", "3");
@@ -303,6 +349,7 @@ public class Main {
         ScaredyShroom.put("coolDown", "2");
 
         JSONObject KernelPult = new JSONObject();
+        KernelPult.put("name", "KernelPult");
         KernelPult.put("health", "2");
         KernelPult.put("sun", "3");
         KernelPult.put("plantingPrice", "19");
@@ -313,6 +360,7 @@ public class Main {
         KernelPult.put("coolDown", "3");
 
         JSONObject SplitPea = new JSONObject();
+        SplitPea.put("name", "SplitPea");
         SplitPea.put("health", "3");
         SplitPea.put("sun", "4");
         SplitPea.put("plantingPrice", "49");
@@ -323,6 +371,7 @@ public class Main {
         SplitPea.put("coolDown", "4");
 
         JSONObject ExplodeOnut = new JSONObject();
+        ExplodeOnut.put("name", "ExplodeOnut");
         ExplodeOnut.put("health", "3");
         ExplodeOnut.put("sun", "4");
         ExplodeOnut.put("plantingPrice", "");
@@ -333,6 +382,7 @@ public class Main {
         ExplodeOnut.put("coolDown", "5");
 
         JSONObject MelonPult = new JSONObject();
+        MelonPult.put("name", "MelonPult");
         MelonPult.put("health", "3");
         MelonPult.put("sun", "3");
         MelonPult.put("plantingPrice", "28");
@@ -343,6 +393,7 @@ public class Main {
         MelonPult.put("coolDown", "3");
 
         JSONObject LilyPad = new JSONObject();
+        LilyPad.put("name", "LilyPad");
         LilyPad.put("health", "1");
         LilyPad.put("sun", "0");
         LilyPad.put("plantingPrice", "1");
@@ -353,6 +404,7 @@ public class Main {
         LilyPad.put("coolDown", "1");
 
         JSONObject WinterMelon = new JSONObject();
+        WinterMelon.put("name", "WinterMelon");
         WinterMelon.put("health", "3");
         WinterMelon.put("sun", "4");
         WinterMelon.put("plantingPrice", "61");
@@ -363,6 +415,7 @@ public class Main {
         WinterMelon.put("coolDown", "5");
 
         JSONObject WallNut = new JSONObject();
+        WallNut.put("name", "WallNut");
         WallNut.put("health", "4");
         WallNut.put("sun", "2");
         WallNut.put("plantingPrice", "33");
@@ -373,6 +426,7 @@ public class Main {
         WallNut.put("coolDown", "4");
 
         JSONObject TangleKelp = new JSONObject();
+        TangleKelp.put("name", "TangleKelp");
         TangleKelp.put("health", "0");
         TangleKelp.put("sun", "3");
         TangleKelp.put("plantingPrice", "1");
@@ -383,6 +437,7 @@ public class Main {
         TangleKelp.put("coolDown", "3");
 
         JSONObject TallNut = new JSONObject();
+        TallNut.put("name", "TallNut");
         TallNut.put("health", "6");
         TallNut.put("sun", "4");
         TallNut.put("plantingPrice", "145");
@@ -393,6 +448,7 @@ public class Main {
         TallNut.put("coolDown", "6");
 
         JSONObject Cattail = new JSONObject();
+        Cattail.put("name", "Cattail");
         Cattail.put("health", "3");
         Cattail.put("sun", "5");
         Cattail.put("plantingPrice", "76");
@@ -403,6 +459,7 @@ public class Main {
         Cattail.put("coolDown", "5");
 
         JSONObject PotatoMine = new JSONObject();
+        PotatoMine.put("name", "PotatoMine");
         PotatoMine.put("health", "1");
         PotatoMine.put("sun", "3");
         PotatoMine.put("plantingPrice", "7");
@@ -413,6 +470,7 @@ public class Main {
         PotatoMine.put("coolDown", "2");
 
         JSONObject cherryBomb = new JSONObject();
+        cherryBomb.put("name", "cherryBomb");
         cherryBomb.put("health", "0");
         cherryBomb.put("sun", "2");
         cherryBomb.put("plantingPrice", "1");
@@ -423,6 +481,7 @@ public class Main {
         cherryBomb.put("coolDown", "4");
 
         JSONObject MagnetShroom = new JSONObject();
+        MagnetShroom.put("name", "MagnetShroom");
         MagnetShroom.put("health", "2");
         MagnetShroom.put("sun", "4");
         MagnetShroom.put("plantingPrice", "33");
@@ -433,6 +492,7 @@ public class Main {
         MagnetShroom.put("coolDown", "4");
 
         JSONObject Sunflower = new JSONObject();
+        Sunflower.put("name", "Sunflower");
         Sunflower.put("health", "2");
         Sunflower.put("sun", "1");
         Sunflower.put("plantingPrice", "5");
@@ -443,6 +503,7 @@ public class Main {
         Sunflower.put("coolDown", "2");
 
         JSONObject TwinSunflower = new JSONObject();
+        TwinSunflower.put("name", "TwinSunflower");
         TwinSunflower.put("health", "2");
         TwinSunflower.put("sun", "3");
         TwinSunflower.put("plantingPrice", "31");
@@ -453,6 +514,7 @@ public class Main {
         TwinSunflower.put("coolDown", "5");
 
         JSONObject Jalapeno = new JSONObject();
+        Jalapeno.put("name", "Jalapeno");
         Jalapeno.put("health", "-");
         Jalapeno.put("sun", "4");
         Jalapeno.put("plantingPrice", "1");
