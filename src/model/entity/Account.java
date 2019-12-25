@@ -126,7 +126,7 @@ public class Account {
     public boolean chekPass(String pass) throws Exception {
            if(getStringHash(pass)==this.getPassword())
                  return true;
-           throw new Exception("InvalidPassWordExeption");
+        throw new Exception("InvalidPassWordExeption");
     }
     public static Account getAccountById(String inputStr) throws IOException {
         int id = Math.abs(inputStr.hashCode());

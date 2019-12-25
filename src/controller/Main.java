@@ -1,5 +1,8 @@
 package controller;
 
+import model.entity.Plant;
+import model.entity.Zombie;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
