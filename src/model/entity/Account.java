@@ -178,16 +178,15 @@ public class Account {
                 this.setPassword(newPass1);
             }
             else {
-                Exception NotMatchNewPasswordsExeption =  new Exception("your new passwords didnt match");
-                throw NotMatchNewPasswordsExeption;
+                throw new Exception("your new passwords didnt match");
             }
         }else{
-            Exception NotMatchPasswordExeption =new Exception("your password isnt correct");
-            throw NotMatchPasswordExeption;
+            throw new Exception("your password isnt correct");
         }
     }
 
     private static int getStringHash(String str){
         return Math.abs(str.hashCode());
     }
+
 }
