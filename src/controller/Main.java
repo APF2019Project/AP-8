@@ -1,6 +1,5 @@
 package controller;
 
-import model.entity.Zombie;
 import view.Command;
 
 public class Main {
