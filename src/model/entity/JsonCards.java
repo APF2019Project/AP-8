@@ -13,28 +13,7 @@ import java.io.IOException;
 //import jdk.nashorn.internal.parser.JSONParser;
 //import org.json.simple.JSONArray;
 //import org.json.simple.JSONObject;
-//
-//public class JsonCards {
-//    public static void jsoncardsMethod() throws Exception {
-//        JSONArray jsonArray = new JSONArray();
-//
-//
-//        JSONObject jsonObject1 = new JSONObject();
-//        jsonObject1.put("name","***");
-//        jsonObject1.put("cardType","***");
-//
-//
-//        JSONObject jsonObject2 = new JSONObject();
-//        jsonObject2.put("name","**");
-//        jsonObject2.put("cardType","***");
-//
-//
-//        jsonArray.add(jsonObject1);
-//        jsonArray.add(jsonObject2);
-//        System.out.println(jsonArray.toJSONString());
-//        }
-//    }
-public class JsonCards{
+public class JsonCards {
     private static Zombie returnZombei(String name) throws Exception {
         JSONArray jsonArray = (JSONArray) new JSONParser().parse(getJsonZombei());
         for (Object o : jsonArray) {
@@ -45,6 +24,7 @@ public class JsonCards{
         }
         return null;
     }
+
     private static Plant returnPlant(String name) throws Exception {
         JSONArray jsonArray = (JSONArray) new JSONParser().parse(getJsonPlants());
         for (Object o : jsonArray) {
@@ -55,6 +35,7 @@ public class JsonCards{
         }
         return null;
     }
+
     public static void makeZombiesFile() {
         try {
 
@@ -71,6 +52,7 @@ public class JsonCards{
             e.printStackTrace();
         }
     }
+
     public static void makePlantsFile() {
         try {
 
@@ -87,6 +69,7 @@ public class JsonCards{
             e.printStackTrace();
         }
     }
+
     public static String getJsonZombei() {
         JSONObject regularZombei = new JSONObject();
         regularZombei.put("name", "regularZombei");

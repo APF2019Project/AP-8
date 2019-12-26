@@ -36,6 +36,10 @@ public class Zombie extends Card {
         this.isBaloon = isBaloon;
     }
 
+    public Zombie(String name) {
+        super(name ,CardType.ZOMBIE);
+    }
+
     public void getSpeedAndLifeNumber() {
         if (this.zombeiType == ZombeiType.RegularZombei || this.zombeiType == ZombeiType.Newspaper || this.zombeiType == ZombeiType.ScreenDoor || this.zombeiType == ZombeiType.Pogo || this.zombeiType == ZombeiType.SNORKEL || this.zombeiType == ZombeiType.DOLPHINRIDER) {
             this.lifeNumber = 2;
@@ -216,5 +220,29 @@ public class Zombie extends Card {
 
     public void setBaloon(boolean baloon) {
         isBaloon = baloon;
+    }
+
+    public int getBumper() {
+        return bumper;
+    }
+
+    public void setBumper(int bumper) {
+        this.bumper = bumper;
+    }
+
+    public ZombeiType getZombeiType() {
+        return zombeiType;
+    }
+
+    public void setZombeiType(ZombeiType zombeiType) {
+        this.zombeiType = zombeiType;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 }
