@@ -23,7 +23,7 @@ public class Account {
     private int coins; //we have two modle coin one is this , that is usefull for shoping , other is in game type
     private int numberOfKiledZombies = 0;
     private model.repository.Collection Collection;
-    private ArrayList<String> plants ;
+    private ArrayList<String> plants;
     private ArrayList<String> Zombies;
 
     public Account() {
@@ -98,35 +98,39 @@ public class Account {
         Account.loggedInAccount = loggedInAccount;
     }
 
-    public Account(String name, String id, String password, int coins, int numberOfKiledZombies, ArrayList<String> plants, ArrayList<String> zombies) throws Exception , InvalidPasswordException {
-      try {
-          this.name = name;
-          this.setID(id);
-          this.setPassword(password);
-          this.coins = coins;
-          this.numberOfKiledZombies = numberOfKiledZombies;
-          this.plants = plants;
-          Zombies = zombies;
-          saveAccountInJson(this);
-      }catch (Exception e){
-          throw e ;
-      }
+    public Account(String name, String id, String password, int coins, int numberOfKiledZombies, ArrayList<String> plants, ArrayList<String> zombies) throws Exception, InvalidPasswordException {
+        try {
+            this.name = name;
+            this.setID(id);
+            this.setPassword(password);
+            this.coins = coins;
+            this.numberOfKiledZombies = numberOfKiledZombies;
+            this.plants = plants;
+            Zombies = zombies;
+            saveAccountInJson(this);
+        } catch (Exception e) {
+            throw e;
+        }
     }
-    public void logOut(){
+
+    public void logOut() {
         setLoggedInAccount(null);
     }
-    public void loggIn(String id, String password) throws Exception {
-        setLoggedInAccount(getAccountByIdAndPassword(id,password));
+
+    public void loggIn(String id, String password) throws InvalidIdException , InvalidPasswordException{
+        setLoggedInAccount(getAccountByIdAndPassword(id, password));
     }
-    public boolean chekPass(String pass) throws Exception {
-           if(getStringHash(pass)==this.getPassword())
-                 return true;
+
+    public boolean chekPass(String pass) throws InvalidPasswordException{
+        if (getStringHash(pass) == this.getPassword())
+            return true;
         throw new InvalidPasswordException("your password is invalid");
     }
+
     public static Account getAccountById(String inputStr) throws InvalidIdException {
         int id = Math.abs(inputStr.hashCode());
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(id+".json"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(id + ".json"));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -135,50 +139,64 @@ public class Account {
             Account account = new Gson().fromJson(stringBuilder.toString(), Account.class);
             return account;
         } catch (Exception e) {
-            throw  new InvalidIdException("your id is invalid");
+            throw new InvalidIdException("your id is invalid");
         }
     }
-    private Account getAccountByIdAndPassword(String id, String password) throws Exception {
-            Account account = getAccountById(id);
-            if(account.chekPass(password))
-                return account;
-            return null;
+
+    private Account getAccountByIdAndPassword(String id, String password) throws InvalidPasswordException , InvalidIdException {
+        Account account = getAccountById(id);
+        if (account.chekPass(password))
+            return account;
+        return null;
     }
+
     private void saveAccountInJson(Account account) throws InvalidIdException {
         String jsonAccount = new Gson().toJson(account);
         try {
-            FileWriter fileWriter = new FileWriter(account.getId()+".json");
+            FileWriter fileWriter = new FileWriter(account.getId() + ".json");
             fileWriter.write(jsonAccount);
             fileWriter.close();
         } catch (IOException e) {
-           throw new InvalidIdException("invalid id");
+            throw new InvalidIdException("invalid id");
         }
     }
-    private boolean setID(String strId) throws Exception , InvalidIdException{
-        int id =getStringHash(strId);
-        Path path = Paths.get(id +".json");
-        if(Files.exists(path)){
+
+    private boolean setID(String strId) throws Exception, InvalidIdException {
+        int id = getStringHash(strId);
+        Path path = Paths.get(id + ".json");
+        if (Files.exists(path)) {
             throw new InvalidIdException("this id used before");
-        }else {
-            this.id=id;
+        } else {
+            this.id = id;
             return true;
         }
     }
-    public void editePassword ( String pass , String newPass1 , String newPass2 ) throws InvalidPasswordException {
-        if(this.getPassword() == getStringHash(pass)){
-            if(getStringHash(newPass1)==getStringHash(newPass2)){
+
+    public void editePassword(String pass, String newPass1, String newPass2) throws InvalidPasswordException {
+        if (this.getPassword() == getStringHash(pass)) {
+            if (getStringHash(newPass1) == getStringHash(newPass2)) {
                 this.setPassword(newPass1);
-            }
-            else {
+            } else {
                 throw new InvalidPasswordException("your new passwords didnt match");
             }
-        }else{
+        } else {
             throw new InvalidPasswordException("your password is not correct");
         }
     }
 
-    private static int getStringHash(String str){
+    private static int getStringHash(String str) {
         return Math.abs(str.hashCode());
+    }
+    public static void deleteAccount(String id , String password) throws InvalidIdException, InvalidPasswordException {
+        Account account = getAccountById(id);
+        if(account.chekPass(password)){
+            try {
+                Files.delete(Paths.get(account.getId()+".json"));
+            } catch (IOException e) {
+                System.out.println("exception in delet account method at this path = modele.repsitory.account");
+            }
+        }
+
     }
 
 }
