@@ -94,7 +94,7 @@ public class Account {
         return loggedInAccount;
     }
 
-    public void setLoggedInAccount(Account loggedInAccount) {
+    private static void setLoggedInAccount(Account loggedInAccount) {
         Account.loggedInAccount = loggedInAccount;
     }
 
@@ -113,11 +113,11 @@ public class Account {
         }
     }
 
-    public void logOut() {
+    public static void  logOut() {
         setLoggedInAccount(null);
     }
 
-    public void loggIn(String id, String password) throws InvalidIdException , InvalidPasswordException{
+    public static void loggIn(String id, String password) throws InvalidIdException , InvalidPasswordException{
         setLoggedInAccount(getAccountByIdAndPassword(id, password));
     }
 
@@ -143,7 +143,7 @@ public class Account {
         }
     }
 
-    private Account getAccountByIdAndPassword(String id, String password) throws InvalidPasswordException , InvalidIdException {
+    private static Account getAccountByIdAndPassword(String id, String password) throws InvalidPasswordException , InvalidIdException {
         Account account = getAccountById(id);
         if (account.chekPass(password))
             return account;
@@ -196,7 +196,12 @@ public class Account {
                 System.out.println("exception in delet account method at this path = modele.repsitory.account");
             }
         }
-
+    }
+    public static void renameAccount(String id , String newName) throws InvalidIdException {
+        if(id.matches(loggedInAccount.getName())){
+            loggedInAccount.setName(newName);
+        }
+        throw new InvalidIdException("invalid id");
     }
 
 }
