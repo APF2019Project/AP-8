@@ -16,6 +16,12 @@ public class Cell {
     public Cell() {
     }
 
+    public Cell(int x, int y, CellType cellType) {
+        this.x = x;
+        this.y = y;
+        this.cellType = cellType;
+    }
+
     public Cell(int x, int y, CellType cellType , Map map) {
         this.x = x;
         this.y = y;

@@ -12,12 +12,11 @@ public class Zombie extends Card {
     private boolean isWater;
     private int cost;
 
-    public Zombie(String name, CardType cardType, int lifeNumber, boolean hasCAP, int bumper, ZombeiType zombeiType, Cell position, int speed, int bumperLife, boolean isWater, boolean isBaloon) {
+    public Zombie(String name, CardType cardType, int lifeNumber, boolean hasCAP, int bumper,Cell position, int speed, int bumperLife, boolean isWater, boolean isBaloon) {
         super(name, cardType);
         this.lifeNumber = lifeNumber;
         this.bumper = bumper;
         this.hasCAP = hasCAP;
-        this.zombeiType = zombeiType;
         this.position = position;
         this.speed = speed;
         this.bumperLife = bumperLife;

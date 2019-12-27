@@ -86,7 +86,7 @@ public class Plant extends Card {
             this.condition = Condition.DEAD;
     }
     //constructor
-    public Plant( String name, int health , CardType cardType, Coin shopingPrice, PlantType plantType, int coolDownIncreasePerTurn, int coolDownCeil, int plantingPrice,  int sunOutTurn , BulletType bulletType , boolean isMagnate , boolean isPrickly) {
+    public Plant( String name, int health , CardType cardType, PlantType plantType, int coolDownCeil, int plantingPrice,  int sunOutTurn , BulletType bulletType , boolean isMagnate , boolean isPrickly) {
         super(name, cardType );
         this.health = health;
         this.plantType = plantType;
