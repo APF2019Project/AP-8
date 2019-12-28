@@ -5,8 +5,7 @@ import model.exeptions.InvalidBulletTypeExeption;
 import model.exeptions.InvalidPlantTypeExeption;
 import model.exeptions.InvalidZombieTypeExeption;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class CovertCardsToJsonString {
@@ -36,32 +35,29 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public Zombie setZombieFields(Scanner scanner) throws InvalidZombieTypeExeption{
+    public Zombie setZombieFields(Scanner scanner) throws InvalidZombieTypeExeption {
         String name = string[0];
         int lifeNumber = Integer.parseInt(string[1]);
-        boolean hascap = Boolean.parseBoolean(string[2]);
-        boolean iswater = Boolean.parseBoolean(string[3]);
-        boolean isbaloon = Boolean.parseBoolean(string[4]);
-        int bumper = Integer.parseInt(string[5]);
-        int bumperNumber = Integer.parseInt(string[6]);
-        int speed = Integer.parseInt(string[7]);
-        int cost = Integer.parseInt(string[8]);
-        Zombie z = new Zombie(name, CardType.ZOMBIE,setZombieType(name), lifeNumber, hascap, bumper, speed, bumperNumber, iswater, isbaloon);
+        int cost = Integer.parseInt(string[2]);
+        int speed = Integer.parseInt(string[3]);
+        int bumper = Integer.parseInt(string[4]);
+        boolean hascap = Boolean.parseBoolean(string[5]);
+        boolean isbaloon = Boolean.parseBoolean(string[6]);
+        int bumperNumber = Integer.parseInt(string[7]);
+        boolean iswater = Boolean.parseBoolean(string[8]);
+        Zombie z = new Zombie(name, CardType.ZOMBIE, setZombieType(name), lifeNumber, hascap, bumper, speed, bumperNumber, iswater, isbaloon);
         return z;
     }
 
-    public Plant setPlantFields(Scanner scanner)throws InvalidPlantTypeExeption , InvalidBulletTypeExeption {
+    public Plant setPlantFields(Scanner scanner) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption {
         String name = string[0];
         int health = Integer.parseInt(string[1]);
         int sun = Integer.parseInt(string[2]);
         int plantPrice = Integer.parseInt(string[3]);
-        int coolDown = Integer.parseInt(string[4]);
-        boolean isPrickly = Boolean.parseBoolean(string[5]);
-        boolean isMagnate = Boolean.parseBoolean(string[6]);
-        String bulletName = string[7];
-
-
-        int cost = Integer.parseInt(string[1]);
+        String bulletName = string[4];
+        boolean isMagnate = Boolean.parseBoolean(string[5]);
+        boolean isPrickly = Boolean.parseBoolean(string[6]);
+        int coolDown = Integer.parseInt(string[7]);
 
         Plant p = new Plant(name, health, CardType.PLANT, setPlantType(name), coolDown, plantPrice, sun, setBulletType(bulletName), isMagnate, isPrickly);
         return p;
@@ -182,6 +178,34 @@ public class CovertCardsToJsonString {
                 return BulletType.WINTER_MELLON;
             default:
                 throw new InvalidBulletTypeExeption("invalid bullet type");
+        }
+    }
+    public Zombie getZombeiFromJsonString(String name)throws InvalidZombieTypeExeption, FileNotFoundException {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(name+ ".json"));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            Zombie zombie = new Gson().fromJson(stringBuilder.toString(), Zombie.class);
+            return zombie;
+        }catch (Exception e){
+            throw new InvalidZombieTypeExeption("invalid zombie");
+        }
+    }
+    public Plant getPlantFromJsonString(String name)throws InvalidPlantTypeExeption,InvalidBulletTypeExeption, FileNotFoundException {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(name+ ".json"));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            Plant plant = new Gson().fromJson(stringBuilder.toString(), Plant.class);
+            return plant;
+        }catch (Exception e){
+            throw new InvalidPlantTypeExeption("invalid plant");
         }
     }
 }

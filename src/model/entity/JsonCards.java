@@ -72,7 +72,7 @@ public class JsonCards {
 
     public static String getJsonZombei() {
         JSONObject regularZombei = new JSONObject();
-        regularZombei.put("name", "regularZombei");
+        regularZombei.put("name", "RegularZombei");
         regularZombei.put("lifeNumber", "2");
         regularZombei.put("cost", "60");
         regularZombei.put("speed", "2");

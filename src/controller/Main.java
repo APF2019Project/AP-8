@@ -15,8 +15,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         BulletType bulletType;
 
-        covertCardsToJsonString.createZombies(covertCardsToJsonString.setZombieFields(scanner));
-        covertCardsToJsonString.createPlants(covertCardsToJsonString.setPlantFields(scanner));
+       covertCardsToJsonString.createZombies(covertCardsToJsonString.setZombieFields(scanner));
+       //covertCardsToJsonString.createPlants(covertCardsToJsonString.setPlantFields(scanner));
 
     }
 }
