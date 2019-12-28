@@ -16,7 +16,7 @@ public class CovertCardsToJsonString {
     public void createPlants(Plant plant) throws InvalidPlantTypeExeption {
         String jsonPlant = new Gson().toJson(plant);
         try {
-            FileWriter fileWriter = new FileWriter(plant.getPlantType() + ".json");
+            FileWriter fileWriter = new FileWriter(plant.getName() + ".json");
             fileWriter.write(jsonPlant);
             fileWriter.close();
         } catch (IOException e) {
@@ -27,7 +27,7 @@ public class CovertCardsToJsonString {
     public void createZombies(Zombie zombie) throws InvalidZombieTypeExeption {
         String jsonZombie = new Gson().toJson(zombie);
         try {
-            FileWriter fileWriter = new FileWriter(zombie.getZombeiType() + ".json");
+            FileWriter fileWriter = new FileWriter(zombie.getName() + ".json");
             fileWriter.write(jsonZombie);
             fileWriter.close();
         } catch (IOException e) {
@@ -35,7 +35,7 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public Zombie setZombieFields(Scanner scanner) throws InvalidZombieTypeExeption {
+    public void setZombieFields(Scanner scanner) throws InvalidZombieTypeExeption {
         String name = string[0];
         int lifeNumber = Integer.parseInt(string[1]);
         int cost = Integer.parseInt(string[2]);
@@ -46,10 +46,10 @@ public class CovertCardsToJsonString {
         int bumperNumber = Integer.parseInt(string[7]);
         boolean iswater = Boolean.parseBoolean(string[8]);
         Zombie z = new Zombie(name, CardType.ZOMBIE, setZombieType(name), lifeNumber, hascap, bumper, speed, bumperNumber, iswater, isbaloon);
-        return z;
+        createZombies(z);
     }
 
-    public Plant setPlantFields(Scanner scanner) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption {
+    public void setPlantFields(Scanner scanner) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption {
         String name = string[0];
         int health = Integer.parseInt(string[1]);
         int sun = Integer.parseInt(string[2]);
@@ -60,7 +60,7 @@ public class CovertCardsToJsonString {
         int coolDown = Integer.parseInt(string[7]);
 
         Plant p = new Plant(name, health, CardType.PLANT, setPlantType(name), coolDown, plantPrice, sun, setBulletType(bulletName), isMagnate, isPrickly);
-        return p;
+        createPlants(p);
     }
 
     public BulletType setBulletType(String name) {
