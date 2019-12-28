@@ -11,6 +11,7 @@ public class DayGame extends Game {
     ArrayList<Card> cards = new ArrayList<Card>();
     private Player player;
     private int turn = 0;
+
     public DayGame() {
         super(false, PlayerType.GIYAHKAR, PlayerType.ZOMBEI, 3);
     }

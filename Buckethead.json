@@ -1,0 +1,14 @@
+{
+  "lifeNumber": 3,
+  "hasCAP": true,
+  "bumper": 0,
+  "zombeiType": "Buckethead",
+  "speed": 2,
+  "isBaloon": false,
+  "bumperLife": 0,
+  "isWater": false,
+  "cost": 0,
+  "name": "Buckethead",
+  "cardType": "ZOMBIE",
+  "isSelected": false
+}

@@ -180,9 +180,10 @@ public class CovertCardsToJsonString {
                 throw new InvalidBulletTypeExeption("invalid bullet type");
         }
     }
-    public Zombie getZombeiFromJsonString(String name)throws InvalidZombieTypeExeption, FileNotFoundException {
+
+    public Zombie getZombeiFromJsonString(String name) throws InvalidZombieTypeExeption, FileNotFoundException {
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(name+ ".json"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -190,13 +191,14 @@ public class CovertCardsToJsonString {
             }
             Zombie zombie = new Gson().fromJson(stringBuilder.toString(), Zombie.class);
             return zombie;
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new InvalidZombieTypeExeption("invalid zombie");
         }
     }
-    public Plant getPlantFromJsonString(String name)throws InvalidPlantTypeExeption,InvalidBulletTypeExeption, FileNotFoundException {
+
+    public Plant getPlantFromJsonString(String name) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption, FileNotFoundException {
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(name+ ".json"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -204,7 +206,7 @@ public class CovertCardsToJsonString {
             }
             Plant plant = new Gson().fromJson(stringBuilder.toString(), Plant.class);
             return plant;
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new InvalidPlantTypeExeption("invalid plant");
         }
     }

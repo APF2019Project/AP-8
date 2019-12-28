@@ -1,0 +1,14 @@
+{
+  "lifeNumber": 4,
+  "hasCAP": false,
+  "bumper": 0,
+  "zombeiType": "Footballer",
+  "speed": 3,
+  "isBaloon": false,
+  "bumperLife": 0,
+  "isWater": false,
+  "cost": 0,
+  "name": "Footballer",
+  "cardType": "ZOMBIE",
+  "isSelected": false
+}

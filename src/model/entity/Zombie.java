@@ -12,7 +12,7 @@ public class Zombie extends Card {
     private boolean isWater;
     private int cost;
 
-    public Zombie(String name, CardType cardType,ZombeiType zombeiType, int lifeNumber, boolean hasCAP, int bumper, int speed, int bumperLife, boolean isWater, boolean isBaloon) {
+    public Zombie(String name, CardType cardType, ZombeiType zombeiType, int lifeNumber, boolean hasCAP, int bumper, int speed, int bumperLife, boolean isWater, boolean isBaloon) {
         super(name, cardType);
         this.zombeiType = zombeiType;
         this.lifeNumber = lifeNumber;
@@ -37,7 +37,7 @@ public class Zombie extends Card {
     }
 
     public Zombie(String name) {
-        super(name ,CardType.ZOMBIE);
+        super(name, CardType.ZOMBIE);
     }
 
     public void getSpeedAndLifeNumber() {
