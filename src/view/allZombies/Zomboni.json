@@ -1,0 +1,14 @@
+{
+  "lifeNumber": 3,
+  "hasCAP": false,
+  "bumper": 0,
+  "zombeiType": "Zomboni",
+  "speed": 2,
+  "isBaloon": false,
+  "bumperLife": 0,
+  "isWater": false,
+  "cost": 0,
+  "name": "Zomboni",
+  "cardType": "ZOMBIE",
+  "isSelected": false
+}

@@ -1,0 +1,14 @@
+{
+  "lifeNumber": 2,
+  "hasCAP": false,
+  "bumper": 0,
+  "zombeiType": "SNORKEL",
+  "speed": 2,
+  "isBaloon": false,
+  "bumperLife": 0,
+  "isWater": true,
+  "cost": 0,
+  "name": "SNORKEL",
+  "cardType": "ZOMBIE",
+  "isSelected": false
+}

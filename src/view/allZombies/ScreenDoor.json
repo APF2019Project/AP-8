@@ -1,0 +1,14 @@
+{
+  "lifeNumber": 2,
+  "hasCAP": false,
+  "bumper": 1,
+  "zombeiType": "ScreenDoor",
+  "speed": 2,
+  "isBaloon": false,
+  "bumperLife": 4,
+  "isWater": false,
+  "cost": 0,
+  "name": "ScreenDoor",
+  "cardType": "ZOMBIE",
+  "isSelected": false
+}

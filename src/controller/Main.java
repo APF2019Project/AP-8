@@ -15,8 +15,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
-        //covertCardsToJsonString.setZombieFields(scanner);
+        covertCardsToJsonString.setZombieFields(scanner);
         //covertCardsToJsonString.setPlantFields(scanner);
-        System.out.println(dayGame.randomAccess());
+       // System.out.println(dayGame.randomAccess());
     }
 }

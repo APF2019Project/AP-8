@@ -1,0 +1,14 @@
+{
+  "lifeNumber": 6,
+  "hasCAP": false,
+  "bumper": 0,
+  "zombeiType": "GigaGargantuar",
+  "speed": 1,
+  "isBaloon": false,
+  "bumperLife": 0,
+  "isWater": false,
+  "cost": 0,
+  "name": "GigaGargantuar",
+  "cardType": "ZOMBIE",
+  "isSelected": false
+}

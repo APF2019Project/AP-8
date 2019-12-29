@@ -1,0 +1,14 @@
+{
+  "lifeNumber": 2,
+  "hasCAP": false,
+  "bumper": 1,
+  "zombeiType": "Newspaper",
+  "speed": 2,
+  "isBaloon": false,
+  "bumperLife": 2,
+  "isWater": false,
+  "cost": 0,
+  "name": "Newspaper",
+  "cardType": "ZOMBIE",
+  "isSelected": false
+}
