@@ -40,12 +40,13 @@ public class Profile extends Account {
     }
 
     public static void change() {
+        System.out.println("-------------change account part of profile-----------");
         System.out.println("enter your id: ");
         String id = input.nextLine();
         System.out.println("enter your password: ");
         String password = input.nextLine();
         logOut();
-        System.out.println("you log out :)))");
+        System.out.println("you logged out :)))");
         try {
             loggIn(id, password);
         } catch (InvalidIdException | InvalidPasswordException e) {
@@ -87,6 +88,9 @@ public class Profile extends Account {
                 rename();
             }
         }
+    }
+    public static void create(){
+        Menu.takeInputForCreateAccount();
     }
 
 }
