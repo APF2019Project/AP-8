@@ -22,7 +22,9 @@ public class DayGame extends Game {
     private ArrayList<Card> plants;
     private int waveTurn = 7;
     private int firstWaveTurn = 3;
+    public static void takeInput(){
 
+    }
     public DayGame() {
         super(false, PlayerType.GIYAHKAR, PlayerType.ZOMBEI, 3);
     }
