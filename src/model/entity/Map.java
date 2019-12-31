@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Map {
     private ArrayList<ArrayList<Cell>> rows = new ArrayList<>(6);
-    private String mapType;
+
     // this constructor make the map ,  this take a sting "land" for khoski and "water" for ab map
     public Map(String mapType) {
         for (int i =0 ; i<6 ; i++){
@@ -81,6 +81,9 @@ public class Map {
             cell = new Cell(row.indexOf(cell) , rowIndex ,cellType , map );
         }
         return row;
+    }
+    public Cell getCell( int row , int index){
+        return this.rows.get(row).get(index);
     }
 
 }
