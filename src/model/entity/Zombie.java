@@ -1,5 +1,7 @@
 package model.entity;
 
+import java.util.Random;
+
 public class Zombie extends Card {
     private int lifeNumber = 0;
     private boolean hasCAP; // kolah dare ya na.
@@ -236,6 +238,20 @@ public class Zombie extends Card {
 
     public void setCost() {
         this.cost =  (1 + this.speed) *this.lifeNumber *10;
-
+    }
+    public void put_Zombie(){
+        this.setFieldOfCell();
+        this.position.putCard(this);
+    }
+    public int randomPutZombie( int bound) {
+        // create instance of Random class
+        Random rand = new Random();
+        // Generate random integers in range 0 to 999
+        int rand_int1 = rand.nextInt(bound);
+        return rand_int1;
+    }
+    public void setFieldOfCell(){
+        this.position.setX(0);
+        this.position.setY(randomPutZombie(6));
     }
 }

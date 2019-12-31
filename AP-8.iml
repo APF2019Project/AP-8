@@ -23,5 +23,7 @@
     <orderEntry type="library" name="gson-2.8.2" level="project" />
     <orderEntry type="library" name="gson-2.8.21" level="project" />
     <orderEntry type="library" name="gson-2.8.22" level="project" />
+    <orderEntry type="library" name="gson-2.8.23" level="project" />
+    <orderEntry type="library" name="json-simple-1.1.13" level="project" />
   </component>
 </module>

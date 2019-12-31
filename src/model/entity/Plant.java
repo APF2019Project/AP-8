@@ -1,27 +1,54 @@
 package model.entity;
 
+import java.util.Random;
+
 public class Plant extends Card {
-    private int health ; // joone giyaha
+    private int health; // joone giyaha
     private PlantType plantType; // type
     private int coolDownIncreasePerTurn;
     private int cooLDown;
+    private int coolDownCounter;
     private int coolDownCeil;
     private int plantingPrice; // sun
     private int sunOutTurn;
     private Cell position;
     private BulletType bulletType;
-    private boolean isMagnate ;
-    private boolean isPrickly ;// inke giah tigh dar bashd
-    private int cost ;
+    private boolean isMagnate;
+    private int turnCounter;
+    private boolean isPrickly;// inke giah tigh dar bashd
+    private int cost;
+    private Condition condition = Condition.LIVE;
+
+    //constructor
+    public Plant(String name, int health, CardType cardType, PlantType plantType, int coolDownCeil, int plantingPrice, int sunOutTurn, BulletType bulletType, boolean isMagnate, boolean isPrickly) {
+        super(name, cardType);
+        this.health = health;
+        this.plantType = plantType;
+        this.coolDownIncreasePerTurn = coolDownIncreasePerTurn;
+        this.coolDownCeil = coolDownCeil;
+        this.plantingPrice = plantingPrice;
+        this.sunOutTurn = sunOutTurn;
+        this.bulletType = bulletType;
+        this.isMagnate = isMagnate;
+        this.isPrickly = isPrickly;
+        setCost();
+    }
+
     //getters and setters
-    public void setCost(){
-        this.cost= this.sunOutTurn * this.cooLDown *this.health + 1;
+    public void setCost() {
+        this.cost = this.sunOutTurn * this.cooLDown * this.health + 1;
     }
-    public int getCost(){
-        return  this.cost;
+
+    public int getCost() {
+        return this.cost;
     }
+
     public PlantType getPlantType() {
         return plantType;
+    }
+
+    public void setPlantType(PlantType plantType) {
+        this.plantType = plantType;
     }
 
     public int getHealth() {
@@ -31,11 +58,6 @@ public class Plant extends Card {
     public void setHealth(int health) {
         this.health = health;
     }
-
-    public void setPlantType(PlantType plantType) {
-        this.plantType = plantType;
-    }
-
 
     public int getCooLDown() {
         return cooLDown;
@@ -61,7 +83,6 @@ public class Plant extends Card {
         this.plantingPrice = plantingPrice;
     }
 
-
     public int getSunOutTurn() {
         return sunOutTurn;
     }
@@ -86,47 +107,33 @@ public class Plant extends Card {
         this.condition = condition;
     }
 
-    private Condition condition = Condition.LIVE;
-
     public void setCondition() {
         if (this.health <= 0)
             this.condition = Condition.DEAD;
     }
-    //constructor
-    public Plant( String name, int health , CardType cardType, PlantType plantType, int coolDownCeil, int plantingPrice,  int sunOutTurn , BulletType bulletType , boolean isMagnate , boolean isPrickly) {
-        super(name, cardType );
-        this.health = health;
-        this.plantType = plantType;
-        this.coolDownIncreasePerTurn = coolDownIncreasePerTurn;
-        this.coolDownCeil = coolDownCeil;
-        this.plantingPrice = plantingPrice;
-        this.sunOutTurn = sunOutTurn;
-        this.bulletType= bulletType;
-        this.isMagnate = isMagnate;
-        this.isPrickly = isPrickly;
-        setCost();
-    }
     // finishing genrate setters and other shit methods
 
     // in tabe glule i az noee glule haye khod ra dar cell khod put mikonad
-    public void shot(){
-        Shot.getShot(this.bulletType  , this.position);
+    public void shot() {
+        Shot.getShot(this.bulletType, this.position);
     }
-    public void magnating(){
-        if(this.isMagnate){
+
+    public void magnating() {
+        if (this.isMagnate) {
             // inja ahan robyi giah ra piade khaham kard...
         }
     }
-  /*  public void pricking(){
-        if(this.isPrickly){
-        for (Zombie zombie: this.position.getZombies()) {
-          if(!zombie.isHasArmor()){
-              zombie.setLifeNumber(zombie.getLifeNumber()-1);
+
+    /*  public void pricking(){
+          if(this.isPrickly){
+          for (Zombie zombie: this.position.getZombies()) {
+            if(!zombie.isHasArmor()){
+                zombie.setLifeNumber(zombie.getLifeNumber()-1);
+            }
           }
-        }
-        }
-    }
-*/
+          }
+      }
+  */
     @Override
     public String toString() {
         return "Plant{" +
@@ -143,5 +150,32 @@ public class Plant extends Card {
                 ", isPrickly=" + isPrickly +
                 ", condition=" + condition +
                 '}';
+    }
+
+    public void runPlant() {
+        while (true) {
+            if (this.coolDownCounter == 0) {
+            this.coolDownCounter = this.cooLDown;
+
+
+            this.coolDownCounter--;
+            }
+        }
+    }
+    public void planting(){
+        //kashtane giyah.
+        this.setFieldOfCell();
+        this.position.putCard(this);
+    }
+    public int randomPutPlant( int bound) {
+        // create instance of Random class
+        Random rand = new Random();
+        // Generate random integers in range 0 to 999
+        int rand_int1 = rand.nextInt(bound);
+        return rand_int1;
+    }
+    public void setFieldOfCell(){
+        this.position.setX(randomPutPlant(6));
+        this.position.setY(randomPutPlant(19));
     }
 }
