@@ -107,4 +107,7 @@ public class Cell {
         }
         return result;
     }
+    public void moveCatd(Card card){
+
+    }
 }
