@@ -3,6 +3,7 @@ package model.entity;
 import java.util.Random;
 
 public class Zombie extends Card {
+    Map map = new Map("land");
     private int lifeNumber = 0;
     private boolean hasCAP; // kolah dare ya na.
     private int bumper; // har zombei momkene chnata separ dashte bashe.
@@ -13,6 +14,7 @@ public class Zombie extends Card {
     private int bumperLife;
     private boolean isWater;
     private int cost;
+    private Cell temp;
 
     public Zombie(String name, CardType cardType, ZombeiType zombeiType, int lifeNumber, boolean hasCAP, int bumper, int speed, int bumperLife, boolean isWater, boolean isBaloon) {
         super(name, cardType);
@@ -157,8 +159,6 @@ public class Zombie extends Card {
 //    }
 
 
-
-
     // getter and setters
     public int getLifeNumber() {
         return lifeNumber;
@@ -237,21 +237,33 @@ public class Zombie extends Card {
     }
 
     public void setCost() {
-        this.cost =  (1 + this.speed) *this.lifeNumber *10;
+        this.cost = (1 + this.speed) * this.lifeNumber * 10;
     }
-    public void put_Zombie(){
-        this.setFieldOfCell();
+
+    public void put_Zombie() {
+        this.position = map.getCell(randomPutZombie(6), 0);
         this.position.putCard(this);
     }
-    public int randomPutZombie( int bound) {
+
+    public int randomPutZombie(int bound) {
         // create instance of Random class
         Random rand = new Random();
         // Generate random integers in range 0 to 999
         int rand_int1 = rand.nextInt(bound);
         return rand_int1;
     }
-    public void setFieldOfCell(){
-        this.position.setY(0);
-        this.position.setX(randomPutZombie(6));
+
+    public void moveZombieOneStep() {
+        temp = map.getLeft(position);
+        this.temp.putCard(this);
+        this.position.killCell(this);
+        this.position = this.temp;
+        this.temp = null;
+    }
+
+    public void moveZombieFinal() {
+        for (int i =0; i <this.speed ; i++ ){
+            moveZombieOneStep();
+        }
     }
 }

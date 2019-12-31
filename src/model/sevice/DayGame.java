@@ -19,7 +19,7 @@ public class DayGame extends Game {
     Map map = new Map("land");
     private Player player;
     private int turn = 0;
-    private int sunFlowerTurned =2;
+    private int sunFlowerTurned = 2;
     private int getSunCounter = randomAccess(1, 2);
     private int numberOdfPlants = 7;
     private ArrayList<Plant> plants = new ArrayList<Plant>();
@@ -89,9 +89,9 @@ public class DayGame extends Game {
     public void addSunForPlayerBySunFlower() {
         System.out.println("addSunForPlayerBySunFlower");
         for (Plant p : plants) {
-            if (p.getPlantType()== PlantType.SUNFLOWER || p.getPlantType()== PlantType.TWINSUNFLOWER){
-                if (sunFlowerTurned == 0){
-                    player.setNumberOfSun(player.getNumberOfSun()+p.getSunOutTurn());
+            if (p.getPlantType() == PlantType.SUNFLOWER || p.getPlantType() == PlantType.TWINSUNFLOWER) {
+                if (sunFlowerTurned == 0) {
+                    player.setNumberOfSun(player.getNumberOfSun() + p.getSunOutTurn());
                 }
             }
         }

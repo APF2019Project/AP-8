@@ -3,6 +3,7 @@ package model.entity;
 import java.util.Random;
 
 public class Plant extends Card {
+    Map map = new Map("land");
     private int health; // joone giyaha
     private PlantType plantType; // type
     private int coolDownIncreasePerTurn;
@@ -155,27 +156,29 @@ public class Plant extends Card {
     public void runPlant() {
         while (true) {
             if (this.coolDownCounter == 0) {
-            this.coolDownCounter = this.cooLDown;
+                this.coolDownCounter = this.cooLDown;
 
 
-            this.coolDownCounter--;
+                this.coolDownCounter--;
             }
         }
     }
-    public void planting(){
+
+    public void planting() {
         //kashtane giyah.
-        this.setFieldOfCell();
+        this.position = map.getCell(randomPutPlant(6), randomPutPlant(19));
         this.position.putCard(this);
     }
-    public int randomPutPlant( int bound) {
+
+    public int randomPutPlant(int bound) {
         // create instance of Random class
         Random rand = new Random();
         // Generate random integers in range 0 to 999
         int rand_int1 = rand.nextInt(bound);
         return rand_int1;
     }
-    public void setFieldOfCell(){
-        this.position.setX(randomPutPlant(6));
-        this.position.setY(randomPutPlant(19));
+
+    public void enfejar() {
+
     }
 }
