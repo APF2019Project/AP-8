@@ -7,7 +7,7 @@
   "isBaloon": false,
   "bumperLife": 0,
   "isWater": false,
-  "cost": 60,
+  "cost": 80,
   "name": "Catapult",
   "cardType": "ZOMBIE",
   "isSelected": false

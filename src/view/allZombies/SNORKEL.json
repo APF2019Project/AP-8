@@ -7,7 +7,7 @@
   "isBaloon": false,
   "bumperLife": 0,
   "isWater": true,
-  "cost": 0,
+  "cost": 60,
   "name": "SNORKEL",
   "cardType": "ZOMBIE",
   "isSelected": false

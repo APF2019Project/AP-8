@@ -7,7 +7,7 @@
   "isBaloon": false,
   "bumperLife": 0,
   "isWater": false,
-  "cost": 0,
+  "cost": 80,
   "name": "Conehead",
   "cardType": "ZOMBIE",
   "isSelected": false

@@ -7,7 +7,7 @@
   "isBaloon": false,
   "bumperLife": 2,
   "isWater": true,
-  "cost": 0,
+  "cost": 60,
   "name": "DOLPHINRIDER",
   "cardType": "ZOMBIE",
   "isSelected": false

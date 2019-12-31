@@ -7,7 +7,7 @@
   "isBaloon": false,
   "bumperLife": 4,
   "isWater": false,
-  "cost": 0,
+  "cost": 60,
   "name": "ScreenDoor",
   "cardType": "ZOMBIE",
   "isSelected": false

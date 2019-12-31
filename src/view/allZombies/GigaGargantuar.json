@@ -7,7 +7,7 @@
   "isBaloon": false,
   "bumperLife": 0,
   "isWater": false,
-  "cost": 0,
+  "cost": 70,
   "name": "GigaGargantuar",
   "cardType": "ZOMBIE",
   "isSelected": false
