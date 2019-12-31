@@ -166,8 +166,9 @@ public class Plant extends Card {
 
     public void planting() {
         //kashtane giyah.
-        this.position = map.getCell(randomPutPlant(6), randomPutPlant(19));
-        this.position.putCard(this);
+        map.getCell(randomPutPlant(6), randomPutPlant(19)).putCard(this);
+        this.position.setHasPlant(true);
+
     }
 
     public int randomPutPlant(int bound) {

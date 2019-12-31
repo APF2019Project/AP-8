@@ -107,7 +107,21 @@ public class Cell {
         }
         return result;
     }
-    public void moveCatd(Card card){
+    //getter & setter
 
+    public boolean isHasPlant() {
+        return hasPlant;
+    }
+
+    public void setHasPlant(boolean hasPlant) {
+        this.hasPlant = hasPlant;
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
     }
 }

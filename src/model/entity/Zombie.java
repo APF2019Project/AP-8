@@ -241,8 +241,7 @@ public class Zombie extends Card {
     }
 
     public void put_Zombie() {
-        this.position = map.getCell(randomPutZombie(6), 0);
-        this.position.putCard(this);
+        map.getCell(randomPutZombie(6), 0).putCard(this);
     }
 
     public int randomPutZombie(int bound) {
@@ -257,11 +256,22 @@ public class Zombie extends Card {
         temp = this.position;
         map.getLeft(temp).putCard(this);
         temp.removeCard(this);
+        if (temp.isHasPlant() == true){
+            killOnePlantByZombie(temp);
+        }
     }
 
     public void moveZombieFinal() {
-        for (int i =0; i <this.speed ; i++ ){
+        for (int i = 0; i < this.speed; i++) {
             moveZombieOneStep();
+        }
+    }
+
+    public void killOnePlantByZombie(Cell cell) {
+        for (int i = 0 ; i<cell.getCards().size() ; i++) {
+            if (cell.getCards().get(i).getCardType() == CardType.PLANT) {
+                cell.removeCard(cell.getCards().get(i));
+            }
         }
     }
 }
