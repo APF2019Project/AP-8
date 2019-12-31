@@ -251,7 +251,7 @@ public class Zombie extends Card {
         return rand_int1;
     }
     public void setFieldOfCell(){
-        this.position.setX(0);
-        this.position.setY(randomPutZombie(6));
+        this.position.setY(0);
+        this.position.setX(randomPutZombie(6));
     }
 }

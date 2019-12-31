@@ -7,7 +7,7 @@
   "isBaloon": false,
   "bumperLife": 0,
   "isWater": false,
-  "cost": 0,
+  "cost": 60,
   "name": "RegularZombei",
   "cardType": "ZOMBIE",
   "isSelected": false
