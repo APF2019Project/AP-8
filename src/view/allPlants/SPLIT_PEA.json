@@ -1,0 +1,19 @@
+{
+  "health": 3,
+  "plantType": "SPLIT_PEA",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 4,
+  "plantingPrice": 4,
+  "sunOutTurn": 0,
+  "bulletType": "PEA",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "SPLIT_PEA",
+  "cardType": "PLANT",
+  "isSelected": false
+}

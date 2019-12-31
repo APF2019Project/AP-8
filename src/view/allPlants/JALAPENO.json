@@ -1,0 +1,19 @@
+{
+  "health": 0,
+  "plantType": "JALAPENO",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 5,
+  "plantingPrice": 4,
+  "sunOutTurn": 0,
+  "bulletType": "NULL",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "JALAPENO",
+  "cardType": "PLANT",
+  "isSelected": false
+}

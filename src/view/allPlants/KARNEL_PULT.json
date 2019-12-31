@@ -1,0 +1,19 @@
+{
+  "health": 2,
+  "plantType": "KARNEL_PULT",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 3,
+  "plantingPrice": 3,
+  "sunOutTurn": 0,
+  "bulletType": "MAIZE",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "KARNEL_PULT",
+  "cardType": "PLANT",
+  "isSelected": false
+}

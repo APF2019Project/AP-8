@@ -1,0 +1,19 @@
+{
+  "health": 2,
+  "plantType": "SUNFLOWER",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 2,
+  "plantingPrice": 1,
+  "sunOutTurn": 1,
+  "bulletType": "NULL",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "SUNFLOWER",
+  "cardType": "PLANT",
+  "isSelected": false
+}

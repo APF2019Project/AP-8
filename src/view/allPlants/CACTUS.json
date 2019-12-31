@@ -1,0 +1,19 @@
+{
+  "health": 5,
+  "plantType": "CACTUS",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 4,
+  "plantingPrice": 5,
+  "sunOutTurn": 0,
+  "bulletType": "PEA",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": true,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "CACTUS",
+  "cardType": "PLANT",
+  "isSelected": false
+}

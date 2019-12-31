@@ -1,0 +1,19 @@
+{
+  "health": 5,
+  "plantType": "THREEPEATER",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 4,
+  "plantingPrice": 4,
+  "sunOutTurn": 0,
+  "bulletType": "PEA",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "THREEPEATER",
+  "cardType": "PLANT",
+  "isSelected": false
+}

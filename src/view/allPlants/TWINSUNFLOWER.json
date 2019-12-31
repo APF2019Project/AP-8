@@ -1,0 +1,19 @@
+{
+  "health": 2,
+  "plantType": "TWINSUNFLOWER",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 5,
+  "plantingPrice": 3,
+  "sunOutTurn": 2,
+  "bulletType": "NULL",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "TWINSUNFLOWER",
+  "cardType": "PLANT",
+  "isSelected": false
+}

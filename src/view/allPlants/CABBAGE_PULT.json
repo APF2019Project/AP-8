@@ -1,0 +1,19 @@
+{
+  "health": 4,
+  "plantType": "CABBAGE_PULT",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 3,
+  "plantingPrice": 3,
+  "sunOutTurn": 0,
+  "bulletType": "LETTUCE",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "CABBAGE_PULT",
+  "cardType": "PLANT",
+  "isSelected": false
+}

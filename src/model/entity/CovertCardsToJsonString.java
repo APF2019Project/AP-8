@@ -162,7 +162,7 @@ public class CovertCardsToJsonString {
             case "TWINSUNFLOWER":
                 return PlantType.TWINSUNFLOWER;
             case "JALAPENO":
-
+                return PlantType.JALAPENO;
             default:
                 throw new InvalidPlantTypeExeption("invalid plant type");
         }
@@ -209,6 +209,8 @@ public class CovertCardsToJsonString {
         switch (name) {
             case "PEA":
                 return BulletType.PEA;
+            case "NULL":
+                return BulletType.NULL;
             case "LETTUCE":
                 return BulletType.LETTUCE;
             case "SNOW_PEA":

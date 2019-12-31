@@ -1,0 +1,19 @@
+{
+  "health": 0,
+  "plantType": "TANGLE_KELP",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 3,
+  "plantingPrice": 3,
+  "sunOutTurn": 0,
+  "bulletType": "NULL",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "TANGLE_KELP",
+  "cardType": "PLANT",
+  "isSelected": false
+}

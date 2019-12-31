@@ -1,0 +1,19 @@
+{
+  "health": 3,
+  "plantType": "WINTERMELON",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 5,
+  "plantingPrice": 4,
+  "sunOutTurn": 0,
+  "bulletType": "WINTER_MELLON",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "WINTERMELON",
+  "cardType": "PLANT",
+  "isSelected": false
+}

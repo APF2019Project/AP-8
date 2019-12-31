@@ -1,0 +1,19 @@
+{
+  "health": 3,
+  "plantType": "EXPLODE_O_NUT",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 5,
+  "plantingPrice": 4,
+  "sunOutTurn": 0,
+  "bulletType": "EXPLODE_O_NOT",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "EXPLODE_O_NUT",
+  "cardType": "PLANT",
+  "isSelected": false
+}

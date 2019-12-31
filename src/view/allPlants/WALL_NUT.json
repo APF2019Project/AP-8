@@ -1,0 +1,19 @@
+{
+  "health": 4,
+  "plantType": "WALL_NUT",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 4,
+  "plantingPrice": 2,
+  "sunOutTurn": 0,
+  "bulletType": "NULL",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "WALL_NUT",
+  "cardType": "PLANT",
+  "isSelected": false
+}

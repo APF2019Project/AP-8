@@ -1,0 +1,19 @@
+{
+  "health": 1,
+  "plantType": "LILYPAD",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 1,
+  "plantingPrice": 0,
+  "sunOutTurn": 0,
+  "bulletType": "NULL",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "LILYPAD",
+  "cardType": "PLANT",
+  "isSelected": false
+}

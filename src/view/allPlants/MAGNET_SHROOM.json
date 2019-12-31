@@ -1,0 +1,19 @@
+{
+  "health": 2,
+  "plantType": "MAGNET_SHROOM",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 0,
+  "plantingPrice": 4,
+  "sunOutTurn": 4,
+  "bulletType": "NULL",
+  "isMagnate": true,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "MAGNET_SHROOM",
+  "cardType": "PLANT",
+  "isSelected": false
+}
