@@ -16,7 +16,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
        // covertCardsToJsonString.setZombieFields(scanner);
-        covertCardsToJsonString.setInput(scanner);
-        covertCardsToJsonString.setPlantFields();
+//        covertCardsToJsonString.setInput(scanner);
+//        covertCardsToJsonString.setPlantFields();
         }
 }
