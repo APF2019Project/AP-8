@@ -254,11 +254,9 @@ public class Zombie extends Card {
     }
 
     public void moveZombieOneStep() {
-        temp = map.getLeft(position);
-        this.temp.putCard(this);
-        this.position.killCell(this);
-        this.position = this.temp;
-        this.temp = null;
+        temp = this.position;
+        map.getLeft(temp).putCard(this);
+        temp.removeCard(this);
     }
 
     public void moveZombieFinal() {
