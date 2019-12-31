@@ -75,7 +75,7 @@ public class Map {
         return cells;
     }
     // this method get a row of cells , can be water cells or land cells
-    private  ArrayList<Cell> getRow(CellType cellType , int rowIndex , Map map ){
+    private static ArrayList<Cell> getRow(CellType cellType , int rowIndex , Map map ){
         ArrayList<Cell> row = new ArrayList<>(19);
         for (Cell cell: row) {
             cell = new Cell(row.indexOf(cell) , rowIndex ,cellType , map );
@@ -86,5 +86,7 @@ public class Map {
         return this.rows.get(row).get(index);
     }
 
-
+    public ArrayList<Cell> getRow(Cell cell){
+        return this.rows.get(cell.getY());
+    }
 }
