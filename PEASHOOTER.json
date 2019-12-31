@@ -1,0 +1,19 @@
+{
+  "health": 2,
+  "plantType": "PEASHOOTER",
+  "coolDownIncreasePerTurn": 0,
+  "cooLDown": 0,
+  "coolDownCounter": 0,
+  "coolDownCeil": 2,
+  "plantingPrice": 2,
+  "sunOutTurn": 0,
+  "bulletType": "PEA",
+  "isMagnate": false,
+  "turnCounter": 0,
+  "isPrickly": false,
+  "cost": 1,
+  "condition": "LIVE",
+  "name": "PEASHOOTER",
+  "cardType": "PLANT",
+  "isSelected": false
+}
