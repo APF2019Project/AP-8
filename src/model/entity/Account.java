@@ -1,11 +1,13 @@
 package model.entity;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import model.exeptions.InvalidIdException;
 import model.exeptions.InvalidPasswordException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +17,8 @@ import java.util.HashMap;
 public class Account {
     // list of  zombies and plants most be declare
 
-    private static HashMap<String , String > accountsInfo = new HashMap<>();
+    private static HashMap<Integer, Integer> accountsInfo = new HashMap<>();
+    private static ArrayList<Account> accounts = new ArrayList<>();
     public static Account loggedInAccount = null;
     private String name;
     private int id;
@@ -25,6 +28,10 @@ public class Account {
     private model.repository.Collection Collection;
     private ArrayList<String> plants;
     private ArrayList<String> Zombies;
+
+    public static ArrayList<Account> getAccounts() {
+        return accounts;
+    }
 
     public Account() {
         //ino baraye on ac ke tooye menu hast gozashtam
@@ -112,16 +119,24 @@ public class Account {
             throw e;
         }
     }
-    public static void  logOut() {
+
+    public static void logOut() {
+        accountsInfo.put(loggedInAccount.getId(), loggedInAccount.getPassword());
         setLoggedInAccount(null);
     }
 
-    public static void loggIn(String id, String password) throws InvalidIdException , InvalidPasswordException{
+    public static void loggIn(String id, String password) throws InvalidIdException, InvalidPasswordException {
+        loadAllAccounts();
         setLoggedInAccount(getAccountByIdAndPassword(id, password));
     }
 
-    public boolean chekPass(String pass) throws InvalidPasswordException{
+    public boolean chekPass(String pass) throws InvalidPasswordException {
         if (getStringHash(pass) == this.getPassword())
+            return true;
+        throw new InvalidPasswordException("your password is invalid");
+    }
+    public boolean chekPass(Integer pass) throws InvalidPasswordException {
+        if (pass == this.getPassword())
             return true;
         throw new InvalidPasswordException("your password is invalid");
     }
@@ -142,7 +157,29 @@ public class Account {
         }
     }
 
-    private static Account getAccountByIdAndPassword(String id, String password) throws InvalidPasswordException , InvalidIdException {
+    public static Account getAccountById(Integer id) throws InvalidIdException {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(id + ".json"));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            Account account = new Gson().fromJson(stringBuilder.toString(), Account.class);
+            return account;
+        } catch (Exception e) {
+            throw new InvalidIdException("your id is invalid");
+        }
+    }
+
+    private static Account getAccountByIdAndPassword(String id, String password) throws InvalidPasswordException, InvalidIdException {
+        Account account = getAccountById(id);
+        if (account.chekPass(password))
+            return account;
+        return null;
+    }
+
+    private static Account getAccountByIdAndPassword(Integer id, Integer password) throws InvalidPasswordException, InvalidIdException {
         Account account = getAccountById(id);
         if (account.chekPass(password))
             return account;
@@ -176,6 +213,7 @@ public class Account {
         if (this.getPassword() == getStringHash(pass)) {
             if (getStringHash(newPass1) == getStringHash(newPass2)) {
                 this.setPassword(newPass1);
+                accountsInfo.put(this.getId(), this.getPassword());
             } else {
                 throw new InvalidPasswordException("your new passwords didnt match");
             }
@@ -187,31 +225,29 @@ public class Account {
     private static int getStringHash(String str) {
         return Math.abs(str.hashCode());
     }
-    public static void deleteAccount(String id , String password) throws InvalidIdException, InvalidPasswordException {
+
+    public static void deleteAccount(String id, String password) throws InvalidIdException, InvalidPasswordException {
         Account account = getAccountById(id);
-        if(account.chekPass(password)){
+        accounts.remove(account.getId());
+        if (account.chekPass(password)) {
             try {
-                Files.delete(Paths.get(account.getId()+".json"));
+                Files.delete(Paths.get(account.getId() + ".json"));
             } catch (IOException e) {
                 System.out.println("exception in delet account method at this path = modele.repsitory.account");
             }
         }
     }
-    public static void renameAccount(String id , String newName) throws InvalidIdException {
-        if(id.matches(loggedInAccount.getName())){
+
+    public static void renameAccount(String id, String newName) throws InvalidIdException {
+        if (id.matches(loggedInAccount.getName())) {
             loggedInAccount.setName(newName);
         }
         throw new InvalidIdException("invalid id");
     }
-    private static JsonObject makeJson(String id , String password){
-        JsonObject result = new JsonObject();
-        result.addProperty("id" , id);
-        result.addProperty("password" , password);
-        return result;
-    }
-    private static void setAccountsInfo(){
+
+    private static void readAccountsInfo() {
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader( "accounts.json"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("accounts.json"));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -222,11 +258,12 @@ public class Account {
             System.out.println(e.getMessage());
         }
     }
-    public static  void getAllAccounts(){
-        ArrayList<Account> accounts = new ArrayList<>();
-        for (String id : accountsInfo.keySet()) {
+
+    public static void loadAllAccounts() {
+
+        for (Integer id : accountsInfo.keySet()) {
             try {
-                accounts.add(Account.getAccountByIdAndPassword(id , accountsInfo.get(id)));
+                accounts.add(Account.getAccountByIdAndPassword(id, accountsInfo.get(id)));
             } catch (InvalidPasswordException e) {
                 System.out.println(e.getMessage());
             } catch (InvalidIdException e) {
@@ -235,7 +272,8 @@ public class Account {
         }
 
     }
-    private static void saveAccountsInfo(){
+
+    private static void saveAccountsInfo() {
         String jsonAccounts = new Gson().toJson(Account.accountsInfo);
         try {
             FileWriter fileWriter = new FileWriter("accounts.json");
