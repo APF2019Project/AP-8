@@ -20,21 +20,20 @@ public class DayGame extends Game {
         player.setNumberOfSun(2);
         while (true) {
             if (turn % 1 == 0 || turn % 2 == 0) {
-                player.setNumberOfSun(randomAccess());
+               // player.setNumberOfSun(randomAccess());
             }
             turn++;
         }
     }
 
 
-    public int randomAccess() {
+    public int randomAccess( int  start , int finish) {
         // create instance of Random class
         Random rand = new Random();
 
         // Generate random integers in range 0 to 999
-        int rand_int1 = rand.nextInt(5);
-        int rand_int2 = rand.nextInt(2);
-        rand_int1 = rand_int1 - rand_int2;
+        int rand_int1 = rand.nextInt(Math.abs(finish- start)+1);
+        rand_int1 = rand_int1 +start ;
         return rand_int1;
     }
 }

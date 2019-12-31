@@ -12,7 +12,14 @@ public class Plant extends Card {
     private BulletType bulletType;
     private boolean isMagnate ;
     private boolean isPrickly ;// inke giah tigh dar bashd
+    private int cost ;
     //getters and setters
+    public void setCost(){
+        this.cost= this.sunOutTurn * this.cooLDown *this.health + 1;
+    }
+    public int getCost(){
+        return  this.cost;
+    }
     public PlantType getPlantType() {
         return plantType;
     }
@@ -97,6 +104,7 @@ public class Plant extends Card {
         this.bulletType= bulletType;
         this.isMagnate = isMagnate;
         this.isPrickly = isPrickly;
+        setCost();
     }
     // finishing genrate setters and other shit methods
 

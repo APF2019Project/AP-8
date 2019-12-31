@@ -1,22 +1,22 @@
 package model.entity;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import model.exeptions.InvalidIdException;
 import model.exeptions.InvalidPasswordException;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Account {
     // list of  zombies and plants most be declare
-    public static Account loggedInAccount = null;
 
+    private static HashMap<String , String > accountsInfo = new HashMap<>();
+    public static Account loggedInAccount = null;
     private String name;
     private int id;
     private int password;
@@ -112,7 +112,6 @@ public class Account {
             throw e;
         }
     }
-
     public static void  logOut() {
         setLoggedInAccount(null);
     }
@@ -161,6 +160,7 @@ public class Account {
         }
     }
 
+
     private boolean setID(String strId) throws Exception, InvalidIdException {
         int id = getStringHash(strId);
         Path path = Paths.get(id + ".json");
@@ -203,5 +203,45 @@ public class Account {
         }
         throw new InvalidIdException("invalid id");
     }
+    private static JsonObject makeJson(String id , String password){
+        JsonObject result = new JsonObject();
+        result.addProperty("id" , id);
+        result.addProperty("password" , password);
+        return result;
+    }
+    private static void setAccountsInfo(){
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader( "accounts.json"));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            accountsInfo = new Gson().fromJson(stringBuilder.toString(), HashMap.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public static  void getAllAccounts(){
+        ArrayList<Account> accounts = new ArrayList<>();
+        for (String id : accountsInfo.keySet()) {
+            try {
+                accounts.add(Account.getAccountByIdAndPassword(id , accountsInfo.get(id)));
+            } catch (InvalidPasswordException e) {
+                System.out.println(e.getMessage());
+            } catch (InvalidIdException e) {
+                e.printStackTrace();
+            }
+        }
 
+    }
+    private static void saveAccountsInfo(){
+        String jsonAccounts = new Gson().toJson(Account.accountsInfo);
+        try {
+            FileWriter fileWriter = new FileWriter("accounts.json");
+            fileWriter.write(jsonAccounts);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

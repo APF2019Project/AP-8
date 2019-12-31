@@ -1,6 +1,7 @@
 package controller;
 
 import model.entity.CovertCardsToJsonString;
+import model.exeptions.InvalidZombieTypeExeption;
 import model.sevice.DayGame;
 import view.Command;
 
@@ -15,8 +16,14 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
-        covertCardsToJsonString.setZombieFields(scanner);
+       // covertCardsToJsonString.setZombieFields(scanner);
         //covertCardsToJsonString.setPlantFields(scanner);
-       // System.out.println(dayGame.randomAccess());
-    }
+        try {
+            System.out.println(covertCardsToJsonString.);
+        }catch (Exception | InvalidZombieTypeExeption e){
+            System.out.println("kkkkk");
+        }
+
+
+        }
 }

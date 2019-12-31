@@ -27,11 +27,11 @@ public class Profile extends Account {
                 profileGetInput();
                 break;
             case "create":
-                Menu.takeInputForCreateAccount();
+                create();
                 profileGetInput();
                 break;
             case "back":
-                Menu.menuGetInput();
+                LogginMenu.getInputForLogginMenu();
                 break;
             default:
                 profileGetInput();
@@ -90,7 +90,7 @@ public class Profile extends Account {
         }
     }
     public static void create(){
-        Menu.takeInputForCreateAccount();
+        LogginMenu.takeInputForCreateAccount();
     }
 
 }

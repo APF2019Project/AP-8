@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import model.exeptions.InvalidBulletTypeExeption;
 import model.exeptions.InvalidPlantTypeExeption;
 import model.exeptions.InvalidZombieTypeExeption;
-import model.repository.Menu;
+import model.repository.MainMenu;
 
 import java.io.*;
 import java.util.Scanner;
@@ -29,7 +29,7 @@ public class CovertCardsToJsonString {
                 creatCardMenu();
                 break;
             case "back" :
-                Menu.menuGetInput();
+                MainMenu.mainMenuGetInput();
                 break;
             default:
                 creatCardMenu();
@@ -65,8 +65,6 @@ public class CovertCardsToJsonString {
             String name = input.nextLine();
             System.out.println("please enter the initilizing health for zombie :");
             int lifeNumber = Integer.parseInt(input.nextLine());
-            System.out.println("enter the your zombie cost :");
-            int cost = Integer.parseInt(input.nextLine());
             System.out.println("enter the zombie speed :");
             int speed = Integer.parseInt(input.nextLine());
             System.out.println("enter the number of bumper your zombie will hava :");
@@ -228,9 +226,9 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public static Zombie getZombeiFromJsonString(String name) throws InvalidZombieTypeExeption, FileNotFoundException {
+    public Zombie getZombeiFromJsonString(String name) throws InvalidZombieTypeExeption, FileNotFoundException {
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/view/allZombies/"+name + ".json"));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -243,7 +241,7 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public static Plant getPlantFromJsonString(String name) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption, FileNotFoundException {
+    public  Plant getPlantFromJsonString(String name) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption, FileNotFoundException {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
             StringBuilder stringBuilder = new StringBuilder();

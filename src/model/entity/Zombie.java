@@ -18,22 +18,11 @@ public class Zombie extends Card {
         this.lifeNumber = lifeNumber;
         this.bumper = bumper;
         this.hasCAP = hasCAP;
-        this.position = position;
         this.speed = speed;
         this.bumperLife = bumperLife;
         this.isWater = isWater;
         this.isBaloon = isBaloon;
-    }
-
-    //for default zombeis
-    public Zombie(String name, CardType cardType, int bumper, ZombeiType zombeiType, Cell position, boolean isBaloon) {
-        super(name, cardType);
-        this.zombeiType = zombeiType;
-        this.getSpeedAndLifeNumber();
-        this.hasCapZmobei();
-        this.giveBumperAndLIfe();
-        this.position = position;
-        this.isBaloon = isBaloon;
+        setCost();
     }
 
     public Zombie(String name) {
@@ -165,6 +154,9 @@ public class Zombie extends Card {
 //        System.out.println("leh kardan giyah tavasote mashine zaeef finished");
 //    }
 
+
+
+
     // getter and setters
     public int getLifeNumber() {
         return lifeNumber;
@@ -242,7 +234,8 @@ public class Zombie extends Card {
         return cost;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
+    public void setCost() {
+        this.cost =  (1 + this.speed) *this.lifeNumber *10;
+
     }
 }
