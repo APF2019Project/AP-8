@@ -1,6 +1,8 @@
 package model.sevice;
 
 import model.entity.Map;
+import model.entity.Plant;
+import model.entity.PlantType;
 import model.entity.Zombie;
 import model.exeptions.InvalidZombieTypeExeption;
 import model.repository.Player;
@@ -17,9 +19,10 @@ public class DayGame extends Game {
     Map map = new Map("land");
     private Player player;
     private int turn = 0;
+    private int sunFlowerTurned =2;
     private int getSunCounter = randomAccess(1, 2);
     private int numberOdfPlants = 7;
-    private ArrayList<Card> plants;
+    private ArrayList<Plant> plants = new ArrayList<Plant>();
     private int waveTurn = 7;
     private int firstWaveTurn = 3;
 
@@ -77,6 +80,17 @@ public class DayGame extends Game {
             for (Zombie z : zombies) {
                 z.put_Zombie();
                 this.waveTurn--;
+            }
+        }
+    }
+
+    public void addSunForPlayerBySunFlower() {
+        System.out.println("addSunForPlayerBySunFlower");
+        for (Plant p : plants) {
+            if (p.getPlantType()== PlantType.SUNFLOWER || p.getPlantType()== PlantType.TWINSUNFLOWER){
+                if (sunFlowerTurned == 0){
+                    player.setNumberOfSun(player.getNumberOfSun()+p.getSunOutTurn());
+                }
             }
         }
     }
