@@ -11,11 +11,11 @@ import java.util.Scanner;
 
 public class CovertCardsToJsonString {
 
-    private static Scanner input ;
+    private Scanner input ;
     public void setInput(Scanner input) {
         this.input = input;
     }
-    public static void creatCardMenu( ){
+    public  void creatCardMenu( ){
         System.out.println("----------------------CREATE CARD MENU-------------------------");
         System.out.println("enter one of these :createZombie, createPlant , back " );
         String str = input.nextLine();
@@ -36,7 +36,7 @@ public class CovertCardsToJsonString {
 
         }
     }
-    public  static void createPlants(Plant plant) throws InvalidPlantTypeExeption {
+    public   void createPlants(Plant plant) throws InvalidPlantTypeExeption {
         String jsonPlant = new Gson().toJson(plant);
         try {
             FileWriter fileWriter = new FileWriter(plant.getName() + ".json");
@@ -47,7 +47,7 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public static void createZombies(Zombie zombie) throws InvalidZombieTypeExeption {
+    public  void createZombies(Zombie zombie) throws InvalidZombieTypeExeption {
         String jsonZombie = new Gson().toJson(zombie);
         try {
             FileWriter fileWriter = new FileWriter(zombie.getName() + ".json");
@@ -58,7 +58,7 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public  static void setZombieFields()  {
+    public  void setZombieFields()  {
         try {
             System.out.println("---------------creating new zombie card menu--------------");
             System.out.println("please enter a name for card :");
@@ -84,7 +84,7 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public static void setPlantFields()  {
+    public void setPlantFields() {
         System.out.println("-------------- creating new plant card menu --------------");
         System.out.println("enter a name for your plant :");
         String name = input.nextLine();

@@ -16,13 +16,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
        // covertCardsToJsonString.setZombieFields(scanner);
-        //covertCardsToJsonString.setPlantFields(scanner);
-        try {
-            System.out.println();
-        }catch (Exception e){
-            System.out.println("kkkkk");
-        }
-
-
+        covertCardsToJsonString.setInput(scanner);
+        covertCardsToJsonString.setPlantFields();
         }
 }
