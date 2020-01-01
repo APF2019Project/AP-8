@@ -14,6 +14,7 @@ public class Zombie extends Card {
     private int bumperLife;
     private boolean isWater;
     private int cost;
+    private boolean Bungee;
     private Cell temp;
 
     public Zombie(String name, CardType cardType, ZombeiType zombeiType, int lifeNumber, boolean hasCAP, int bumper, int speed, int bumperLife, boolean isWater, boolean isBaloon) {
@@ -244,6 +245,10 @@ public class Zombie extends Card {
         map.getCell(randomPutZombie(6), 0).putCard(this);
     }
 
+    public void BungeeZombiePut() {
+        map.getCell(randomPutZombie(6), randomPutZombie(19)).putCard(this);
+    }
+
     public int randomPutZombie(int bound) {
         // create instance of Random class
         Random rand = new Random();
@@ -256,7 +261,7 @@ public class Zombie extends Card {
         temp = this.position;
         map.getLeft(temp).putCard(this);
         temp.removeCard(this);
-        if (temp.isHasPlant() == true){
+        if (temp.isHasPlant() == true) {
             killOnePlantByZombie(temp);
         }
     }
@@ -268,10 +273,29 @@ public class Zombie extends Card {
     }
 
     public void killOnePlantByZombie(Cell cell) {
-        for (int i = 0 ; i<cell.getCards().size() ; i++) {
-            if (cell.getCards().get(i).getCardType() == CardType.PLANT) {
+        for (int i = 0; i < cell.getCards().size(); i++) {
+            if (cell.
+                    getCards().get(i).getCardType() == CardType.PLANT) {
                 cell.removeCard(cell.getCards().get(i));
             }
         }
     }
+
+    public boolean deadZombie() {
+        //aya zombie morde ya na
+        boolean dead = false;
+        if (this.lifeNumber <= 0) {
+            dead = true;
+            return dead;
+        }
+        return dead;
+    }
+    public void stillPlant(){
+        for (int i =0 ; i < this.position.getCards().size() ; i++){
+            if (this.position.getCards().get(i) instanceof Plant){
+                this.position.removeCard(this.position.getCards().get(i));
+            }
+        }
+    }
+
 }

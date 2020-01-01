@@ -7,7 +7,7 @@ public class WaterGame extends Game {
 
     }
     public WaterGame() {
-        super(false, PlayerType.GIYAHKAR , PlayerType.ZOMBEI ,3);
+        super(false,3,"WATER");
     }
 
 }

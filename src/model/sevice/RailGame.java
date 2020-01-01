@@ -8,6 +8,6 @@ public class RailGame extends Game {
 
     }
     public RailGame() {
-        super(false, PlayerType.GIYAHKAR , PlayerType.ZOMBEI ,0);
+        super(false ,0,"RAIL");
     }
 }

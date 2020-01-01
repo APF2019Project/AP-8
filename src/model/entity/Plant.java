@@ -178,8 +178,13 @@ public class Plant extends Card {
         int rand_int1 = rand.nextInt(bound);
         return rand_int1;
     }
-
-    public void enfejar() {
-
+    public boolean deadPlant(){
+        //aya zombie morde ya na
+        boolean dead = false;
+        if (this.health <=0){
+            dead = true;
+            return dead;
+        }
+        return dead;
     }
 }
