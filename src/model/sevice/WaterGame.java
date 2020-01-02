@@ -33,7 +33,7 @@ public class WaterGame extends Game {
     }
 
     public static void takeInput() throws Exception {
-        System.out.println("---------DAY GAME---------");
+        System.out.println("---------WATER GAME---------");
         System.out.println("enter one of below commands" +
                 "showHand" +
                 "select" +
