@@ -228,7 +228,7 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public Zombie getZombeiFromJsonString(String name) throws InvalidZombieTypeExeption, FileNotFoundException {
+    public static Zombie getZombeiFromJsonString(String name) throws InvalidZombieTypeExeption, FileNotFoundException {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("src/view/allZombies/"+name + ".json"));
             StringBuilder stringBuilder = new StringBuilder();
@@ -243,7 +243,7 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public  Plant getPlantFromJsonString(String name) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption, FileNotFoundException {
+    public static   Plant getPlantFromJsonString(String name) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption, FileNotFoundException {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
             StringBuilder stringBuilder = new StringBuilder();
