@@ -35,6 +35,10 @@ public class DayGame extends Game {
         super(false, 3, "DAY");
     }
 
+    public static void setInput(Scanner scanner) {
+        input = scanner;
+    }
+
     public static void takeInput() throws Exception {
         System.out.println("---------DAY GAME---------");
         System.out.println("enter one of below commands" +
@@ -88,9 +92,6 @@ public class DayGame extends Game {
         return null;
     }
 
-    public static void setInput(Scanner scanner) {
-        input = scanner;
-    }
 
     public static void showLawn() {
 
