@@ -175,8 +175,16 @@ public class Plant extends Card {
         if (y > 19 || x > 6) {
             System.out.println("invalid cell x & y");
         } else {
-            map.getCell(x, y);
+            map.getCell(x, y).putCard(this);
             this.position.setHasPlant(true);
+        }
+    }
+
+    public void removePlant(int y, int x) {
+        if (y > 19 || x > 6) {
+            System.out.println("invalid cell x & y");
+        } else {
+            map.getCell(x, y).removeCard(this);
         }
     }
 

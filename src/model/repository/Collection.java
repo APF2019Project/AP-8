@@ -50,12 +50,12 @@ public class Collection {
         }
     }
 
-    public static boolean selectZombie(String name){
-        if(Account.loggedInAccount.getZombies().contains(name)){
-            return true;
-        }else {
-            return false;
-        }
-    }
+//    public static boolean selectZombie(String name){
+//        if(Account.loggedInAccount.getZombies().contains(name)){
+//            return true;
+//        }else {
+//            return false;
+//        }
+//    }
 
 }

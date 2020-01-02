@@ -1,6 +1,7 @@
 package model.sevice;
 
 public class DayGame extends Game {
+    private boolean endTurn = false;
     public DayGame() {
         super(false, 3,"DAY");
     }
@@ -16,6 +17,7 @@ public class DayGame extends Game {
         }
         return false;
     }
+
 
 }
 

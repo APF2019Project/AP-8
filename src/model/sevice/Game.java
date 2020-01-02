@@ -21,7 +21,6 @@ public class Game {
     String commands = scanner.nextLine();
     private boolean isGamePVP = false;
     private GameState gameState;
-    private int endTurnTime;
     private GameType gameType;
     private int turn = 0;
     private Player player;
@@ -319,5 +318,8 @@ public class Game {
                 Collection.takeInputForCollection("");
                 default: throw new InvalidGameTypeExeption("this game type doesnt exist");
         }
+    }
+    public void endTurn(){
+        this.turn++;
     }
 }
