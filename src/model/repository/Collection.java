@@ -12,25 +12,11 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Collection {
-    private Card type;
     private int maxSize =7;
     private static Scanner input;
     private static HashMap<String, Card> selectedCards = new HashMap<>(7);
-
-    public Card getType() {
-        return type;
-    }
-
-    public void setType(Card type) {
-        this.type = type;
-    }
-
-    public int getMaxSize() {
-        return maxSize;
-    }
-
-    public void setMaxSize(int maxSize) {
-        this.maxSize = maxSize;
+    public static void setInput(Scanner scanner){
+        input = scanner;
     }
     public static HashMap<String , Card> takeInputForCollection(String cardType){
         System.out.println("---------COLLECTION_MENU---------");
@@ -40,6 +26,7 @@ public class Collection {
                 "select cardName" +
                 "remove cardName" +
                 "showCollection");
+        System.out.println("if you select more than 7 cards , the result will be random of that set");
         String str= input.nextLine();
         String[] splites = str.split(" ");
         switch (splites[0]){
@@ -52,7 +39,7 @@ public class Collection {
                 takeInputForCollection(cardType);
                 break;
             case "play" :
-                return Collection.selectedCards;
+                return getCollection();
             case "select" :
                 select(splites[1] , cardType);
                 takeInputForCollection(cardType);
@@ -63,7 +50,7 @@ public class Collection {
                 break;
             default: takeInputForCollection(cardType);
         }
-        return Collection.selectedCards;
+        return getCollection();
     }
 
     private static void select(String cardName, String cardType) {
@@ -112,6 +99,15 @@ public class Collection {
             System.out.println(Collection.selectedCards.get(name).getName());
         }
     }
-
-
+    public static HashMap<String , Card> getCollection(){
+        HashMap<String , Card> temp = new HashMap<>();
+        int counter = 0 ;
+        for (String name : Collection.selectedCards.keySet()) {
+            temp.put(name , Collection.selectedCards.get(name));
+            counter++;
+            if(counter==7)
+                break;
+        }
+        return temp;
+    }
 }
