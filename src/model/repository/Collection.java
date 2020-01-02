@@ -32,18 +32,10 @@ public class Collection {
     public void setSelectedCards(ArrayList<Card> cards) {
         this.selectedCards = cards;
     }
-    public boolean selectCard(Card newCard){
-        System.out.println("selectCard start");
-        if(selectedCards.size()==this.maxSize||newCard.isSelected()){
-            System.out.println("selectCard finsh by returning false");
-            return false;
-        }
-        else{
-            System.out.println("selectCard finish by returning true");
-            newCard.setSelected(true);
-            this.selectedCards.add(newCard);
-            return true;
-        }
+    public static ArrayList<Card> takeInputForCollection(String cardType){
+        System.out.println("---------COLLECTION_MENU---------");
+        System.out.println("enter"+cardType + "names you want to use in game:");
     }
+
 
 }
