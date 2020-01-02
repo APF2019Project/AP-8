@@ -110,6 +110,11 @@ public class Cell {
     //getter & setter
 
     public boolean isHasPlant() {
+        for (Card card : cards) {
+            if(card instanceof Plant){
+                hasPlant = true;
+            }
+        }
         return hasPlant;
     }
 
