@@ -1,9 +1,7 @@
 package model.sevice;
 
 import model.entity.*;
-import model.exeptions.InvalidGameTypeExeption;
-import model.exeptions.InvalidZombieTypeExeption;
-import model.repository.Collection;
+import controller.boxExeption.InvalidZombieTypeExeption;
 import model.repository.Player;
 
 import javax.smartcardio.Card;

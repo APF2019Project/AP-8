@@ -1,4 +1,4 @@
-package model.exeptions;
+package controller.boxExeption;
 
 public class InvalidBulletTypeExeption extends Exception {
     public InvalidBulletTypeExeption(String message) {

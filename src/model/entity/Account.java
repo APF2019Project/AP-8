@@ -1,8 +1,8 @@
 package model.entity;
 
 import com.google.gson.Gson;
-import model.exeptions.InvalidIdException;
-import model.exeptions.InvalidPasswordException;
+import controller.boxExeption.InvalidIdException;
+import controller.boxExeption.InvalidPasswordException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

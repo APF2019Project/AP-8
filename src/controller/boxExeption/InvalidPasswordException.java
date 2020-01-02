@@ -1,4 +1,4 @@
-package model.exeptions;
+package controller.boxExeption;
 
 public class InvalidPasswordException extends Exception{
 

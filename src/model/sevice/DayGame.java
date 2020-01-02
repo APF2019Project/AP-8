@@ -3,8 +3,8 @@ package model.sevice;
 import model.entity.Card;
 import model.entity.CovertCardsToJsonString;
 import model.entity.Plant;
-import model.exeptions.InvalidBulletTypeExeption;
-import model.exeptions.InvalidPlantTypeExeption;
+import controller.boxExeption.InvalidBulletTypeExeption;
+import controller.boxExeption.InvalidPlantTypeExeption;
 import model.repository.Collection;
 import model.repository.Player;
 

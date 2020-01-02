@@ -1,9 +1,9 @@
 package model.entity;
 
 import com.google.gson.Gson;
-import model.exeptions.InvalidBulletTypeExeption;
-import model.exeptions.InvalidPlantTypeExeption;
-import model.exeptions.InvalidZombieTypeExeption;
+import controller.boxExeption.InvalidBulletTypeExeption;
+import controller.boxExeption.InvalidPlantTypeExeption;
+import controller.boxExeption.InvalidZombieTypeExeption;
 import model.repository.MainMenu;
 
 import java.io.*;

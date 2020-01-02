@@ -1,8 +1,8 @@
 package model.repository;
 
 import model.entity.Account;
-import model.exeptions.InvalidIdException;
-import model.exeptions.InvalidPasswordException;
+import controller.boxExeption.InvalidIdException;
+import controller.boxExeption.InvalidPasswordException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
