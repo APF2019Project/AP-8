@@ -242,4 +242,26 @@ public class Game {
         }
         this.bungeeTuen--;
     }
+
+
+
+    //    public static void runWave() {
+//        if (turn == 3) {
+//            for (Zombie z : zombies) {
+//                z.put_Zombie();
+//            }
+//        } else if (waveTurn == 0) {
+//            for (Zombie z : zombies) {
+//                z.put_Zombie();
+//                waveTurn = 7;
+//            }
+//        }
+//        waveTurn--;
+//    }
+//    public static ArrayList<Zombie> addZombies(){
+//        ArrayList<Zombie> zombies = new ArrayList<Zombie>();
+//        for (String str: zombieHashmap.keySet()) {
+//            CovertCardsToJsonString.getZombeiFromJsonString(zombieHashmap.keySet())
+//        }
+//    }
 }
