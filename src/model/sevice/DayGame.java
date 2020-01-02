@@ -1,20 +1,24 @@
 package model.sevice;
 
-import model.entity.Card;
-import model.entity.CovertCardsToJsonString;
-import model.entity.Plant;
 import controller.boxExeption.InvalidBulletTypeExeption;
 import controller.boxExeption.InvalidPlantTypeExeption;
+import model.entity.*;
 import model.repository.Collection;
 import model.repository.Player;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class DayGame extends Game {
+    static HashMap<String,Card> zombieHashmap = new HashMap<>(7);
     private static Scanner input;
     private static int coolDown;
+    private static int turn = 0;
+    private static int waveTurn = 7;
+    private static int wave = 3; // chanta moj dare
+    private static Map map = new Map("land");
     private static Player player;
     private static Plant temp;
     private static HashMap<String, Card> selectedPlantCards = new HashMap<>(7);
@@ -42,8 +46,16 @@ public class DayGame extends Game {
             case "select":
                 temp = selectCard(splitedInput[1]);
             case "plant":
-                temp.plantingByXandY(Integer.parseInt(splitedInput[1]),Integer.parseInt(splitedInput[2]));
+                temp.plantingByXandY(Integer.parseInt(splitedInput[1]), Integer.parseInt(splitedInput[2]));
             case "remove":
+                if (map.getCell(Integer.parseInt(splitedInput[1]), Integer.parseInt(splitedInput[2])).isHasPlant() == true) {
+                    map.getCell(Integer.parseInt(splitedInput[1]), Integer.parseInt(splitedInput[2])).removeAllPlantInThisCell();
+                }
+                break;
+            case "end turn":
+
+            case "show lawn":
+
 
         }
     }
@@ -67,9 +79,33 @@ public class DayGame extends Game {
         return null;
     }
 
-    public void setInput(Scanner scanner) {
+    public static void setInput(Scanner scanner) {
         input = scanner;
     }
+
+    public static void showLawn() {
+
+    }
+
+//    public static void runWave() {
+//        if (turn == 3) {
+//            for (Zombie z : zombies) {
+//                z.put_Zombie();
+//            }
+//        } else if (waveTurn == 0) {
+//            for (Zombie z : zombies) {
+//                z.put_Zombie();
+//                waveTurn = 7;
+//            }
+//        }
+//        waveTurn--;
+//    }
+//    public static ArrayList<Zombie> addZombies(){
+//        ArrayList<Zombie> zombies = new ArrayList<Zombie>();
+//        for (String str: zombieHashmap.keySet()) {
+//            CovertCardsToJsonString.getZombeiFromJsonString(zombieHashmap.keySet())
+//        }
+//    }
 }
 
 

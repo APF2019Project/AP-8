@@ -1,6 +1,8 @@
 package model.entity;
 
 
+import org.omg.PortableServer.THREAD_POLICY_ID;
+
 import java.util.ArrayList;
 
 public class Cell {
@@ -22,11 +24,11 @@ public class Cell {
         this.cellType = cellType;
     }
 
-    public Cell(int x, int y, CellType cellType , Map map) {
+    public Cell(int x, int y, CellType cellType, Map map) {
         this.x = x;
         this.y = y;
         this.cellType = cellType;
-        this.map = map ;
+        this.map = map;
         // Xs.add(x);
         // Ys.add(y);
     }
@@ -85,33 +87,43 @@ public class Cell {
         }
         return false;
     }
+
     // this method return zombies of each cell
-    public ArrayList<Zombie> getZombies(){
+    public ArrayList<Zombie> getZombies() {
         ArrayList<Zombie> result = new ArrayList<>();
-        for (Card card: this.cards) {
-            if(card instanceof Zombie){
-                result.add((Zombie)card);
+        for (Card card : this.cards) {
+            if (card instanceof Zombie) {
+                result.add((Zombie) card);
             }
         }
         return result;
     }
-    public void removeCard(Card card){
+
+    public void removeCard(Card card) {
         this.cards.remove(card);
     }
-    public ArrayList<Plant> getPlants(){
+
+    public ArrayList<Plant> getPlants() {
         ArrayList<Plant> result = new ArrayList<>();
-        for (Card card: this.cards) {
-            if(card instanceof Plant){
+        for (Card card : this.cards) {
+            if (card instanceof Plant) {
                 result.add((Plant) card);
             }
         }
         return result;
     }
+    public void removeAllPlantInThisCell(){
+        for (int i = 0 ; i < this.cards.size() ; i++) {
+            if (this.cards.get(i) instanceof Plant){
+                this.cards.remove(i);
+            }
+        }
+    }
     //getter & setter
 
     public boolean isHasPlant() {
         for (Card card : cards) {
-            if(card instanceof Plant){
+            if (card instanceof Plant) {
                 hasPlant = true;
             }
         }

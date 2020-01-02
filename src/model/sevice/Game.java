@@ -18,21 +18,18 @@ public class Game {
     private boolean isGamePVP = false;
     private GameState gameState;
     private GameType gameType;
-    private int turn = 0;
     private static Player player;
-    private int wave = 3; // chanta moj dare
+
     private int sunFlowerTurned = 2;
     private int getSunCounter = randomAccess(1, 2);
     private int numberOdfPlants = 7;
     private ArrayList<Plant> plants = new ArrayList<Plant>();
-    private int waveTurn = 7;
     private int firstWaveTurn = 3;
     private int bungeeTuen = 3;
 
 
     public Game(boolean isGamePVP, int wave, String name) {
         this.isGamePVP = isGamePVP;
-        this.wave = wave;
         setGameType(name);
     }
 
@@ -67,24 +64,6 @@ public class Game {
 
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
-    }
-
-    public int getWave() {
-        return wave;
-    }
-
-    public void setWave(int wave) {
-        this.wave = wave;
-    }
-
-
-    public int getTurn() {
-        return turn;
-    }
-    // constructor
-
-    public void setTurn(int turn) {
-        this.turn = turn;
     }
 
     public CovertCardsToJsonString getCovertCardsToJsonString() {
@@ -135,13 +114,6 @@ public class Game {
         this.gameType = gameType;
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
 
     public int getSunFlowerTurned() {
         return sunFlowerTurned;
@@ -175,13 +147,6 @@ public class Game {
         this.plants = plants;
     }
 
-    public int getWaveTurn() {
-        return waveTurn;
-    }
-
-    public void setWaveTurn(int waveTurn) {
-        this.waveTurn = waveTurn;
-    }
 
     public int getFirstWaveTurn() {
         return firstWaveTurn;
@@ -239,19 +204,7 @@ public class Game {
         return null;
     }
 
-    public void runWave(ArrayList<Zombie> zombies) {
-        if (this.turn == 3) {
-            for (Zombie z : zombies) {
-                z.put_Zombie();
-            }
-        } else if (this.waveTurn == 0) {
-            for (Zombie z : zombies) {
-                z.put_Zombie();
-                this.waveTurn = 7;
-            }
-        }
-        this.waveTurn--;
-    }
+
 
     public void addSunForPlayerBySunFlower() {
         System.out.println("addSunForPlayerBySunFlower");

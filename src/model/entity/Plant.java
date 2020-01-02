@@ -152,17 +152,6 @@ public class Plant extends Card {
                 '}';
     }
 
-    public void runPlant() {
-        while (true) {
-            if (this.coolDownCounter == 0) {
-                this.coolDownCounter = this.cooLDown;
-
-
-                this.coolDownCounter--;
-            }
-        }
-    }
-
     public void planting() {
         //kashtane giyah.
         map.getCell(randomPutPlant(6), randomPutPlant(19)).putCard(this);
