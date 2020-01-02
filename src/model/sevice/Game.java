@@ -1,18 +1,24 @@
 package model.sevice;
 
 import model.entity.*;
+import model.exeptions.InvalidGameTypeExeption;
 import model.exeptions.InvalidZombieTypeExeption;
+import model.repository.Collection;
 import model.repository.Player;
 
 import javax.smartcardio.Card;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 import static controller.Main.covertCardsToJsonString;
 
 public class Game {
+    CovertCardsToJsonString covertCardsToJsonString = new CovertCardsToJsonString();
     ArrayList<Card> cards = new ArrayList<Card>();
     Map map = new Map("land");
+    Scanner scanner = new Scanner(System.in);
+    String commands = scanner.nextLine();
     private boolean isGamePVP = false;
     private GameState gameState;
     private int endTurnTime;
@@ -29,13 +35,14 @@ public class Game {
     private int bungeeTuen = 3;
 
 
-    public Game(boolean isGamePVP, int wave ,String name) {
+    public Game(boolean isGamePVP, int wave, String name) {
         this.isGamePVP = isGamePVP;
         this.wave = wave;
         setGameType(name);
     }
-    public GameType setGameType(String name){
-        switch (name){
+
+    public GameType setGameType(String name) {
+        switch (name) {
             case "RAIL":
                 this.gameType = GameType.RAIL;
             case "WATER":
@@ -49,6 +56,7 @@ public class Game {
         }
         return null;
     }
+
     // getter & setter
     public boolean isGamePVP() {
         return isGamePVP;
@@ -89,6 +97,118 @@ public class Game {
 
     public void setTurn(int turn) {
         this.turn = turn;
+    }
+
+    public CovertCardsToJsonString getCovertCardsToJsonString() {
+        return covertCardsToJsonString;
+    }
+
+    public void setCovertCardsToJsonString(CovertCardsToJsonString covertCardsToJsonString) {
+        this.covertCardsToJsonString = covertCardsToJsonString;
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public String getCommands() {
+        return commands;
+    }
+
+    public void setCommands(String commands) {
+        this.commands = commands;
+    }
+
+    public GameType getGameType() {
+        return gameType;
+    }
+
+    public void setGameType(GameType gameType) {
+        this.gameType = gameType;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public int getSunFlowerTurned() {
+        return sunFlowerTurned;
+    }
+
+    public void setSunFlowerTurned(int sunFlowerTurned) {
+        this.sunFlowerTurned = sunFlowerTurned;
+    }
+
+    public int getGetSunCounter() {
+        return getSunCounter;
+    }
+
+    public void setGetSunCounter(int getSunCounter) {
+        this.getSunCounter = getSunCounter;
+    }
+
+    public int getNumberOdfPlants() {
+        return numberOdfPlants;
+    }
+
+    public void setNumberOdfPlants(int numberOdfPlants) {
+        this.numberOdfPlants = numberOdfPlants;
+    }
+
+    public ArrayList<Plant> getPlants() {
+        return plants;
+    }
+
+    public void setPlants(ArrayList<Plant> plants) {
+        this.plants = plants;
+    }
+
+    public int getWaveTurn() {
+        return waveTurn;
+    }
+
+    public void setWaveTurn(int waveTurn) {
+        this.waveTurn = waveTurn;
+    }
+
+    public int getFirstWaveTurn() {
+        return firstWaveTurn;
+    }
+
+    public void setFirstWaveTurn(int firstWaveTurn) {
+        this.firstWaveTurn = firstWaveTurn;
+    }
+
+    public int getBungeeTuen() {
+        return bungeeTuen;
+    }
+
+    public void setBungeeTuen(int bungeeTuen) {
+        this.bungeeTuen = bungeeTuen;
     }
 
     // game methods
@@ -180,5 +300,24 @@ public class Game {
             bungeeTuen = 3;
         }
         this.bungeeTuen--;
+    }
+
+
+    // command methods
+
+    public void showHand(String name)throws InvalidGameTypeExeption {
+        switch (name) {
+            case "RAIL":
+
+            case "WATER":
+                Collection.takeInputForCollection("");
+            case "DAY":
+                Collection.takeInputForCollection("");
+            case "PVP":
+                Collection.takeInputForCollection("");
+            case "ZOMBEI":
+                Collection.takeInputForCollection("");
+                default: throw new InvalidGameTypeExeption("this game type doesnt exist");
+        }
     }
 }

@@ -171,6 +171,15 @@ public class Plant extends Card {
 
     }
 
+    public void plantingByXandY(int y, int x) {
+        if (y > 19 || x > 6) {
+            System.out.println("invalid cell x & y");
+        } else {
+            map.getCell(x, y);
+            this.position.setHasPlant(true);
+        }
+    }
+
     public int randomPutPlant(int bound) {
         // create instance of Random class
         Random rand = new Random();
@@ -178,10 +187,11 @@ public class Plant extends Card {
         int rand_int1 = rand.nextInt(bound);
         return rand_int1;
     }
-    public boolean deadPlant(){
+
+    public boolean deadPlant() {
         //aya zombie morde ya na
         boolean dead = false;
-        if (this.health <=0){
+        if (this.health <= 0) {
             dead = true;
             return dead;
         }

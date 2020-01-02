@@ -7,6 +7,6 @@ public class ZombeiGame extends Game {
 
     }
     public ZombeiGame(boolean isGamePVP, int wave) {
-        super(isGamePVP,wave);
+        super(isGamePVP,wave,"PVP");
     }
 }

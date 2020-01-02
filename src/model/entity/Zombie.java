@@ -272,6 +272,10 @@ public class Zombie extends Card {
         }
     }
 
+    private void damge(Cell position) {
+    }
+
+
     public void killOnePlantByZombie(Cell cell) {
         for (int i = 0; i < cell.getCards().size(); i++) {
             if (cell.
@@ -296,6 +300,9 @@ public class Zombie extends Card {
                 this.position.removeCard(this.position.getCards().get(i));
             }
         }
+    }
+    public void BungeeZombiePut(){
+        map.getCell(randomPutZombie(6), randomPutZombie(19)).putCard(this);
     }
 
 }
