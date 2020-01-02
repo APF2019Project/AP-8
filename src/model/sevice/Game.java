@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-import static controller.Main.covertCardsToJsonString;
-
 public class Game {
     CovertCardsToJsonString covertCardsToJsonString = new CovertCardsToJsonString();
     ArrayList<Card> cards = new ArrayList<Card>();
@@ -23,7 +21,7 @@ public class Game {
     private GameState gameState;
     private GameType gameType;
     private int turn = 0;
-    private Player player;
+    private static Player player;
     private int wave = 3; // chanta moj dare
     private int sunFlowerTurned = 2;
     private int getSunCounter = randomAccess(1, 2);
@@ -81,13 +79,6 @@ public class Game {
         this.wave = wave;
     }
 
-    public int getEndTurnTime() {
-        return endTurnTime;
-    }
-
-    public void setEndTurnTime(int endTurnTime) {
-        this.endTurnTime = endTurnTime;
-    }
 
     public int getTurn() {
         return turn;
@@ -299,27 +290,5 @@ public class Game {
             bungeeTuen = 3;
         }
         this.bungeeTuen--;
-    }
-
-
-    // command methods
-
-    public void showHand(String name)throws InvalidGameTypeExeption {
-        switch (name) {
-            case "RAIL":
-
-            case "WATER":
-                Collection.takeInputForCollection("");
-            case "DAY":
-                Collection.takeInputForCollection("");
-            case "PVP":
-                Collection.takeInputForCollection("");
-            case "ZOMBEI":
-                Collection.takeInputForCollection("");
-                default: throw new InvalidGameTypeExeption("this game type doesnt exist");
-        }
-    }
-    public void endTurn(){
-        this.turn++;
     }
 }

@@ -5,6 +5,7 @@ import model.entity.PlantType;
 public class Player {
     private PlantType plantType;
     private int numberOfSun; // tedade sun haei k giyah kar bahash bazi ro shoro mikone .
+    private int charging; // meqdari k bayad vayse ta yek giyah sharj shavad.
 
     public PlantType getPlantType() {
         return plantType;

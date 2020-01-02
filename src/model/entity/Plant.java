@@ -7,9 +7,9 @@ public class Plant extends Card {
     private int health; // joone giyaha
     private PlantType plantType; // type
     private int coolDownIncreasePerTurn;
-    private int cooLDown;
-    private int coolDownCounter;
-    private int coolDownCeil;
+    private  int cooLDown;
+    private  int coolDownCounter = cooLDown;
+    private  int coolDownCeil;
     private int plantingPrice; // sun
     private int sunOutTurn;
     private Cell position;
@@ -19,7 +19,6 @@ public class Plant extends Card {
     private boolean isPrickly;// inke giah tigh dar bashd
     private int cost;
     private Condition condition = Condition.LIVE;
-
     //constructor
     public Plant(String name, int health, CardType cardType, PlantType plantType, int coolDownCeil, int plantingPrice, int sunOutTurn, BulletType bulletType, boolean isMagnate, boolean isPrickly) {
         super(name, cardType);
@@ -204,5 +203,13 @@ public class Plant extends Card {
             return dead;
         }
         return dead;
+    }
+    public  boolean charging(){
+        if (coolDownCounter == 0){
+            coolDownCounter = cooLDown;
+            return true;
+        }
+        coolDownCounter--;
+        return false;
     }
 }

@@ -9,7 +9,7 @@ public class PlayMenu {
     public static void setInput(Scanner input) {
         PlayMenu.input = input;
     }
-    public static void takeInputForPlayMenu(){
+    public static void takeInputForPlayMenu()throws Exception{
         System.out.println("----------PLAY_MENU-----------");
         System.out.println("enter one of this game types" +
                 "day" +

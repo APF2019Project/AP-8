@@ -55,7 +55,7 @@ public class Collection {
 
     private static void select(String cardName, String cardType) {
 
-       if(cardType.matches("zombie")){
+       if(cardType.matches("ZOMBIE")){
            if(Account.loggedInAccount.getZombies().contains(cardName)){
                try {
                    selectedCards.put(cardName , CovertCardsToJsonString.getZombeiFromJsonString(cardName));
@@ -63,7 +63,7 @@ public class Collection {
                    invalidZombieTypeExeption.printStackTrace();
                }
            }
-       }else if(cardType.matches("plant")){
+       }else if(cardType.matches("PLANT")){
            if(Account.loggedInAccount.getPlants().contains(cardName)){
                try {
                    selectedCards.put(cardName , CovertCardsToJsonString.getPlantFromJsonString(cardName));
@@ -78,14 +78,14 @@ public class Collection {
     }
     private static void showUnselectedCards(String cardType) {
         switch (cardType){
-            case "zombie":
+            case "ZOMBIE":
                 for (String name : Account.loggedInAccount.getZombies()) {
                     if(!selectedCards.containsKey(name)){
                         System.out.println(selectedCards.get(name).getName());
                     }
                 }
                 break;
-            case "plant":
+            case "PLANT":
                 for (String name : Account.loggedInAccount.getPlants()) {
                     if(!selectedCards.containsKey(name)){
                         System.out.println(selectedCards.get(name).getName());
@@ -109,5 +109,14 @@ public class Collection {
                 break;
         }
         return temp;
+    }
+    // getter & setter
+
+    public static HashMap<String, Card> getSelectedCards() {
+        return selectedCards;
+    }
+
+    public static void setSelectedCards(HashMap<String, Card> selectedCards) {
+        Collection.selectedCards = selectedCards;
     }
 }
