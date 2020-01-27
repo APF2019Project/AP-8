@@ -53,20 +53,24 @@ public class DayGame extends Game {
             case "showHand":
                 cards = CollectionInterFace.returnCards("DAY");
                 showSelectedCards();
+                takeInput();
                 break;
             case "select":
                 temp = selectCard(splitedInput[1]);
+                takeInput();
             case "plant":
                 temp.plantingByXandY(Integer.parseInt(splitedInput[1]), Integer.parseInt(splitedInput[2]));
+                takeInput();
             case "remove":
                 if (map.getCell(Integer.parseInt(splitedInput[1]), Integer.parseInt(splitedInput[2])).isHasPlant() == true) {
                     map.getCell(Integer.parseInt(splitedInput[1]), Integer.parseInt(splitedInput[2])).removeAllPlantInThisCell();
+                    takeInput();
                 }
                 break;
             case "end turn":
-
+                endTurn(true);
             case "show lawn":
-
+                showLawn();
 
         }
     }

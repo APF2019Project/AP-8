@@ -40,8 +40,8 @@ public class LogginMenu {
             case "create account":takeInputForCreateAccount();
             getInputForLogginMenu();
             break;
-            case "login" : getInputForLogginMenu();
-            MainMenu.mainMenuGetInput();
+            case "login" : getInputForLogin();
+            getInputForLogginMenu();
             break;
             case "leaderboard":
                 LeaderBoard.leaderBoardTakeInput();
@@ -69,7 +69,6 @@ public class LogginMenu {
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
-            takeInputForCreateAccount();
         }
     }
     public static void getInputForLogin() {
@@ -80,9 +79,9 @@ public class LogginMenu {
             System.out.println("please enter your password : ");
             String password = input.nextLine();
             login(id , password);
+            MainMenu.mainMenuGetInput();
         } catch (Exception i){
             System.out.println(i.getMessage());
-            getInputForLogin();
         }
     }
     private static void  createAccount(String name , String id , String password) throws Exception {
