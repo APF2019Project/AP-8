@@ -1,55 +1,34 @@
 package model.entity;
 
 import com.google.gson.Gson;
-import controller.boxExeption.InvalidBulletTypeExeption;
-import controller.boxExeption.InvalidPlantTypeExeption;
-import controller.boxExeption.InvalidZombieTypeExeption;
-import model.repository.MainMenu;
+import model.exeptions.InvalidBulletTypeExeption;
+import model.exeptions.InvalidPlantTypeExeption;
+import model.exeptions.InvalidZombieTypeExeption;
 
 import java.io.*;
 import java.util.Scanner;
-import java.util.Set;
 
 public class CovertCardsToJsonString {
 
-    private Scanner input ;
-    public void setInput(Scanner input) {
-        this.input = input;
-    }
-    public  void creatCardMenu( ){
-        System.out.println("----------------------CREATE CARD MENU-------------------------");
-        System.out.println("enter one of these :createZombie, createPlant , back " );
-        String str = input.nextLine();
-        switch(str) {
-            case "createZombie":
-                setZombieFields();
-                creatCardMenu();
-                break;
-            case "createPlant":
-                setPlantFields();
-                creatCardMenu();
-                break;
-            case "back" :
-                MainMenu.mainMenuGetInput();
-                break;
-            default:
-                creatCardMenu();
+    Scanner scanner = new Scanner(System.in);
+    String[] string = scanner.nextLine().split(",");
 
-        }
-    }
-    public   void createPlants(Plant plant) throws InvalidPlantTypeExeption {
+    public void createPlants(Plant plant) throws InvalidPlantTypeExeption {
         String jsonPlant = new Gson().toJson(plant);
         try {
             FileWriter fileWriter = new FileWriter(plant.getName() + ".json");
             fileWriter.write(jsonPlant);
             fileWriter.close();
         } catch (IOException e) {
+
             throw new InvalidPlantTypeExeption("invalid plant");
         }
     }
 
-    public  void createZombies(Zombie zombie) throws InvalidZombieTypeExeption {
-        String jsonZombie = new Gson().toJson(zombie);
+    private Object zombie;
+    String jsonZombie = new Gson().toJson(zombie);
+
+    public void createZombies(Zombie zombie) throws InvalidZombieTypeExeption {
         try {
             FileWriter fileWriter = new FileWriter(zombie.getName() + ".json");
             fileWriter.write(jsonZombie);
@@ -59,62 +38,40 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public  void setZombieFields()  {
-        try {
-            System.out.println("---------------creating new zombie card menu--------------");
-            System.out.println("please enter a name for card :");
-            String name = input.nextLine();
-            System.out.println("please enter the initilizing health for zombie :");
-            int lifeNumber = Integer.parseInt(input.nextLine());
-            System.out.println("enter the zombie speed :");
-            int speed = Integer.parseInt(input.nextLine());
-            System.out.println("enter the number of bumper your zombie will hava :");
-            int bumper = Integer.parseInt(input.nextLine());
-            System.out.println("enter your zombie has cap or no(true or false ): ");
-            boolean hascap = Boolean.parseBoolean(input.nextLine());
-            System.out.println("enter your zombie isBallon (true or false ):");
-            boolean isbaloon = Boolean.parseBoolean(input.nextLine());
-            System.out.println("enter your zombie boomper type:");
-            int bumperNumber = Integer.parseInt(input.nextLine());
-            System.out.println("enter your zombie isWater :");
-            boolean iswater = Boolean.parseBoolean(input.nextLine());
-            Zombie z = new Zombie(name, CardType.ZOMBIE, setZombieType(name), lifeNumber, hascap, bumper, speed, bumperNumber, iswater, isbaloon);
-            createZombies(z);
-        }catch (Exception | InvalidZombieTypeExeption e){
-            System.out.println(e.getMessage());
-        }
+    public void setZombieFields(Scanner scanner) throws InvalidZombieTypeExeption {
+        String name = string[0];
+        int lifeNumber = Integer.parseInt(string[1]);
+        int cost = Integer.parseInt(string[2]);
+        int speed = Integer.parseInt(string[3]);
+        int bumper = Integer.parseInt(string[4]);
+        boolean hascap = Boolean.parseBoolean(string[5]);
+        boolean isbaloon = Boolean.parseBoolean(string[6]);
+        int bumperNumber = Integer.parseInt(string[7]);
+        boolean iswater = Boolean.parseBoolean(string[8]);
+        Zombie z = new Zombie(name, CardType.ZOMBIE, setZombieType(name), lifeNumber, hascap, bumper, speed, bumperNumber, iswater, isbaloon);
+        createZombies(z);
     }
 
-    public void setPlantFields() {
-        System.out.println("-------------- creating new plant card menu --------------");
-        System.out.println("enter a name for your plant :");
-        String name = input.nextLine();
-        System.out.println("enter a number for health field :");
-        int health = Integer.parseInt(input.nextLine());
-        System.out.println("enter number of suns your plant will create in turns :");
-        int sun = Integer.parseInt(input.nextLine());
-        System.out.println("enter plant price of your plant :");
-        int plantPrice = Integer.parseInt(input.nextLine());
-        System.out.println("enter bullet name of zombie ");
-        String bulletName = input.nextLine();
-        System.out.println("enter isMagnate (true or false ):");
-        boolean isMagnate = Boolean.parseBoolean(input.nextLine());
-        System.out.println("enter isPrickly (true or false ):");
-        boolean isPrickly = Boolean.parseBoolean(input.nextLine());
-        System.out.println("enter coolDown for your plant :");
-        int coolDown = Integer.parseInt(input.nextLine());
-        Plant p = null;
-        try {
-            p = new Plant(name, health, CardType.PLANT, setPlantType(name), coolDown, plantPrice, sun, setBullletType(bulletName), isMagnate, isPrickly);
-            createPlants(p);
-        } catch (InvalidPlantTypeExeption | InvalidBulletTypeExeption e) {
-            System.out.println(e.getMessage());
-        }
+    public void setPlantFields(Scanner scanner) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption {
+        String name = string[0];
+        int health = Integer.parseInt(string[1]);
+        int sun = Integer.parseInt(string[2]);
+        int plantPrice = Integer.parseInt(string[3]);
+        String bulletName = string[4];
+        boolean isMagnate = Boolean.parseBoolean(string[5]);
+        boolean isPrickly = Boolean.parseBoolean(string[6]);
+        int coolDown = Integer.parseInt(string[7]);
 
+        Plant p = new Plant(name, health, CardType.PLANT, setPlantType(name), coolDown, plantPrice, sun, setBulletType(bulletName), isMagnate, isPrickly);
+        createPlants(p);
     }
 
+    public BulletType setBulletType(String name) {
+        BulletType b = BulletType.EXPLODE_O_NOT;
+        return b;
+    }
 
-    public static PlantType setPlantType(String name) throws InvalidPlantTypeExeption {
+    public PlantType setPlantType(String name) throws InvalidPlantTypeExeption {
         switch (name) {
             case "PEASHOOTER":
                 return PlantType.PEASHOOTER;
@@ -163,13 +120,13 @@ public class CovertCardsToJsonString {
             case "TWINSUNFLOWER":
                 return PlantType.TWINSUNFLOWER;
             case "JALAPENO":
-                return PlantType.JALAPENO;
+
             default:
                 throw new InvalidPlantTypeExeption("invalid plant type");
         }
     }
 
-    public  static ZombeiType setZombieType(String name) throws InvalidZombieTypeExeption {
+    public ZombeiType setZombieType(String name) throws InvalidZombieTypeExeption {
         switch (name) {
             case "RegularZombei":
                 return ZombeiType.RegularZombei;
@@ -206,12 +163,10 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public static BulletType setBullletType(String name) throws InvalidBulletTypeExeption {
+    public BulletType setBullletType(String name) throws InvalidBulletTypeExeption {
         switch (name) {
             case "PEA":
                 return BulletType.PEA;
-            case "NULL":
-                return BulletType.NULL;
             case "LETTUCE":
                 return BulletType.LETTUCE;
             case "SNOW_PEA":
@@ -229,9 +184,9 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public static Zombie getZombeiFromJsonString(String name) throws InvalidZombieTypeExeption, FileNotFoundException {
+    public Zombie getZombeiFromJsonString(String name) throws InvalidZombieTypeExeption, FileNotFoundException {
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/view/allZombies/"+name + ".json"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -244,7 +199,7 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public static Plant getPlantFromJsonString(String name) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption, FileNotFoundException {
+    public Plant getPlantFromJsonString(String name) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption, FileNotFoundException {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
             StringBuilder stringBuilder = new StringBuilder();
