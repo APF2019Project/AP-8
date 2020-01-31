@@ -1,12 +1,11 @@
 package model.sevice;
 
-import model.entity.*;
-import controller.boxExeption.InvalidZombieTypeExeption;
+import model.entity.CovertCardsToJsonString;
+import model.entity.Map;
 import model.repository.Player;
 
 import javax.smartcardio.Card;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -20,7 +19,7 @@ public class Game {
     private GameType gameType;
     private int turn = 0;
     private static Player player;
-
+    private static Scanner input;
 
     public Game(boolean isGamePVP, int wave, String name) {
         this.isGamePVP = isGamePVP;

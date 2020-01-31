@@ -1,5 +1,7 @@
 package model.repository;
 
+import model.sevice.PlayMenu;
+
 import java.util.Scanner;
 
 public class MainMenu {
@@ -18,7 +20,11 @@ public class MainMenu {
         String str = input.nextLine();
         switch(str){
             case "play":
-
+                PlayMenu.takeInputForPlayMenu();
+            case "profile":
+                Profile.profileGetInput();
+            case "shop":
+                Shop.takeInputForShop();
         }
 
     }

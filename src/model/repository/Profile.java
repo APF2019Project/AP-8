@@ -8,8 +8,10 @@ import java.util.Scanner;
 
 public class Profile extends Account {
     private static Scanner input;
-
-    private static void profileGetInput() {
+    public  static void setInput(Scanner scanner){
+        input=scanner;
+    }
+    public static void profileGetInput() {
         System.out.println("-------------------profile------------------");
         System.out.println("enter once of this commands to continio \nchange\nrename\ndelete\ncreate\nback");
         String str = input.nextLine();
