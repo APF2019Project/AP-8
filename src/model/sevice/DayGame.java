@@ -1,17 +1,14 @@
 package model.sevice;
 
-import controller.boxExeption.InvalidBulletTypeExeption;
-import controller.boxExeption.InvalidPlantTypeExeption;
-import controller.boxExeption.InvalidZombieTypeExeption;
 import model.entity.*;
 import model.repository.Collection;
-import model.repository.CollectionInterFace;
 import model.repository.Player;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
+import static model.sevice.WaterGame.showLawn;
 
 public class DayGame extends Game {
     private static Scanner input;
@@ -40,8 +37,9 @@ public class DayGame extends Game {
     }
 
     public static void takeInput() throws Exception {
+
         System.out.println("---------DAY GAME---------");
-        System.out.println("enter one of below commands" +
+        System.out.println("enter one of below commands " +
                 "showHand" +
                 "select" +
                 "plant" +
@@ -51,12 +49,11 @@ public class DayGame extends Game {
         String[] splitedInput = input.nextLine().split(" ");
         switch (splitedInput[0]) {
             case "showHand":
-                cards = CollectionInterFace.returnCards("DAY");
-                showSelectedCards();
+                showHand();
                 takeInput();
                 break;
             case "select":
-                temp = selectCard(splitedInput[1]);
+                selectCards(splitedInput[1]);
                 takeInput();
             case "plant":
                 temp.plantingByXandY(Integer.parseInt(splitedInput[1]), Integer.parseInt(splitedInput[2]));
@@ -68,44 +65,44 @@ public class DayGame extends Game {
                 }
                 break;
             case "end turn":
-                endTurn(true);
+
             case "show lawn":
                 showLawn();
 
         }
     }
 
-    private static void showSelectedCards() {
-        for (Card c : cards) {
-            if (c instanceof Plant) {
-                System.out.println(c.getName() + c.getCardType() + ((Plant) c).getCooLDown() + ((Plant) c).getPlantingPrice());
+    private static void showHand() {
+        for (String name : Collection.selectedCards.keySet()) {
+            Plant plant = new Plant(name, CardType.PLANT);
+            System.out.print(plant.getPlantType() + " ");
+            System.out.print(plant.getPlantingPrice() + " ");
+            System.out.print(plant.getCoolDownCeil() + " ");
+        }
+    }
+
+    private static void selectCards(String n) {
+        for (String name : Collection.selectedCards.keySet()) {
+            if (n.equals(name)) {
+                Plant plant = new Plant(name, CardType.PLANT);
+                plant.planting();
             }
         }
     }
 
-    public static Plant selectCard(String name) throws Exception {
-        if (Collection.getCollection().containsKey(name)) {
-            try {
-                if (CovertCardsToJsonString.getPlantFromJsonString(name).getPlantingPrice() <= player.getNumberOfSun() && CovertCardsToJsonString.getPlantFromJsonString(name).charging() == true) {
-                    return CovertCardsToJsonString.getPlantFromJsonString(name);
-                }
-            } catch (InvalidPlantTypeExeption | InvalidBulletTypeExeption | FileNotFoundException invalidPlantTypeExeption) {
-                invalidPlantTypeExeption.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-
-    public static void showLawn() {
-
-    }
-
-    public static void endTurn(Boolean isEndTurn) {
-        while (isEndTurn == true) {
-
-        }
-    }
+//    public static Plant selectCard(String name) throws Exception {
+//        if (Collection.getCollection().containsKey(name)) {
+//            try {
+//                if (CovertCardsToJsonString.getPlantFromJsonString(name).getPlantingPrice() <= player.getNumberOfSun() && CovertCardsToJsonString.getPlantFromJsonString(name).charging() == true) {
+//                    return CovertCardsToJsonString.getPlantFromJsonString(name);
+//                }
+//            } catch (InvalidPlantTypeExeption | InvalidBulletTypeExeption | FileNotFoundException invalidPlantTypeExeption) {
+//                invalidPlantTypeExeption.printStackTrace();
+//            }
+//        }
+//        return null;
+//    }
+//
 
     // game methods
     public int randomAccess(int start, int finish) {
@@ -140,7 +137,7 @@ public class DayGame extends Game {
                 Zombie z = covertCardsToJsonString.getZombeiFromJsonString("RegularZombei");
                 zombies.add(z);
                 return zombies;
-            } catch (Exception | InvalidZombieTypeExeption e) {
+            } catch (Exception e) {
                 System.out.println("invalid zombie exeption");
             }
         }
@@ -189,6 +186,7 @@ public class DayGame extends Game {
         }
     }
 
+
     public void stillPlantByBungeeZombie(Zombie zombie) {
         System.out.println("stillPlantByBungeeZombie");
         if (bungeeTuen == 0 && zombie.getZombeiType() == ZombeiType.Bungee) {
@@ -200,5 +198,4 @@ public class DayGame extends Game {
 
 
 }
-
 

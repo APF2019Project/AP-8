@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-
 public class WaterGame extends Game {
     private static ArrayList<Card> cards = new ArrayList<Card>(7);
     private static Scanner input;
@@ -93,6 +92,5 @@ public class WaterGame extends Game {
 
         }
     }
-
 
 }

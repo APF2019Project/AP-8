@@ -34,6 +34,10 @@ public class Plant extends Card {
         setCost();
     }
 
+    public Plant(String name, CardType cardType) {
+        super(name, cardType);
+    }
+
     //getters and setters
     public void setCost() {
         this.cost = this.sunOutTurn * this.cooLDown * this.health + 1;

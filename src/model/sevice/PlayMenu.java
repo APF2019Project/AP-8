@@ -1,5 +1,6 @@
 package model.sevice;
 
+import model.repository.Collection;
 import model.repository.MainMenu;
 
 import java.util.Scanner;
@@ -22,6 +23,7 @@ public class PlayMenu {
             String str = input.nextLine();
             switch (str) {
                 case "day":
+                    Collection.takeInputForCollection("plant");
                     DayGame.takeInput();
                     takeInputForPlayMenu();
                     break;

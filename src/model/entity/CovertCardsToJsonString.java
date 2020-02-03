@@ -1,8 +1,8 @@
 package model.entity;
 
 import com.google.gson.Gson;
-import model.exeptions.InvalidBulletTypeExeption;
-import model.exeptions.InvalidPlantTypeExeption;
+import controller.boxExeption.InvalidBulletTypeExeption;
+import controller.boxExeption.InvalidPlantTypeExeption;
 import model.exeptions.InvalidZombieTypeExeption;
 
 import java.io.*;
@@ -184,7 +184,7 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public Zombie getZombeiFromJsonString(String name) throws InvalidZombieTypeExeption, FileNotFoundException {
+    public static Zombie getZombeiFromJsonString(String name) throws InvalidZombieTypeExeption, FileNotFoundException {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
             StringBuilder stringBuilder = new StringBuilder();
@@ -199,7 +199,7 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public Plant getPlantFromJsonString(String name) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption, FileNotFoundException {
+    public static Plant getPlantFromJsonString(String name) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption, FileNotFoundException {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
             StringBuilder stringBuilder = new StringBuilder();

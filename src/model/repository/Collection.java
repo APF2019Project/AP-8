@@ -2,7 +2,6 @@ package model.repository;
 
 import controller.boxExeption.InvalidBulletTypeExeption;
 import controller.boxExeption.InvalidPlantTypeExeption;
-import controller.boxExeption.InvalidZombieTypeExeption;
 import model.entity.Account;
 import model.entity.Card;
 import model.entity.CovertCardsToJsonString;
@@ -13,14 +12,14 @@ import java.util.Scanner;
 
 public class Collection {
     private static Scanner input;
-    private static HashMap<String, Card> selectedCards = new HashMap<>(7);
+    public static HashMap<String, Card> selectedCards = new HashMap<>(7);
     private int maxSize = 7;
 
     public static void setInput(Scanner scanner) {
         input = scanner;
     }
 
-    public static HashMap<String, Card> takeInputForCollection(String cardType) {
+    public static HashMap<String, Card> takeInputForCollection(String cardType) throws Exception {
         System.out.println("---------COLLECTION_MENU---------");
         System.out.println("enter one of below commands" +
                 "showHand" +
@@ -56,14 +55,14 @@ public class Collection {
         return getCollection();
     }
 
-    private static void select(String cardName, String cardType) {
+    public static void select(String cardName, String cardType) throws Exception {
 
         if (cardType.matches("ZOMBIE")) {
             if (Account.loggedInAccount.getZombies().contains(cardName)) {
                 try {
                     selectedCards.put(cardName, CovertCardsToJsonString.getZombeiFromJsonString(cardName));
-                } catch (InvalidZombieTypeExeption | FileNotFoundException invalidZombieTypeExeption) {
-                    invalidZombieTypeExeption.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
         } else if (cardType.matches("PLANT")) {
@@ -99,7 +98,7 @@ public class Collection {
         }
     }
 
-    private static void showSelectedCards() {
+    public static void showSelectedCards() {
         for (String name : Collection.selectedCards.keySet()) {
             System.out.println(Collection.selectedCards.get(name).getName());
         }

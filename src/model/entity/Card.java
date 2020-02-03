@@ -8,7 +8,10 @@ public class Card {
     private boolean isSelected = false; // mean selecting in collection;
 
 
-/**
+    public Card() {
+    }
+
+    /**
     public Coin getShopingPrice() {
         return shopingPrice;
     }
