@@ -13,19 +13,17 @@ public class PlayMenu {
     public static void takeInputForPlayMenu(){
         try {
             System.out.println("----------PLAY_MENU-----------");
-            System.out.println("enter one of this game types" +
-                    "day" +
-                    "water" +
-                    "pvp" +
-                    "zombie" +
-                    "rail" +
-                    "back");
+            System.out.println("enter one of this game types " +
+                    "day " +
+                    "water " +
+                    "pvp " +
+                    "zombie " +
+                    "rail " +
+                    "back ");
             String str = input.nextLine();
             switch (str) {
                 case "day":
-                    Collection.takeInputForCollection("plant");
-                    DayGame.takeInput();
-                    takeInputForPlayMenu();
+                    Collection.takeInputForCollection("PLANT");
                     break;
                 case "water":
                     WaterGame.takeInput();

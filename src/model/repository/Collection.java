@@ -21,12 +21,12 @@ public class Collection {
 
     public static HashMap<String, Card> takeInputForCollection(String cardType) throws Exception {
         System.out.println("---------COLLECTION_MENU---------");
-        System.out.println("enter one of below commands" +
-                "showHand" +
-                "play" +
-                "select cardName" +
-                "remove cardName" +
-                "showCollection");
+        System.out.println("enter one of below commands " +
+                "showHand " +
+                "play " +
+                "select cardName " +
+                "remove cardName " +
+                "showCollection ");
         System.out.println("if you select more than 7 cards , the result will be random of that set");
         String str = input.nextLine();
         String[] splites = str.split(" ");
@@ -61,6 +61,7 @@ public class Collection {
             if (Account.loggedInAccount.getZombies().contains(cardName)) {
                 try {
                     selectedCards.put(cardName, CovertCardsToJsonString.getZombeiFromJsonString(cardName));
+                    System.out.println("selected");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -69,6 +70,7 @@ public class Collection {
             if (Account.loggedInAccount.getPlants().contains(cardName)) {
                 try {
                     selectedCards.put(cardName, CovertCardsToJsonString.getPlantFromJsonString(cardName));
+                    System.out.println("selected");
                 } catch (InvalidPlantTypeExeption | InvalidBulletTypeExeption | FileNotFoundException invalidPlantTypeExeption) {
                     invalidPlantTypeExeption.printStackTrace();
                 }

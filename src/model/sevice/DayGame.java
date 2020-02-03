@@ -40,12 +40,12 @@ public class DayGame extends Game {
 
         System.out.println("---------DAY GAME---------");
         System.out.println("enter one of below commands " +
-                "showHand" +
-                "select" +
-                "plant" +
+                "showHand " +
+                "select " +
+                "plant " +
                 "remove " +
-                "end turn" +
-                "show lawn");
+                "end turn " +
+                "show lawn ");
         String[] splitedInput = input.nextLine().split(" ");
         switch (splitedInput[0]) {
             case "showHand":

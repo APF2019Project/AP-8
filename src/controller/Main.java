@@ -27,6 +27,7 @@ public class Main {
         DayGame.setInput(scanner);
         PvpGame.setInput(scanner);
         WaterGame.setInput(scanner);
+        Collection.setInput(scanner);
         LogginMenu.getInputForLogginMenu();
        // covertCardsToJsonString.setZombieFields(scanner);
 //        covertCardsToJsonString.setInput(scanner);
