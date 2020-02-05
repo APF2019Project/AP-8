@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="AP-8">
+    <output-path>$PROJECT_DIR$/out/artifacts/AP_8</output-path>
+    <root id="root">
+      <element id="archive" name="AP_8.jar">
+        <element id="module-output" name="AP-8" />
+      </element>
+    </root>
+  </artifact>
+</component>

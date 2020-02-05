@@ -3,7 +3,7 @@ package model.entity;
 import com.google.gson.Gson;
 import controller.boxExeption.InvalidBulletTypeExeption;
 import controller.boxExeption.InvalidPlantTypeExeption;
-import model.exeptions.InvalidZombieTypeExeption;
+import controller.boxExeption.InvalidZombieTypeExeption;
 
 import java.io.*;
 import java.util.Scanner;

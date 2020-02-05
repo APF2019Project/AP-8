@@ -123,6 +123,7 @@ public class Account {
     public static void logOut() {
         accountsInfo.put(loggedInAccount.getId(), loggedInAccount.getPassword());
         setLoggedInAccount(null);
+        saveAccountsInfo();
     }
 
     public static void loggIn(String id, String password) throws InvalidIdException, InvalidPasswordException {
@@ -135,6 +136,7 @@ public class Account {
             return true;
         throw new InvalidPasswordException("your password is invalid");
     }
+
     public boolean chekPass(Integer pass) throws InvalidPasswordException {
         if (pass == this.getPassword())
             return true;
@@ -165,6 +167,7 @@ public class Account {
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
             }
+            bufferedReader.close();
             Account account = new Gson().fromJson(stringBuilder.toString(), Account.class);
             return account;
         } catch (Exception e) {
@@ -191,6 +194,7 @@ public class Account {
         try {
             FileWriter fileWriter = new FileWriter(account.getId() + ".json");
             fileWriter.write(jsonAccount);
+            fileWriter.flush();
             fileWriter.close();
         } catch (IOException e) {
             throw new InvalidIdException("invalid id");
@@ -254,13 +258,14 @@ public class Account {
                 stringBuilder.append(line);
             }
             accountsInfo = new Gson().fromJson(stringBuilder.toString(), HashMap.class);
+            bufferedReader.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     public static void loadAllAccounts() {
-
+                readAccountsInfo();
         for (Integer id : accountsInfo.keySet()) {
             try {
                 accounts.add(Account.getAccountByIdAndPassword(id, accountsInfo.get(id)));
@@ -278,8 +283,11 @@ public class Account {
         try {
             FileWriter fileWriter = new FileWriter("accounts.json");
             fileWriter.write(jsonAccounts);
+            fileWriter.flush();
+            fileWriter.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
     }
 }

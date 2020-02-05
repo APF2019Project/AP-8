@@ -1,5 +1,6 @@
 package model.sevice;
 
+import controller.boxExeption.InvalidZombieTypeExeption;
 import model.entity.*;
 import model.repository.Collection;
 import model.repository.Player;
@@ -137,7 +138,7 @@ public class DayGame extends Game {
                 Zombie z = covertCardsToJsonString.getZombeiFromJsonString("RegularZombei");
                 zombies.add(z);
                 return zombies;
-            } catch (Exception e) {
+            } catch (Exception | InvalidZombieTypeExeption e) {
                 System.out.println("invalid zombie exeption");
             }
         }

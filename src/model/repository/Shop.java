@@ -14,7 +14,8 @@ public class Shop {
     private static HashMap<String , Integer> shop = new HashMap<>();
     private static HashMap<String , Card> plants= new HashMap<>();
     private static HashMap<String , Card> zombies = new HashMap<>();
-    public static void setInput(Scanner scanner){
+
+    public static void setInput(Scanner scanner) {
         input = scanner;
     }
     public static void takeInputForShop(){

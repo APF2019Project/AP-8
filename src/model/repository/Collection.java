@@ -2,6 +2,7 @@ package model.repository;
 
 import controller.boxExeption.InvalidBulletTypeExeption;
 import controller.boxExeption.InvalidPlantTypeExeption;
+import controller.boxExeption.InvalidZombieTypeExeption;
 import model.entity.Account;
 import model.entity.Card;
 import model.entity.CovertCardsToJsonString;
@@ -62,7 +63,7 @@ public class Collection {
                 try {
                     selectedCards.put(cardName, CovertCardsToJsonString.getZombeiFromJsonString(cardName));
                     System.out.println("selected");
-                } catch (FileNotFoundException e) {
+                } catch (FileNotFoundException | InvalidZombieTypeExeption e) {
                     e.printStackTrace();
                 }
             }
