@@ -24,7 +24,7 @@ public class PlayMenu {
             switch (str) {
                 case "day":
                     Collection.takeInputForCollection("PLANT");
-                    break;
+                    takeInputForPlayMenu();
                 case "water":
                     WaterGame.takeInput();
                     takeInputForPlayMenu();

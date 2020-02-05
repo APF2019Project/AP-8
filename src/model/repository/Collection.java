@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Collection {
-    private static Scanner input;
     public static HashMap<String, Card> selectedCards = new HashMap<>(7);
+    private static Scanner input;
     private int maxSize = 7;
 
     public static void setInput(Scanner scanner) {
@@ -66,6 +66,7 @@ public class Collection {
                     e.printStackTrace();
                 }
             }
+            System.out.println("no select");
         } else if (cardType.matches("PLANT")) {
             if (Account.loggedInAccount.getPlants().contains(cardName)) {
                 try {
@@ -75,6 +76,7 @@ public class Collection {
                     invalidPlantTypeExeption.printStackTrace();
                 }
             }
+            System.out.println("no select");
         }
     }
 

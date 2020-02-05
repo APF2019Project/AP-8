@@ -29,8 +29,7 @@ public class Main {
         WaterGame.setInput(scanner);
         Collection.setInput(scanner);
         LogginMenu.getInputForLogginMenu();
-       // covertCardsToJsonString.setZombieFields(scanner);
-//        covertCardsToJsonString.setInput(scanner);
+
 //        covertCardsToJsonString.setPlantFields();
         }
 }

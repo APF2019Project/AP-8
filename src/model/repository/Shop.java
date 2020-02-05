@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Shop {
+
     private static Scanner input ;
     private static HashMap<String , Integer> shop = new HashMap<>();
     private static HashMap<String , Card> plants= new HashMap<>();
