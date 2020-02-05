@@ -2,7 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
@@ -12,9 +12,8 @@ public class LodaingFrame implements Initializable {
     @FXML
     ImageView loadingImage;
     @FXML
-    Label loading;
+    Button first;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 }
