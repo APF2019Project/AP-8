@@ -2,7 +2,6 @@ package client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.entity.Config;
 
 import java.io.IOException;
 import java.io.PrintWriter;

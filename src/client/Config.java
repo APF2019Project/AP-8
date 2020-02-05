@@ -1,4 +1,4 @@
-package model.entity;
+package client;
 
 import com.google.gson.Gson;
 
