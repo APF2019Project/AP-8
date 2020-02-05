@@ -37,13 +37,14 @@ public class Main extends Application {
         }
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Loading...");
-        primaryStage.setScene(new Scene( FXMLLoader.load(getClass().getResource("controller/FXMLS/loadingFrame.fxml"))));
-        primaryStage.show();
+    public void start(Stage stage) throws Exception {
+        stage.setTitle("Loading...");
+       // primaryStage.setScene(new Scene( FXMLLoader.load(getClass().getResource("controller/FXMLS/loadingFrame.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/controller/FXMLS/loadingFrame.fxml")),400,500));
+        stage.show();
 }
-    public static void main(String[] args)  {
-        launch(args);
+    public static void main(String[] args)throws Exception {
+        launch();
         //Scanner scanner = new Scanner(System.in);
         //commandLine(scanner);
         // covertCardsToJsonString.setZombieFields(scanner);
