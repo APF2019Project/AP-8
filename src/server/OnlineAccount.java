@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class OnlineAccount implements Runnable {
+
+    private double x, y;
+
     private static ArrayList<OnlineAccount> onlineAccounts = new ArrayList<>();
     private Socket socket;
     private Scanner in;
