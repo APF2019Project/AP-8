@@ -12,7 +12,6 @@ import model.sevice.PvpGame;
 import model.sevice.WaterGame;
 import view.Command;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 
@@ -40,11 +39,11 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Loading...");
        // primaryStage.setScene(new Scene( FXMLLoader.load(getClass().getResource("controller/FXMLS/loadingFrame.fxml"))));
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/controller/FXMLS/loadingFrame.fxml")),400,500));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/controller/FXMLS/loadingFrame.fxml"))));
         stage.show();
 }
     public static void main(String[] args)throws Exception {
-        launch();
+        launch(args);
         //Scanner scanner = new Scanner(System.in);
         //commandLine(scanner);
         // covertCardsToJsonString.setZombieFields(scanner);
