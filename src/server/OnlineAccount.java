@@ -1,16 +1,19 @@
 package server;
 
+import model.entity.Account;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class OnlineAccount implements Runnable{
+public class OnlineAccount implements Runnable {
     private static ArrayList<OnlineAccount> onlineAccounts = new ArrayList<>();
     private Socket socket;
     private Scanner in;
     private PrintWriter out;
+
     public OnlineAccount(Socket socket) {
         this.socket = socket;
         try {
@@ -25,8 +28,18 @@ public class OnlineAccount implements Runnable{
 
     @Override
     public void run() {
+        Socket socket;
+        Account client;
+
+        String command;
+        Boolean erorFlag;
         //todo recieve
-        Object request;
+        while (true) {
+            erorFlag = false;
+            command = in.nextLine();
+
+        }
+//        Object request;
         //todo resolve
         //todo send
     }

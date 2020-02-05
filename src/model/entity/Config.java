@@ -7,8 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 public class Config {
-    private String ip = "127.0.0.1";
-    private int port = 5000;
+    private String ip;
+    private int port;
 
     public static Config getJsonString(String name) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
@@ -22,9 +22,25 @@ public class Config {
 
     }
 
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
     public void createJsonFile(Config config) throws Exception {
         String json = new Gson().toJson(config);
-        FileWriter fileWriter = new FileWriter(this.ip + ".json");
+        FileWriter fileWriter = new FileWriter(this.getIp()+ ".json");
         fileWriter.write(json);
         fileWriter.close();
     }
