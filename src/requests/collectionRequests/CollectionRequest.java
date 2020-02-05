@@ -21,7 +21,7 @@ public class CollectionRequest extends Request {
         Matcher matcher = pattern.matcher(command);
         if (matcher.find()) {
             AddNewCard add = new AddNewCard();
-            add.setNamme(command.split("\\s")[10]);
+            add.setNamme(command.split("\\s")[2]);
             return add;
         }
         return null;
