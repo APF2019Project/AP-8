@@ -1,6 +1,6 @@
 package requests.accountRequests.accountRequestChilds;
 
-public enum List {
+public enum ListAccount {
     LOGOUT,
 
 }

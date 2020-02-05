@@ -3,13 +3,13 @@ package requests.accountRequests.accountRequestChilds;
 import requests.accountRequests.AccountRequest;
 
 public class ListOfCommandsAccount extends AccountRequest {
-    private List list;
+    private ListAccount list;
 
-    public List getAccountOptionList() {
+    public ListAccount getAccountOptionList() {
         return list;
     }
 
-    public void setAccountOptionList(List accountOptionList) {
+    public void setAccountOptionList(ListAccount accountOptionList) {
         this.list = accountOptionList;
     }
 }

@@ -2,7 +2,7 @@ package requests.accountRequests;
 
 import requests.Request;
 import requests.accountRequests.accountRequestChilds.CreateAccount;
-import requests.accountRequests.accountRequestChilds.List;
+import requests.accountRequests.accountRequestChilds.ListAccount;
 import requests.accountRequests.accountRequestChilds.ListOfCommandsAccount;
 import requests.accountRequests.accountRequestChilds.LoginAccount;
 
@@ -51,7 +51,7 @@ public class AccountRequest extends Request {
         }
         if (command.indexOf("logout") >= 0) {
             ListOfCommandsAccount listOfCommandsAccount = new ListOfCommandsAccount();
-            listOfCommandsAccount.setAccountOptionList(List.LOGOUT);
+            listOfCommandsAccount.setAccountOptionList(ListAccount.LOGOUT);
             return listOfCommandsAccount;
         }
         return null;
