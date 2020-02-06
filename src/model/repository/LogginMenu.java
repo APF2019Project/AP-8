@@ -73,7 +73,7 @@ public class LogginMenu {
     }
     public static void getInputForLogin() {
         try {
-            System.out.println("---------login stape-----------");
+            System.out.println("---------login stage-----------");
             System.out.println("please enter your id :");
             String id = input.nextLine();
             System.out.println("please enter your password : ");

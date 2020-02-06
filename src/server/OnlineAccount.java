@@ -1,6 +1,9 @@
 package server;
 
+import Response.BaseResponse;
+import client.Connector;
 import model.entity.Account;
+import requests.BaseRequest;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,42 +12,38 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class OnlineAccount implements Runnable {
-
-    private double x, y;
-
     private static ArrayList<OnlineAccount> onlineAccounts = new ArrayList<>();
-    private Socket socket;
-    private Scanner in;
-    private PrintWriter out;
-
+    private Connector connector;
+    private Account account;
+    public BaseResponse resolve(BaseRequest baseRequest){
+        BaseResponse baseResponse = new BaseResponse();
+        //todo
+        switch (baseRequest.getType()){
+            case Connection:
+                baseResponse.setType(BaseResponse.ResponseType.Connection);
+                baseResponse.setSuccess(true);
+        }
+        return baseResponse;
+    }
     public OnlineAccount(Socket socket) {
-        this.socket = socket;
+        System.out.println("new client connected");
         try {
-            out = new PrintWriter(socket.getOutputStream());
-            in = new Scanner(socket.getInputStream());
+            connector = new Connector(socket,this);
         } catch (IOException e) {
             e.printStackTrace();
         }
         onlineAccounts.add(this);
-        this.run();
+        new Thread(this).start();
     }
 
     @Override
     public void run() {
-        Socket socket;
-        Account client;
-
-        String command;
-        Boolean erorFlag;
-        //todo recieve
         while (true) {
-            erorFlag = false;
-            command = in.nextLine();
-
-
+            try {
+                connector.resolve();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-//        Object request;
-        //todo resolve
-        //todo send
     }
 }

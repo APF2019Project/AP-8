@@ -21,24 +21,24 @@ public class Main extends Application {
     public static DayGame dayGame = new DayGame();
     public static CovertCardsToJsonString covertCardsToJsonString = new CovertCardsToJsonString();
 
-        static void commandLine(Scanner scanner){
+    static void commandLine(Scanner scanner){
 
-            LogginMenu.setInput(scanner);
-            MainMenu.setInput(scanner);
-            Profile.setInput(scanner);
-            Shop.setInput(scanner);
-            LeaderBoard.setInput(scanner);
-            PlayMenu.setInput(scanner);
-            DayGame.setInput(scanner);
-            PvpGame.setInput(scanner);
-            WaterGame.setInput(scanner);
-            Collection.setInput(scanner);
-            LogginMenu.getInputForLogginMenu();
-        }
+        LogginMenu.setInput(scanner);
+        MainMenu.setInput(scanner);
+        Profile.setInput(scanner);
+        Shop.setInput(scanner);
+        LeaderBoard.setInput(scanner);
+        PlayMenu.setInput(scanner);
+        DayGame.setInput(scanner);
+        PvpGame.setInput(scanner);
+        WaterGame.setInput(scanner);
+        Collection.setInput(scanner);
+        LogginMenu.getInputForLogginMenu();
+    }
 
     @Override
     public void start(Stage stage) throws Exception  {
-            ViewHandler.loadingFrame(stage);
+        ViewHandler.loadingFrame(stage);
         PauseTransition delay = new PauseTransition(Duration.seconds(5));
         delay.setOnFinished( event -> {
             try {
@@ -56,5 +56,5 @@ public class Main extends Application {
         //commandLine(scanner);
         // covertCardsToJsonString.setZombieFields();
 //        covertCardsToJsonString.setPlantFields();
-        }
+    }
 }
