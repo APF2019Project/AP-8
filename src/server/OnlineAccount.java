@@ -41,6 +41,7 @@ public class OnlineAccount implements Runnable {
             erorFlag = false;
             command = in.nextLine();
 
+
         }
 //        Object request;
         //todo resolve

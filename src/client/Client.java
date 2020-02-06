@@ -2,6 +2,7 @@ package client;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,15 +10,15 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
+        InetAddress host = InetAddress.getLocalHost();
+        System.out.println("enter name,ip,port");
+        String[] input = scanner.nextLine().split(" ");
         int autoTuken = 0;
         ArrayList<Integer> AutoTukensSave = new ArrayList<>();
-        Config.setInput(scanner);
-        Config config = new Config();
-        config.setConfigFields(scanner);
-        System.out.println("pls enter a name for config file: ");
-        String name = scanner.nextLine();
-        String host = config.getJsonString(name).getIp();
-        int port = config.getJsonString(name).getPort();
+        Config config = new Config(host, input[0], Integer.parseInt(input[2]));
+        config.createJsonFile(config);
+        //String host = config.getJsonString(input[0]).getIp();
+        int port = config.getJsonString(input[0]).getPort();
         Socket socket = null;
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
@@ -39,7 +40,8 @@ public class Client {
             Thread.sleep(100);
         }
     }
-    static void getCommand(Scanner scanner){
+
+    static void getCommand(Scanner scanner) {
 
     }
 }

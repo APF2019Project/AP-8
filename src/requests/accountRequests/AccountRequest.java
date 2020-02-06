@@ -25,13 +25,13 @@ public class AccountRequest extends Request {
         return accountRequest;
     }
 
-    public String getPassWord() {
+    public static String getPassWord() {
         System.out.println("password :");
         String passWord = scanner.nextLine().trim();
         return passWord;
     }
 
-    public AccountRequest getCommand() {
+    public static AccountRequest getCommand() {
         String actualCommand = scanner.nextLine().trim();
         String command = actualCommand.toLowerCase();
         Pattern pattern = Pattern.compile("create account (\\w+)");

@@ -5,27 +5,18 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.net.InetAddress;
 import java.util.Scanner;
 
 public class Config {
-    public static Scanner input;
-    public static String[] string;
-    private String ip;
+    private InetAddress ip;
     private String name;
     private int port;
 
-    public Config(String ip, String name, int port) {
+    public Config(InetAddress ip, String name, int port) {
         this.ip = ip;
         this.name = name;
         this.port = port;
-    }
-
-    public Config() {
-    }
-
-    public static void setInput(Scanner scanner) {
-        input = scanner;
-        string = input.nextLine().split(" ");
     }
 
     public static Config getJsonString(String name) throws Exception {
@@ -40,14 +31,6 @@ public class Config {
 
     }
 
-    public void setConfigFields(Scanner scanner) throws Exception {
-        System.out.println("please enter ip then port then a name");
-        String IP = string[0];
-        int port = Integer.parseInt(string[1]);
-        String name = string[2];
-        Config c = new Config(IP, name, port);
-        createJsonFile(c);
-    }
 
     public String getName() {
         return name;
@@ -57,11 +40,11 @@ public class Config {
         this.name = name;
     }
 
-    public String getIp() {
+    public InetAddress getIp() {
         return ip;
     }
 
-    public void setIp(String ip) {
+    public void setIp(InetAddress ip) {
         this.ip = ip;
     }
 
