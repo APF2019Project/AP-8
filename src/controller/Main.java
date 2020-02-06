@@ -46,8 +46,7 @@ public class Main extends Application {
         launch(args);
         //Scanner scanner = new Scanner(System.in);
         //commandLine(scanner);
-        // covertCardsToJsonString.setZombieFields(scanner);
-//        covertCardsToJsonString.setInput(scanner);
+        // covertCardsToJsonString.setZombieFields();
 //        covertCardsToJsonString.setPlantFields();
         }
 }

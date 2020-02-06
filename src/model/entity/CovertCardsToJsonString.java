@@ -38,7 +38,7 @@ public class CovertCardsToJsonString {
         }
     }
 
-    public void setZombieFields(Scanner scanner) throws InvalidZombieTypeExeption {
+    public void setZombieFields() throws InvalidZombieTypeExeption {
         String name = string[0];
         int lifeNumber = Integer.parseInt(string[1]);
         int cost = Integer.parseInt(string[2]);
@@ -52,7 +52,7 @@ public class CovertCardsToJsonString {
         createZombies(z);
     }
 
-    public void setPlantFields(Scanner scanner) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption {
+    public void setPlantFields() throws InvalidPlantTypeExeption, InvalidBulletTypeExeption {
         String name = string[0];
         int health = Integer.parseInt(string[1]);
         int sun = Integer.parseInt(string[2]);

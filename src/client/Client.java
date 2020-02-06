@@ -3,11 +3,14 @@ package client;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
+        int autoTuken = 0;
+        ArrayList<Integer> AutoTukensSave = new ArrayList<>();
         Config.setInput(scanner);
         Config config = new Config();
         config.setConfigFields(scanner);

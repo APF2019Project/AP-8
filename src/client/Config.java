@@ -9,8 +9,7 @@ import java.util.Scanner;
 
 public class Config {
     public static Scanner input;
-    Scanner scanner = new Scanner(System.in);
-    String[] string = scanner.nextLine().split(" ");
+    public static String[] string;
     private String ip;
     private String name;
     private int port;
@@ -26,6 +25,7 @@ public class Config {
 
     public static void setInput(Scanner scanner) {
         input = scanner;
+        string = input.nextLine().split(" ");
     }
 
     public static Config getJsonString(String name) throws Exception {
