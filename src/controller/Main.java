@@ -1,9 +1,9 @@
 package controller;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.entity.CovertCardsToJsonString;
 import model.repository.*;
 import model.sevice.DayGame;
@@ -12,6 +12,7 @@ import model.sevice.PvpGame;
 import model.sevice.WaterGame;
 import view.Command;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 
@@ -36,12 +37,19 @@ public class Main extends Application {
         }
 
     @Override
-    public void start(Stage stage) throws Exception {
-        stage.setTitle("Loading...");
-       // primaryStage.setScene(new Scene( FXMLLoader.load(getClass().getResource("controller/FXMLS/loadingFrame.fxml"))));
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/controller/FXMLS/loadingFrame.fxml"))));
-        stage.show();
-}
+    public void start(Stage stage) throws Exception  {
+            ViewHandler.loadingFrame(stage);
+        PauseTransition delay = new PauseTransition(Duration.seconds(5));
+        delay.setOnFinished( event -> {
+            try {
+                ViewHandler.logginMenu(stage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        delay.play();
+
+    }
     public static void main(String[] args)throws Exception {
         launch(args);
         //Scanner scanner = new Scanner(System.in);
