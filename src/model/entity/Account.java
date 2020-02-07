@@ -1,6 +1,7 @@
 package model.entity;
 
 import com.google.gson.Gson;
+import controller.boxExeption.DosentMatchPasswordException;
 import controller.boxExeption.InvalidIdException;
 import controller.boxExeption.InvalidPasswordException;
 
@@ -105,7 +106,7 @@ public class Account {
         Account.loggedInAccount = loggedInAccount;
     }
 
-    public Account(String name, String id, String password, int coins, int numberOfKiledZombies, ArrayList<String> plants, ArrayList<String> zombies) throws Exception, InvalidPasswordException {
+    public Account(String name, String id, String password, int coins, int numberOfKiledZombies, ArrayList<String> plants, ArrayList<String> zombies) throws InvalidIdException{
         try {
             this.name = name;
             this.setID(id);
@@ -115,11 +116,16 @@ public class Account {
             this.plants = plants;
             Zombies = zombies;
             saveAccountInJson(this);
-        } catch (Exception e) {
+        } catch (InvalidIdException e) {
             throw e;
         }
     }
-
+    public static void  createAccount(String name , String id , String password , String rePassword) throws DosentMatchPasswordException , InvalidIdException, InvalidPasswordException {
+        if(!rePassword.matches(password)) throw new DosentMatchPasswordException("passwords dosent matches");
+        else {
+            new Account(name , id , password , 0 , 0 , null , null );
+        }
+    }
     public static void logOut() {
         accountsInfo.put(loggedInAccount.getId(), loggedInAccount.getPassword());
         setLoggedInAccount(null);
@@ -202,7 +208,7 @@ public class Account {
     }
 
 
-    private boolean setID(String strId) throws Exception, InvalidIdException {
+    private boolean setID(String strId) throws  InvalidIdException {
         int id = getStringHash(strId);
         Path path = Paths.get(id + ".json");
         if (Files.exists(path)) {
