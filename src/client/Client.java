@@ -2,15 +2,16 @@ package client;
 
 import Response.BaseResponse;
 import com.google.gson.Gson;
+import model.entity.Account;
+import model.repository.Shop;
 import requests.AccountRequest;
 import requests.BaseRequest;
+import requests.ChatRequest;
 import requests.CollectionRequest;
 
 import java.io.File;
 import java.net.Socket;
 import java.util.Scanner;
-
-import static controller.Main.covertCardsToJsonString;
 
 public class Client {
     private final static Gson gson = new Gson();
@@ -27,9 +28,11 @@ public class Client {
         socket = new Socket(config.getIp(), config.getPort());
         connector = new Connector(socket);
         //todo connection complete
+        Shop.showShop();
         System.out.println("successfully connected");
-        System.out.println("enter your request : login, create account, showOnlineAccounts,add new card ");
+        System.out.println("enter your request : login, create account, showOnlineAccounts,add new card, send_msg");
         String command = scanner.nextLine();
+
         switch (command) {
             case "login":
                 System.out.println("pls enter yur name , id , pass");
@@ -37,6 +40,7 @@ public class Client {
                 AccountRequest accountRequest = new AccountRequest(info[1], info[0], info[2], BaseRequest.RequestType.login);
                 BaseResponse baseResponse0 = connector.sendRequest(accountRequest);
                 System.out.println("logged in");
+
             case "create account":
                 BaseRequest baseRequest1 = new BaseRequest(BaseRequest.RequestType.createAccount, BaseRequest.class.getName());
                 BaseResponse baseResponse1 = connector.sendRequest(baseRequest1);
@@ -49,17 +53,28 @@ public class Client {
                 if (type.equals("plant")) {
                     System.out.println("pls enter yur plant String name, int cost, int health, int sun, boolean isMagnate, boolean ispricky, int coolDown");
                     String[] infoPlant = scanner.nextLine().split(" ");
-                    CollectionRequest collectionRequest = new CollectionRequest(infoPlant[0], Integer.parseInt(infoPlant[1]), Integer.parseInt(infoPlant[2]), Integer.parseInt(infoPlant[3]), Boolean.parseBoolean(infoPlant[4]), Boolean.parseBoolean(infoPlant[5]), Integer.parseInt(infoPlant[6]),BaseRequest.RequestType.addCard_plant);
+                    CollectionRequest collectionRequest = new CollectionRequest(infoPlant[0], Integer.parseInt(infoPlant[1]), Integer.parseInt(infoPlant[2]), Integer.parseInt(infoPlant[3]), Boolean.parseBoolean(infoPlant[4]), Boolean.parseBoolean(infoPlant[5]), Integer.parseInt(infoPlant[6]), BaseRequest.RequestType.addCard_plant);
                     BaseResponse baseResponse = connector.sendRequest(collectionRequest);
-                }else if (type.equals("zombie")){
+                } else if (type.equals("zombie")) {
                     System.out.println("pls enter yur zombie String name, int cost, int lifenum, int speed, boolean bumper, boolean iswzater, boolean hasCap, int bumperNum");
                     String[] infoPlant = scanner.nextLine().split(" ");
-                    CollectionRequest collectionRequest = new CollectionRequest(infoPlant[0], Integer.parseInt(infoPlant[1]), Integer.parseInt(infoPlant[2]), Integer.parseInt(infoPlant[3]), Boolean.parseBoolean(infoPlant[4]), Boolean.parseBoolean(infoPlant[5]), Boolean.parseBoolean(infoPlant[6]),Integer.parseInt(infoPlant[7]),BaseRequest.RequestType.addCard_zombie);
+                    CollectionRequest collectionRequest = new CollectionRequest(infoPlant[0], Integer.parseInt(infoPlant[1]), Integer.parseInt(infoPlant[2]), Integer.parseInt(infoPlant[3]), Boolean.parseBoolean(infoPlant[4]), Boolean.parseBoolean(infoPlant[5]), Boolean.parseBoolean(infoPlant[6]), Integer.parseInt(infoPlant[7]), BaseRequest.RequestType.addCard_zombie);
                     BaseResponse baseResponse = connector.sendRequest(collectionRequest);
+                } else {
+                    System.out.println("invalid card type");
+                }
+            case "showOnlinesAcc":
+                Account account = new Account();
+                for (Account a : account.getOnlineAccounts()) {
+                    System.out.println(a.getId());
                 }
 
-                covertCardsToJsonString.setZombieFields(scanner);
-                covertCardsToJsonString.setPlantFields(scanner);
+            case "send_msg":
+                System.out.println("enter your msg then enter our freind id");
+                String[] textAndId = scanner.nextLine().split(" ");
+                ChatRequest chatRequest = new ChatRequest(BaseRequest.RequestType.send_msg, textAndId[0], textAndId[1]);
+                BaseResponse baseResponse = connector.sendRequest(chatRequest);
+
         }
     }
 

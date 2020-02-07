@@ -6,7 +6,11 @@ public class BaseRequest {
         login,
         Connection,
         addCard_plant,
-        addCard_zombie
+        addCard_zombie,
+        send_msg,
+        reply,
+        showOnlineAccounts,
+        showOfflineAccounts
     }
 
     public RequestType getType() {

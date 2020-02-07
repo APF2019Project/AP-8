@@ -7,6 +7,7 @@ import model.repository.LogginMenu;
 import requests.AccountRequest;
 import requests.BaseRequest;
 import requests.CollectionRequest;
+import requests.ChatRequest;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -15,7 +16,11 @@ import java.util.ArrayList;
 public class OnlineAccount implements Runnable {
     private static ArrayList<OnlineAccount> onlineAccounts = new ArrayList<>();
     private Connector connector;
-    private Account account;
+    private static Account account;
+
+    public static Account getAccount() {
+        return account;
+    }
 
     public OnlineAccount(Socket socket) {
         System.out.println("new client connected");
@@ -26,6 +31,10 @@ public class OnlineAccount implements Runnable {
         }
         onlineAccounts.add(this);
         new Thread(this).start();
+    }
+
+    public static ArrayList<OnlineAccount> getOnlineAccounts() {
+        return onlineAccounts;
     }
 
     public BaseResponse resolve(BaseRequest baseRequest) throws Exception {
@@ -39,6 +48,8 @@ public class OnlineAccount implements Runnable {
                 baseResponse.setType(BaseResponse.ResponseType.login);
                 AccountRequest accountRequest = (AccountRequest) baseRequest;
                 LogginMenu.createAccount(accountRequest.getUserName(), accountRequest.getName(), accountRequest.getPass());
+                account.getOnlineAccounts().add(account);
+                account.setOnline(true);
                 baseResponse.setSuccess(true);
                 break;
             case createAccount:
@@ -61,20 +72,26 @@ public class OnlineAccount implements Runnable {
                 covertCardsToJsonString1.createZombies(zombie);
                 baseResponse.setSuccess(true);
                 break;
-            }
-            return baseResponse;
+            case send_msg:
+                baseResponse.setType(BaseResponse.ResponseType.send_msg);
+                ChatRequest chatRequest = (ChatRequest) baseRequest;
+                if (account.getId()==Integer.parseInt(chatRequest.getId()));
+                account.getMessages().add(chatRequest.getText());
+                baseResponse.setSuccess(true);
         }
+        return baseResponse;
+    }
 
-        @Override
-        public void run () {
-            while (true) {
-                try {
-                    connector.resolve();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                connector.resolve();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
+}

@@ -6,7 +6,9 @@ public class BaseResponse {
         login,
         createAccount,
         addCard_plant,
-        addCard_zombie
+        addCard_zombie,
+        send_msg,
+        reply
     }
     protected String responseClass;
     protected ResponseType type;
