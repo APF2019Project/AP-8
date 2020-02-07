@@ -4,6 +4,7 @@ import model.entity.Account;
 
 public class AccountRequest extends BaseRequest {
     private String userName;
+    private String name;
     private String pass;
 
     public String getUserName() {
@@ -14,9 +15,14 @@ public class AccountRequest extends BaseRequest {
         return pass;
     }
 
-    public AccountRequest(String userName, String pass, RequestType requestType) {
+    public String getName() {
+        return name;
+    }
+
+    public AccountRequest(String userName, String name, String pass, RequestType requestType) {
         super(requestType,AccountRequest.class.getName());
         this.userName = userName;
+        this.name = name;
         this.pass = pass;
     }
     public AccountRequest(){

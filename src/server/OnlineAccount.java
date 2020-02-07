@@ -4,12 +4,12 @@ import Response.BaseResponse;
 import client.Connector;
 import model.entity.Account;
 import model.repository.LogginMenu;
+import requests.AccountRequest;
 import requests.BaseRequest;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class OnlineAccount implements Runnable {
     private static ArrayList<OnlineAccount> onlineAccounts = new ArrayList<>();
@@ -27,7 +27,7 @@ public class OnlineAccount implements Runnable {
         new Thread(this).start();
     }
 
-    public BaseResponse resolve(BaseRequest baseRequest) {
+    public BaseResponse resolve(BaseRequest baseRequest)throws Exception {
         BaseResponse baseResponse = new BaseResponse();
         //todo
         switch (baseRequest.getType()) {
@@ -36,15 +36,11 @@ public class OnlineAccount implements Runnable {
                 baseResponse.setSuccess(true);
             case login:
                 baseResponse.setType(BaseResponse.ResponseType.login);
-                Scanner scanner = new Scanner(System.in);
-                LogginMenu.setInput(scanner);
-                LogginMenu.getInputForLogginMenu();
+                AccountRequest accountRequest =  (AccountRequest) baseRequest;
+                LogginMenu.createAccount(accountRequest.getUserName(),accountRequest.getName(),accountRequest.getPass());
                 baseResponse.setSuccess(true);
             case createAccount:
                 baseResponse.setType(BaseResponse.ResponseType.createAccount);
-                Scanner scanner1 = new Scanner(System.in);
-                LogginMenu.setInput(scanner1);
-                LogginMenu.getInputForLogginMenu();
                 baseResponse.setSuccess(true);
         }
         return baseResponse;
@@ -56,6 +52,8 @@ public class OnlineAccount implements Runnable {
             try {
                 connector.resolve();
             } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

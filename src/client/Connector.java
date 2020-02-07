@@ -49,7 +49,7 @@ public class Connector {
         return response;
     }
 
-    public void resolve() throws ClassNotFoundException {
+    public void resolve() throws Exception {
         String gsonTxt;
         while (true) {
             if (in.hasNextLine()) {

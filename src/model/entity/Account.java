@@ -123,7 +123,7 @@ public class Account {
     public static void logOut() {
         accountsInfo.put(loggedInAccount.getId(), loggedInAccount.getPassword());
         setLoggedInAccount(null);
-        saveAccountsInfo();
+        //saveAccountsInfo();
     }
 
     public static void loggIn(String id, String password) throws InvalidIdException, InvalidPasswordException {
@@ -278,7 +278,7 @@ public class Account {
 
     }
 
-    private static void saveAccountsInfo() {
+    public static void saveAccountsInfo() {
         String jsonAccounts = new Gson().toJson(Account.accountsInfo);
         try {
             FileWriter fileWriter = new FileWriter("accounts.json");

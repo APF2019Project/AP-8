@@ -84,8 +84,9 @@ public class LogginMenu {
             System.out.println(i.getMessage());
         }
     }
-    private static void  createAccount(String name , String id , String password) throws Exception {
+    public static void  createAccount(String name , String id , String password) throws Exception {
         Account account = new Account(name , id , password , 0 , 0 ,defualtPlants, defualtZombies );
+        Account.saveAccountsInfo();
         System.out.println(name+"account created , Hello " + name +"\n");
         System.out.println("for enjoing game , please login.");
     }
