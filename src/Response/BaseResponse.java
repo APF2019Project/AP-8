@@ -2,7 +2,9 @@ package Response;
 
 public class BaseResponse {
     public enum ResponseType{
-        Connection
+        Connection,
+        login,
+        createAccount
     }
     protected String responseClass;
     protected ResponseType type;

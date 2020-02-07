@@ -31,10 +31,10 @@ public class LogginMenu {
     }
     public static void getInputForLogginMenu(){
         System.out.println("---------------LogginMenu------------------");
-        System.out.println("enter one of this words to continu" +
-                "create account" +
-                "login" +
-                "leaderboard");
+        System.out.println("enter one of this words to continu " +
+                "create account " +
+                "login " +
+                "leaderboard ");
         String str = input.nextLine();
         switch (str){
             case "create account":takeInputForCreateAccount();

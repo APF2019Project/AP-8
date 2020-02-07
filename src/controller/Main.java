@@ -23,7 +23,7 @@ public class Main extends Application {
 
     static void commandLine(Scanner scanner){
 
-        LogginMenu.setInput(scanner);
+        //LogginMenu.setInput(scanner);
         MainMenu.setInput(scanner);
         Profile.setInput(scanner);
         Shop.setInput(scanner);
@@ -33,7 +33,7 @@ public class Main extends Application {
         PvpGame.setInput(scanner);
         WaterGame.setInput(scanner);
         Collection.setInput(scanner);
-        LogginMenu.getInputForLogginMenu();
+       // LogginMenu.getInputForLogginMenu();
     }
 
     @Override
