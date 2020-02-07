@@ -30,6 +30,16 @@ public class Zombie extends Card {
         setCost();
     }
 
+    public Zombie(String name, CardType cardType, int lifeNumber, boolean hasCAP, int bumper, int speed, boolean isWater, int cost) {
+        super(name, cardType);
+        this.lifeNumber = lifeNumber;
+        this.hasCAP = hasCAP;
+        this.bumper = bumper;
+        this.speed = speed;
+        this.isWater = isWater;
+        this.cost = cost;
+    }
+
     public Zombie(String name) {
         super(name, CardType.ZOMBIE);
     }

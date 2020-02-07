@@ -2,10 +2,11 @@ package server;
 
 import Response.BaseResponse;
 import client.Connector;
-import model.entity.Account;
+import model.entity.*;
 import model.repository.LogginMenu;
 import requests.AccountRequest;
 import requests.BaseRequest;
+import requests.CollectionRequest;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -27,7 +28,7 @@ public class OnlineAccount implements Runnable {
         new Thread(this).start();
     }
 
-    public BaseResponse resolve(BaseRequest baseRequest)throws Exception {
+    public BaseResponse resolve(BaseRequest baseRequest) throws Exception {
         BaseResponse baseResponse = new BaseResponse();
         //todo
         switch (baseRequest.getType()) {
@@ -36,26 +37,44 @@ public class OnlineAccount implements Runnable {
                 baseResponse.setSuccess(true);
             case login:
                 baseResponse.setType(BaseResponse.ResponseType.login);
-                AccountRequest accountRequest =  (AccountRequest) baseRequest;
-                LogginMenu.createAccount(accountRequest.getUserName(),accountRequest.getName(),accountRequest.getPass());
+                AccountRequest accountRequest = (AccountRequest) baseRequest;
+                LogginMenu.createAccount(accountRequest.getUserName(), accountRequest.getName(), accountRequest.getPass());
                 baseResponse.setSuccess(true);
+                break;
             case createAccount:
                 baseResponse.setType(BaseResponse.ResponseType.createAccount);
                 baseResponse.setSuccess(true);
+                break;
+            case addCard_plant:
+                baseResponse.setType(BaseResponse.ResponseType.addCard_plant);
+                CollectionRequest collectionRequest = (CollectionRequest) baseRequest;
+                Plant p = new Plant(collectionRequest.getName(), CardType.PLANT, collectionRequest.getHealth(), collectionRequest.getCoolDown(), collectionRequest.getSun(), collectionRequest.isMagnate(), collectionRequest.isIspricky(), collectionRequest.getCost());
+                CovertCardsToJsonString covertCardsToJsonString = new CovertCardsToJsonString();
+                covertCardsToJsonString.createPlants(p);
+                baseResponse.setSuccess(true);
+                break;
+            case addCard_zombie:
+                baseResponse.setType(BaseResponse.ResponseType.addCard_zombie);
+                CollectionRequest collectionRequest1 = (CollectionRequest) baseRequest;
+                Zombie zombie = new Zombie(collectionRequest1.getName(), CardType.ZOMBIE, collectionRequest1.getLifenum(), collectionRequest1.isHasCap(), collectionRequest1.getBumperNum(), collectionRequest1.getSpeed(), collectionRequest1.isIswzater(), collectionRequest1.getCost());
+                CovertCardsToJsonString covertCardsToJsonString1 = new CovertCardsToJsonString();
+                covertCardsToJsonString1.createZombies(zombie);
+                baseResponse.setSuccess(true);
+                break;
+            }
+            return baseResponse;
         }
-        return baseResponse;
-    }
 
-    @Override
-    public void run() {
-        while (true) {
-            try {
-                connector.resolve();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
+        @Override
+        public void run () {
+            while (true) {
+                try {
+                    connector.resolve();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
-}

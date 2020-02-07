@@ -9,10 +9,6 @@ import java.io.*;
 import java.util.Scanner;
 
 public class CovertCardsToJsonString {
-
-    Scanner scanner = new Scanner(System.in);
-    String[] string = scanner.nextLine().split(",");
-
     public void createPlants(Plant plant) throws InvalidPlantTypeExeption {
         String jsonPlant = new Gson().toJson(plant);
         try {
@@ -24,35 +20,39 @@ public class CovertCardsToJsonString {
             throw new InvalidPlantTypeExeption("invalid plant");
         }
     }
-
     private Object zombie;
     String jsonZombie = new Gson().toJson(zombie);
 
-    public void createZombies(Zombie zombie) throws InvalidZombieTypeExeption {
-        try {
+    public void createZombies(Zombie zombie) throws Exception{
+
             FileWriter fileWriter = new FileWriter(zombie.getName() + ".json");
             fileWriter.write(jsonZombie);
             fileWriter.close();
-        } catch (IOException e) {
-            throw new InvalidZombieTypeExeption("invalid zombie");
+
+    }
+
+    public void setZombieFields(Scanner scanner){
+        String[] string = scanner.nextLine().split(",");
+        try {
+            String name = string[0];
+            int lifeNumber = Integer.parseInt(string[1]);
+            int cost = Integer.parseInt(string[2]);
+            int speed = Integer.parseInt(string[3]);
+            int bumper = Integer.parseInt(string[4]);
+            boolean hascap = Boolean.parseBoolean(string[5]);
+            boolean isbaloon = Boolean.parseBoolean(string[6]);
+            int bumperNumber = Integer.parseInt(string[7]);
+            boolean iswater = Boolean.parseBoolean(string[8]);
+            Zombie z = new Zombie(name, CardType.ZOMBIE, setZombieType(name), lifeNumber, hascap, bumper, speed, bumperNumber, iswater, isbaloon);
+          //  createZombies(z);
+        }catch (InvalidZombieTypeExeption e){
+            e.printStackTrace();
         }
+
     }
 
-    public void setZombieFields() throws InvalidZombieTypeExeption {
-        String name = string[0];
-        int lifeNumber = Integer.parseInt(string[1]);
-        int cost = Integer.parseInt(string[2]);
-        int speed = Integer.parseInt(string[3]);
-        int bumper = Integer.parseInt(string[4]);
-        boolean hascap = Boolean.parseBoolean(string[5]);
-        boolean isbaloon = Boolean.parseBoolean(string[6]);
-        int bumperNumber = Integer.parseInt(string[7]);
-        boolean iswater = Boolean.parseBoolean(string[8]);
-        Zombie z = new Zombie(name, CardType.ZOMBIE, setZombieType(name), lifeNumber, hascap, bumper, speed, bumperNumber, iswater, isbaloon);
-        createZombies(z);
-    }
-
-    public void setPlantFields() throws InvalidPlantTypeExeption, InvalidBulletTypeExeption {
+    public void setPlantFields(Scanner scanner) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption {
+        String[] string = scanner.nextLine().split(",");
         String name = string[0];
         int health = Integer.parseInt(string[1]);
         int sun = Integer.parseInt(string[2]);

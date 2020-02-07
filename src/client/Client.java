@@ -4,10 +4,13 @@ import Response.BaseResponse;
 import com.google.gson.Gson;
 import requests.AccountRequest;
 import requests.BaseRequest;
+import requests.CollectionRequest;
 
 import java.io.File;
 import java.net.Socket;
 import java.util.Scanner;
+
+import static controller.Main.covertCardsToJsonString;
 
 public class Client {
     private final static Gson gson = new Gson();
@@ -25,7 +28,7 @@ public class Client {
         connector = new Connector(socket);
         //todo connection complete
         System.out.println("successfully connected");
-        System.out.println("enter your request : login, create account, showOnlineAccounts, ");
+        System.out.println("enter your request : login, create account, showOnlineAccounts,add new card ");
         String command = scanner.nextLine();
         switch (command) {
             case "login":
@@ -33,14 +36,30 @@ public class Client {
                 String[] info = scanner.nextLine().split(" ");
                 AccountRequest accountRequest = new AccountRequest(info[1], info[0], info[2], BaseRequest.RequestType.login);
                 BaseResponse baseResponse0 = connector.sendRequest(accountRequest);
-                //     BaseRequest baseRequest0 = new BaseRequest(BaseRequest.RequestType.login, BaseRequest.class.getName());
-                //     BaseResponse baseResponse0 = connector.sendRequest(baseRequest0);
+                System.out.println("logged in");
             case "create account":
                 BaseRequest baseRequest1 = new BaseRequest(BaseRequest.RequestType.createAccount, BaseRequest.class.getName());
                 BaseResponse baseResponse1 = connector.sendRequest(baseRequest1);
             case "showOnlineAccounts":
                 BaseRequest baseRequest2 = new BaseRequest(BaseRequest.RequestType.createAccount, BaseRequest.class.getName());
                 BaseResponse baseResponse2 = connector.sendRequest(baseRequest2);
+            case "add new card":
+                System.out.println("enter yur cardType: plant or zombie");
+                String type = scanner.nextLine();
+                if (type.equals("plant")) {
+                    System.out.println("pls enter yur plant String name, int cost, int health, int sun, boolean isMagnate, boolean ispricky, int coolDown");
+                    String[] infoPlant = scanner.nextLine().split(" ");
+                    CollectionRequest collectionRequest = new CollectionRequest(infoPlant[0], Integer.parseInt(infoPlant[1]), Integer.parseInt(infoPlant[2]), Integer.parseInt(infoPlant[3]), Boolean.parseBoolean(infoPlant[4]), Boolean.parseBoolean(infoPlant[5]), Integer.parseInt(infoPlant[6]),BaseRequest.RequestType.addCard_plant);
+                    BaseResponse baseResponse = connector.sendRequest(collectionRequest);
+                }else if (type.equals("zombie")){
+                    System.out.println("pls enter yur zombie String name, int cost, int lifenum, int speed, boolean bumper, boolean iswzater, boolean hasCap, int bumperNum");
+                    String[] infoPlant = scanner.nextLine().split(" ");
+                    CollectionRequest collectionRequest = new CollectionRequest(infoPlant[0], Integer.parseInt(infoPlant[1]), Integer.parseInt(infoPlant[2]), Integer.parseInt(infoPlant[3]), Boolean.parseBoolean(infoPlant[4]), Boolean.parseBoolean(infoPlant[5]), Boolean.parseBoolean(infoPlant[6]),Integer.parseInt(infoPlant[7]),BaseRequest.RequestType.addCard_zombie);
+                    BaseResponse baseResponse = connector.sendRequest(collectionRequest);
+                }
+
+                covertCardsToJsonString.setZombieFields(scanner);
+                covertCardsToJsonString.setPlantFields(scanner);
         }
     }
 

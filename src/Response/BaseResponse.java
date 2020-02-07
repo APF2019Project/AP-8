@@ -4,7 +4,9 @@ public class BaseResponse {
     public enum ResponseType{
         Connection,
         login,
-        createAccount
+        createAccount,
+        addCard_plant,
+        addCard_zombie
     }
     protected String responseClass;
     protected ResponseType type;

@@ -20,6 +20,17 @@ public class Plant extends Card {
     private int cost;
     private Condition condition = Condition.LIVE;
     //constructor
+
+    public Plant(String name, CardType cardType, int health, int coolDownCeil, int plantingPrice, boolean isMagnate, boolean isPrickly, int cost) {
+        super(name, cardType);
+        this.health = health;
+        this.coolDownCeil = coolDownCeil;
+        this.plantingPrice = plantingPrice;
+        this.isMagnate = isMagnate;
+        this.isPrickly = isPrickly;
+        this.cost = cost;
+    }
+
     public Plant(String name, int health, CardType cardType, PlantType plantType, int coolDownCeil, int plantingPrice, int sunOutTurn, BulletType bulletType, boolean isMagnate, boolean isPrickly) {
         super(name, cardType);
         this.health = health;

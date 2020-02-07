@@ -4,7 +4,9 @@ public class BaseRequest {
     public enum RequestType{
         createAccount,
         login,
-        Connection
+        Connection,
+        addCard_plant,
+        addCard_zombie
     }
 
     public RequestType getType() {
