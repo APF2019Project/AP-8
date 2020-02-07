@@ -27,9 +27,6 @@ public class Client {
         System.out.println("successfully connected");
         System.out.println("enter your request : login, create account, showOnlineAccounts, ");
         String command = scanner.nextLine();
-        BaseRequest baseRequest = new BaseRequest(BaseRequest.RequestType.Connection, BaseRequest.class.getName());
-        BaseResponse baseResponse = connector.sendRequest(baseRequest);
-        System.out.println(baseResponse.isSuccess());
         switch (command) {
             case "login":
                 System.out.println("pls enter yur name , id , pass");
