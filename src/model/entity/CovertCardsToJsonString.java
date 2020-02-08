@@ -6,9 +6,67 @@ import controller.boxExeption.InvalidPlantTypeExeption;
 import controller.boxExeption.InvalidZombieTypeExeption;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CovertCardsToJsonString {
+    private Object zombie;
+    String jsonZombie = new Gson().toJson(zombie);
+
+    public static Zombie getZombeiFromJsonString(String name) throws InvalidZombieTypeExeption, FileNotFoundException {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            Zombie zombie = new Gson().fromJson(stringBuilder.toString(), Zombie.class);
+            return zombie;
+        } catch (Exception e) {
+            throw new InvalidZombieTypeExeption("invalid zombie");
+        }
+    }
+
+    public static Plant getPlantFromJsonString(String name) throws Exception {
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            stringBuilder.append(line);
+        }
+        Plant plant = new Gson().fromJson(stringBuilder.toString(), Plant.class);
+        return plant;
+    }
+
+    public static ArrayList<Plant> makeArrayOfPlants() throws Exception {
+        ArrayList<Plant> plants = new ArrayList<>();
+        Plant p = getPlantFromJsonString("PEASHOOTER");
+        plants.add(p);
+        p = getPlantFromJsonString("JALAPENO");
+        plants.add(p);
+        p = getPlantFromJsonString("TWINSUNFLOWER");
+        plants.add(p);
+        p = getPlantFromJsonString("EXPLODE_O_NUT");
+        plants.add(p);
+        p = getPlantFromJsonString("SPLIT_PEA");
+        plants.add(p);
+        p = getPlantFromJsonString("EXPLODE_O_NUT");
+        plants.add(p);
+        p = getPlantFromJsonString("TANGLE_KELP");
+        plants.add(p);
+        p = getPlantFromJsonString("LILYPAD");
+        plants.add(p);
+        p = getPlantFromJsonString("CABBAGE_PULT");
+        plants.add(p);
+        p = getPlantFromJsonString("REPEATER");
+        plants.add(p);
+        p = getPlantFromJsonString("POTATO_MINE");
+        plants.add(p);
+        return plants;
+    }
+
     public void createPlants(Plant plant) throws InvalidPlantTypeExeption {
         String jsonPlant = new Gson().toJson(plant);
         try {
@@ -20,18 +78,16 @@ public class CovertCardsToJsonString {
             throw new InvalidPlantTypeExeption("invalid plant");
         }
     }
-    private Object zombie;
-    String jsonZombie = new Gson().toJson(zombie);
 
-    public void createZombies(Zombie zombie) throws Exception{
+    public void createZombies(Zombie zombie) throws Exception {
 
-            FileWriter fileWriter = new FileWriter(zombie.getName() + ".json");
-            fileWriter.write(jsonZombie);
-            fileWriter.close();
+        FileWriter fileWriter = new FileWriter(zombie.getName() + ".json");
+        fileWriter.write(jsonZombie);
+        fileWriter.close();
 
     }
 
-    public void setZombieFields(Scanner scanner){
+    public void setZombieFields(Scanner scanner) {
         String[] string = scanner.nextLine().split(",");
         try {
             String name = string[0];
@@ -44,8 +100,8 @@ public class CovertCardsToJsonString {
             int bumperNumber = Integer.parseInt(string[7]);
             boolean iswater = Boolean.parseBoolean(string[8]);
             Zombie z = new Zombie(name, CardType.ZOMBIE, setZombieType(name), lifeNumber, hascap, bumper, speed, bumperNumber, iswater, isbaloon);
-          //  createZombies(z);
-        }catch (InvalidZombieTypeExeption e){
+            //  createZombies(z);
+        } catch (InvalidZombieTypeExeption e) {
             e.printStackTrace();
         }
 
@@ -181,36 +237,6 @@ public class CovertCardsToJsonString {
                 return BulletType.WINTER_MELLON;
             default:
                 throw new InvalidBulletTypeExeption("invalid bullet type");
-        }
-    }
-
-    public static Zombie getZombeiFromJsonString(String name) throws InvalidZombieTypeExeption, FileNotFoundException {
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            Zombie zombie = new Gson().fromJson(stringBuilder.toString(), Zombie.class);
-            return zombie;
-        } catch (Exception e) {
-            throw new InvalidZombieTypeExeption("invalid zombie");
-        }
-    }
-
-    public static Plant getPlantFromJsonString(String name) throws InvalidPlantTypeExeption, InvalidBulletTypeExeption, FileNotFoundException {
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(name + ".json"));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            Plant plant = new Gson().fromJson(stringBuilder.toString(), Plant.class);
-            return plant;
-        } catch (Exception e) {
-            throw new InvalidPlantTypeExeption("invalid plant");
         }
     }
 }

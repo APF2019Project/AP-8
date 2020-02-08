@@ -8,7 +8,12 @@ public class BaseResponse {
         addCard_plant,
         addCard_zombie,
         send_msg,
-        reply
+        reply,
+        notif,
+        buy,
+        sell,
+        showCardsCapacity,
+        send_image
     }
     protected String responseClass;
     protected ResponseType type;

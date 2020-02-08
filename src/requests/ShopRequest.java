@@ -19,6 +19,11 @@ public class ShopRequest extends BaseRequest {
         return numberOfCard;
     }
 
+    public ShopRequest(RequestType type, CardType cardType) {
+        super(type, ShopRequest.class.getName());
+        this.cardType = cardType;
+    }
+
     public ShopRequest(RequestType type, String cardname, CardType cardType, int numberOfCard) {
         super(type,ShopRequest.class.getName());
         this.cardname = cardname;

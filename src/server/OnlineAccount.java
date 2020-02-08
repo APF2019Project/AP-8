@@ -4,23 +4,16 @@ import Response.BaseResponse;
 import client.Connector;
 import model.entity.*;
 import model.repository.LogginMenu;
-import requests.AccountRequest;
-import requests.BaseRequest;
-import requests.CollectionRequest;
-import requests.ChatRequest;
+import requests.*;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class OnlineAccount implements Runnable {
+public class OnlineAccount extends Thread {
     private static ArrayList<OnlineAccount> onlineAccounts = new ArrayList<>();
+    private Account account;
     private Connector connector;
-    private static Account account;
-
-    public static Account getAccount() {
-        return account;
-    }
 
     public OnlineAccount(Socket socket) {
         System.out.println("new client connected");
@@ -30,11 +23,22 @@ public class OnlineAccount implements Runnable {
             e.printStackTrace();
         }
         onlineAccounts.add(this);
-        new Thread(this).start();
+        this.start();
     }
 
     public static ArrayList<OnlineAccount> getOnlineAccounts() {
         return onlineAccounts;
+    }
+
+    @Override
+    public String toString() {
+        return "OnlineAccount{" +
+                "account=" + account +
+                '}';
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     public BaseResponse resolve(BaseRequest baseRequest) throws Exception {
@@ -44,16 +48,19 @@ public class OnlineAccount implements Runnable {
             case Connection:
                 baseResponse.setType(BaseResponse.ResponseType.Connection);
                 baseResponse.setSuccess(true);
-            case login:
-                baseResponse.setType(BaseResponse.ResponseType.login);
-                AccountRequest accountRequest = (AccountRequest) baseRequest;
-                LogginMenu.createAccount(accountRequest.getUserName(), accountRequest.getName(), accountRequest.getPass());
-                account.getOnlineAccounts().add(account);
-                account.setOnline(true);
-                baseResponse.setSuccess(true);
-                break;
             case createAccount:
                 baseResponse.setType(BaseResponse.ResponseType.createAccount);
+                AccountRequest accountRequest = (AccountRequest) baseRequest;
+                Account account = LogginMenu.createAccount(accountRequest.getUserName(), accountRequest.getName(), accountRequest.getPass());
+                if (account != null) {
+                    Account.loggIn(accountRequest.getUserName(), accountRequest.getPass());
+                    baseResponse.setSuccess(true);
+                } else {
+                    baseResponse.setSuccess(false);
+                }
+                break;
+            case login:
+                baseResponse.setType(BaseResponse.ResponseType.login);
                 baseResponse.setSuccess(true);
                 break;
             case addCard_plant:
@@ -75,11 +82,77 @@ public class OnlineAccount implements Runnable {
             case send_msg:
                 baseResponse.setType(BaseResponse.ResponseType.send_msg);
                 ChatRequest chatRequest = (ChatRequest) baseRequest;
-                if (account.getId()==Integer.parseInt(chatRequest.getId()));
-                account.getMessages().add(chatRequest.getText());
+                String text = chatRequest.getText();
+                for (Account a : LogginMenu.getAccounts()) {
+                    if (a.getName().equals(chatRequest.getId())) {
+                        a.getMessages().add(chatRequest.getText());
+                        baseResponse.setSuccess(true);
+                        System.out.println(text);
+                    }
+                }
+
+            case reply:
+                baseResponse.setType(BaseResponse.ResponseType.send_msg);
+                ChatRequest chatRequest1 = (ChatRequest) baseRequest;
+                for (Account a : LogginMenu.getAccounts()) {
+                    if (a.getName().equals(chatRequest1.getId())) {
+                        a.getMessages().add(chatRequest1.getText());
+                        baseResponse.setSuccess(true);
+                    }
+                }
                 baseResponse.setSuccess(true);
+                break;
+            case showOnlineAccounts:
+                break;
+            case showOfflineAccounts:
+                break;
+            case notif:
+                baseResponse.setType(BaseResponse.ResponseType.notif);
+                baseResponse.setSuccess(true);
+            case buy:
+                break;
+            case sell:
+                break;
+
+            case showCardsCapacity:
+                baseResponse.setType(BaseResponse.ResponseType.showCardsCapacity);
+                ShopRequest shopRequest = (ShopRequest) baseRequest;
+                for (Plant plant : CovertCardsToJsonString.makeArrayOfPlants()) {
+                    System.out.println(plant.getName() + plant.getCapacity());
+                }
+                baseResponse.setSuccess(true);
+            case send_image:
+//                baseResponse.setType(BaseResponse.ResponseType.send_image);
+//                ChatRequest chatRequest2 = (ChatRequest) baseRequest;
+//                try {
+//                    //convert received data
+//                    System.out.println("File Received!");
+//                    String message = org.apache.commons.io.IOUtils.toString(inFromClient);
+//                    JSONObject obj1 = (JSONObject) JSONValue.parse(message);
+//                    String name = obj1.get("filename").toString();
+//                    String image = obj1.get("image").toString();
+//
+//                    //convert from base64 to byte array
+//                    byte[] imageByteArray = Base64.getDecoder().decode(image);
+//
+//                    //convert byte array to a file image
+//                    FileOutputStream imageOutFile = new FileOutputStream(name);
+//                    imageOutFile.write(imageByteArray);
+//                    imageOutFile.close();
+//                    System.out.println("Image Successfully Manipulated!");
+//
+//                } catch (FileNotFoundException e) {
+//                } catch (IOException e) {
+//
         }
         return baseResponse;
+    }
+
+
+    private void disconnect() throws InterruptedException {
+        onlineAccounts.remove(this);
+        this.wait();
+        account.logout();
     }
 
     @Override

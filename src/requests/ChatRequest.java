@@ -3,6 +3,7 @@ package requests;
 public class ChatRequest extends BaseRequest {
     String text;
     String id;
+    String path;
 
     public ChatRequest(RequestType type, String text, String id) {
         super(type, ChatRequest.class.getName());

@@ -10,7 +10,12 @@ public class BaseRequest {
         send_msg,
         reply,
         showOnlineAccounts,
-        showOfflineAccounts
+        showOfflineAccounts,
+        notif,
+        buy,
+        sell,
+        showCardsCapacity,
+        send_image
     }
 
     public RequestType getType() {

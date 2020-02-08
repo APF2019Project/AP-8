@@ -28,8 +28,17 @@ public class Account {
     private int numberOfKiledZombies = 0;
     private model.repository.Collection Collection;
     private ArrayList<String> plants;
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
     private ArrayList<String> Zombies;
-    private ArrayList<Account> onlineAccounts = new ArrayList<>();
+    private static ArrayList<Account> onlineAccounts = new ArrayList<>();
     private ArrayList<String> messages = new ArrayList<>();
 
     public Account() {
@@ -45,6 +54,7 @@ public class Account {
             this.numberOfKiledZombies = numberOfKiledZombies;
             this.plants = plants;
             Zombies = zombies;
+
             saveAccountInJson(this);
         } catch (Exception e) {
             throw e;
@@ -68,11 +78,29 @@ public class Account {
         setLoggedInAccount(null);
         //saveAccountsInfo();
     }
+    public void logout(){
+        accountsInfo.put(this.getId(), this.getPassword());
+        this.online = false;
+    }
 
     public static void loggIn(String id, String password) throws InvalidIdException, InvalidPasswordException {
         loadAllAccounts();
         setLoggedInAccount(getAccountByIdAndPassword(id, password));
+        Account account = findById(id);
+        if (account != null) {
+            account.online = true;
+        }
+    }
+    public void login(){
 
+    }
+    private static Account findById(String id){
+        for (Account account:accounts
+             ){
+            if (account.name.equals(id))
+                    return account;
+        }
+        return null;
     }
 
     public static Account getAccountById(String inputStr) throws InvalidIdException {
@@ -202,12 +230,12 @@ public class Account {
         this.online = online;
     }
 
-    public ArrayList<Account> getOnlineAccounts() {
+    public static ArrayList<Account> getOnlineAccounts() {
         return onlineAccounts;
     }
 
-    public void setOnlineAccounts(ArrayList<Account> onlineAccounts) {
-        this.onlineAccounts = onlineAccounts;
+    public static void setOnlineAccounts(ArrayList<Account> onlineAccounts) {
+        Account.onlineAccounts = onlineAccounts;
     }
 
     public String getName() {
@@ -305,13 +333,11 @@ public class Account {
     private boolean setID(String strId) throws Exception, InvalidIdException {
         int id = getStringHash(strId);
         Path path = Paths.get(id + ".json");
-        if (Files.exists(path)) {
-            throw new InvalidIdException("this id used before");
-        } else {
-            this.id = id;
-            return true;
-        }
+
+        this.id = id;
+        return true;
     }
+
 
     public void editePassword(String pass, String newPass1, String newPass2) throws InvalidPasswordException {
         if (this.getPassword() == getStringHash(pass)) {

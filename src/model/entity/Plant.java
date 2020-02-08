@@ -7,9 +7,9 @@ public class Plant extends Card {
     private int health; // joone giyaha
     private PlantType plantType; // type
     private int coolDownIncreasePerTurn;
-    private  int cooLDown;
-    private  int coolDownCounter = cooLDown;
-    private  int coolDownCeil;
+    private int cooLDown;
+    private int coolDownCounter = cooLDown;
+    private int coolDownCeil;
     private int plantingPrice; // sun
     private int sunOutTurn;
     private Cell position;
@@ -18,6 +18,7 @@ public class Plant extends Card {
     private int turnCounter;
     private boolean isPrickly;// inke giah tigh dar bashd
     private int cost;
+    private int capacity;
     private Condition condition = Condition.LIVE;
     //constructor
 
@@ -29,12 +30,14 @@ public class Plant extends Card {
         this.isMagnate = isMagnate;
         this.isPrickly = isPrickly;
         this.cost = cost;
+        this.capacity = cost;
     }
 
     public Plant(String name, int health, CardType cardType, PlantType plantType, int coolDownCeil, int plantingPrice, int sunOutTurn, BulletType bulletType, boolean isMagnate, boolean isPrickly) {
         super(name, cardType);
         this.health = health;
         this.plantType = plantType;
+        this.capacity = cost;
         this.coolDownIncreasePerTurn = coolDownIncreasePerTurn;
         this.coolDownCeil = coolDownCeil;
         this.plantingPrice = plantingPrice;
@@ -47,6 +50,14 @@ public class Plant extends Card {
 
     public Plant(String name, CardType cardType) {
         super(name, cardType);
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     //getters and setters
@@ -208,8 +219,9 @@ public class Plant extends Card {
         }
         return dead;
     }
-    public  boolean charging(){
-        if (coolDownCounter == 0){
+
+    public boolean charging() {
+        if (coolDownCounter == 0) {
             coolDownCounter = cooLDown;
             return true;
         }

@@ -28,15 +28,15 @@ public class CreateAccountFrame implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         create.setOnAction(event -> {
-            try {
-                Account.createAccount(name.getText() , id.getText() , password.getText() , repassword.getText());
-            } catch (DosentMatchPasswordException e) {
-                //new Stage().setScene(new );
-            } catch (InvalidIdException e) {
-
-            } catch (InvalidPasswordException e) {
-                e.printStackTrace();
-            }
+//            try {
+//               // Account.createAccount(name.getText() , id.getText() , password.getText() , repassword.getText());
+//            } catch (DosentMatchPasswordException e) {
+//                //new Stage().setScene(new );
+//            } catch (InvalidIdException e) {
+//
+//            } catch (InvalidPasswordException e) {
+//                e.printStackTrace();
+//            }
         });
     }
 }

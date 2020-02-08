@@ -84,11 +84,23 @@ public class LogginMenu {
             System.out.println(i.getMessage());
         }
     }
-    public static void  createAccount(String name , String id , String password) throws Exception {
+    static ArrayList<Account> accounts = new ArrayList<>();
+
+    public static ArrayList<Account> getAccounts() {
+        return accounts;
+    }
+
+    public static void setAccounts(ArrayList<Account> accounts) {
+        LogginMenu.accounts = accounts;
+    }
+
+    public static Account  createAccount(String name , String id , String password) throws Exception {
         Account account = new Account(name , id , password , 0 , 0 ,defualtPlants, defualtZombies );
         Account.saveAccountsInfo();
+        accounts.add(account);
         System.out.println(name+"account created , Hello " + name +"\n");
         System.out.println("for enjoing game , please login.");
+        return account;
     }
     public static void login( String id, String password) throws InvalidIdException, InvalidPasswordException {
         Account ac = new Account();
