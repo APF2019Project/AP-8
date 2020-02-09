@@ -1,6 +1,8 @@
 package server;
 
 import Response.BaseResponse;
+import Response.ImageResponse;
+import Response.NotifResponse;
 import client.Connector;
 import model.entity.*;
 import model.repository.LogginMenu;
@@ -9,9 +11,11 @@ import requests.*;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class OnlineAccount extends Thread {
     private static ArrayList<OnlineAccount> onlineAccounts = new ArrayList<>();
+    public HashMap<String, byte[]> imageID = new HashMap<>();
     private Account account;
     private Connector connector;
 
@@ -51,17 +55,19 @@ public class OnlineAccount extends Thread {
             case createAccount:
                 baseResponse.setType(BaseResponse.ResponseType.createAccount);
                 AccountRequest accountRequest = (AccountRequest) baseRequest;
-                Account account = LogginMenu.createAccount(accountRequest.getUserName(), accountRequest.getName(), accountRequest.getPass());
-                if (account != null) {
-                    Account.loggIn(accountRequest.getUserName(), accountRequest.getPass());
+                Account account1 = LogginMenu.createAccount(accountRequest.getUserName(), accountRequest.getName(), accountRequest.getPass());
+                baseResponse.setNotif("please login");
+                break;
+            case login:
+                baseResponse.setType(BaseResponse.ResponseType.login);
+                AccountRequest accountRequest1 = (AccountRequest) baseRequest;
+                Account account2 = LogginMenu.login(accountRequest1.getUserName(), accountRequest1.getPass());
+                if (account2 != null) {
+                    Account.loggIn(accountRequest1.getUserName(), accountRequest1.getPass());
                     baseResponse.setSuccess(true);
                 } else {
                     baseResponse.setSuccess(false);
                 }
-                break;
-            case login:
-                baseResponse.setType(BaseResponse.ResponseType.login);
-                baseResponse.setSuccess(true);
                 break;
             case addCard_plant:
                 baseResponse.setType(BaseResponse.ResponseType.addCard_plant);
@@ -121,9 +127,17 @@ public class OnlineAccount extends Thread {
                     System.out.println(plant.getName() + plant.getCapacity());
                 }
                 baseResponse.setSuccess(true);
+            case recive_image:
+                byte[] image;
+                if ((imageID.containsKey(this.account.getName()))) {
+                    ImageResponse imageResponse = new ImageResponse(imageID.get(this.account.getName()));
+                }
+
+
             case send_image:
-//                baseResponse.setType(BaseResponse.ResponseType.send_image);
-//                ChatRequest chatRequest2 = (ChatRequest) baseRequest;
+                baseResponse.setType(BaseResponse.ResponseType.send_image);
+                ImageRequest imageRequest = (ImageRequest) baseRequest;
+                imageID.put(imageRequest.getId(), imageRequest.getImage());
 //                try {
 //                    //convert received data
 //                    System.out.println("File Received!");

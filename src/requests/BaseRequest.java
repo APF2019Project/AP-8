@@ -1,7 +1,36 @@
 package requests;
 
 public class BaseRequest {
-    public enum RequestType{
+    protected RequestType type;
+    protected String requestClass;
+    protected String text;
+
+    public BaseRequest(RequestType type, String requestClass) {
+        this.type = type;
+        this.requestClass = requestClass;
+    }
+
+    public BaseRequest() {
+
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public RequestType getType() {
+        return type;
+    }
+
+    public String getRequestClass() {
+        return requestClass;
+    }
+
+    public enum RequestType {
         createAccount,
         login,
         Connection,
@@ -15,24 +44,8 @@ public class BaseRequest {
         buy,
         sell,
         showCardsCapacity,
-        send_image
+        send_image,
+        getNotif,
+        recive_image
     }
-
-    public RequestType getType() {
-        return type;
-    }
-
-    public String getRequestClass() {
-        return requestClass;
-    }
-
-    public BaseRequest(RequestType type, String requestClass) {
-        this.type = type;
-        this.requestClass = requestClass;
-    }
-    public BaseRequest(){
-
-    }
-    protected RequestType type;
-    protected String requestClass;
 }

@@ -102,10 +102,11 @@ public class LogginMenu {
         System.out.println("for enjoing game , please login.");
         return account;
     }
-    public static void login( String id, String password) throws InvalidIdException, InvalidPasswordException {
+    public static Account login( String id, String password) throws InvalidIdException, InvalidPasswordException {
         Account ac = new Account();
         ac.loggIn(id , password);
         System.out.println("you are logged in" + " ,Hello " + Account.getLoggedInAccount().getName());
+        return ac;
     }
     private boolean stringMatching ( String str1 , String str2){
         return str1.matches(str2);
