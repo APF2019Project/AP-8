@@ -40,7 +40,7 @@ public class Connector {
             }
         }
         BaseResponse response = gson.fromJson(gsonText, BaseResponse.class);
-        Class responseClass = BaseResponse.class;
+        Class responseClass = Class.forName(response.getResponseClass());
         try {
             responseClass = Class.forName(response.getResponseClass());
         } catch (Exception e) {
