@@ -38,7 +38,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception  {
-
+            new ViewHandler().play();
+            ViewHandler.stage=stage;
             stage.setResizable(false);
             ViewHandler.loadingFrame(stage);
         PauseTransition delay = new PauseTransition(Duration.seconds(5));

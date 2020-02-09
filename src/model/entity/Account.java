@@ -1,6 +1,7 @@
 package model.entity;
 
 import com.google.gson.Gson;
+import controller.boxExeption.DosentMatchPasswordException;
 import controller.boxExeption.InvalidIdException;
 import controller.boxExeption.InvalidPasswordException;
 
@@ -29,6 +30,13 @@ public class Account {
     private model.repository.Collection Collection;
     private ArrayList<String> plants;
 
+    public static void createAccount(String name, String id, String pass, String repass) throws InvalidIdException , InvalidPasswordException, DosentMatchPasswordException{
+        if(!pass.matches(repass))
+            throw new DosentMatchPasswordException("password dosent Matched");
+        else
+            new Account(name , id , pass , 0  ,0, null , null);
+    }
+
     @Override
     public String toString() {
         return "Account{" +
@@ -41,11 +49,12 @@ public class Account {
     private static ArrayList<Account> onlineAccounts = new ArrayList<>();
     private ArrayList<String> messages = new ArrayList<>();
 
+
     public Account() {
         //ino baraye on ac ke tooye menu hast gozashtam
     }
 
-    public Account(String name, String id, String password, int coins, int numberOfKiledZombies, ArrayList<String> plants, ArrayList<String> zombies) throws Exception, InvalidPasswordException {
+    public Account(String name, String id, String password, int coins, int numberOfKiledZombies, ArrayList<String> plants, ArrayList<String> zombies) throws  InvalidIdException {
         try {
             this.name = name;
             this.setID(id);
@@ -54,9 +63,8 @@ public class Account {
             this.numberOfKiledZombies = numberOfKiledZombies;
             this.plants = plants;
             Zombies = zombies;
-
             saveAccountInJson(this);
-        } catch (Exception e) {
+        } catch (InvalidIdException e) {
             throw e;
         }
     }
@@ -149,19 +157,58 @@ public class Account {
         return null;
     }
 
+    private void saveAccountInJson(Account account) throws InvalidIdException {
+        String jsonAccount = new Gson().toJson(account);
+        try {
+            FileWriter fileWriter = new FileWriter(account.getId() + ".json");
+            fileWriter.write(jsonAccount);
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new InvalidIdException("invalid id");
+        }
+    }
+
+
+    private boolean setID(String strId) throws  InvalidIdException {
+        int id = getStringHash(strId);
+        Path path = Paths.get(id + ".json");
+        if (Files.exists(path)) {
+            throw new InvalidIdException("this id used before");
+        } else {
+            this.id = id;
+            return true;
+        }
+    }
+
+    public void editePassword(String pass, String newPass1, String newPass2) throws InvalidPasswordException {
+        if (this.getPassword() == getStringHash(pass)) {
+            if (getStringHash(newPass1) == getStringHash(newPass2)) {
+                this.setPassword(newPass1);
+                accountsInfo.put(this.getId(), this.getPassword());
+            } else {
+                throw new InvalidPasswordException("your new passwords didnt match");
+            }
+        } else {
+            throw new InvalidPasswordException("your password is not correct");
+        }
+    }
+
     private static int getStringHash(String str) {
         return Math.abs(str.hashCode());
     }
 
     public static void deleteAccount(String id, String password) throws InvalidIdException, InvalidPasswordException {
         Account account = getAccountById(id);
-        accounts.remove(account.getId());
         if (account.chekPass(password)) {
+            accounts.remove(account.getId());
             try {
                 Files.delete(Paths.get(account.getId() + ".json"));
             } catch (IOException e) {
                 System.out.println("exception in delet account method at this path = modele.repsitory.account");
             }
+        }else{
+            throw new InvalidPasswordException("invalid pass");
         }
     }
 
@@ -188,7 +235,7 @@ public class Account {
     }
 
     public static void loadAllAccounts() {
-        readAccountsInfo();
+                readAccountsInfo();
         for (Integer id : accountsInfo.keySet()) {
             try {
                 accounts.add(Account.getAccountByIdAndPassword(id, accountsInfo.get(id)));
@@ -318,37 +365,4 @@ public class Account {
         throw new InvalidPasswordException("your password is invalid");
     }
 
-    private void saveAccountInJson(Account account) throws InvalidIdException {
-        String jsonAccount = new Gson().toJson(account);
-        try {
-            FileWriter fileWriter = new FileWriter(account.getId() + ".json");
-            fileWriter.write(jsonAccount);
-            fileWriter.flush();
-            fileWriter.close();
-        } catch (IOException e) {
-            throw new InvalidIdException("invalid id");
-        }
-    }
-
-    private boolean setID(String strId) throws Exception, InvalidIdException {
-        int id = getStringHash(strId);
-        Path path = Paths.get(id + ".json");
-
-        this.id = id;
-        return true;
-    }
-
-
-    public void editePassword(String pass, String newPass1, String newPass2) throws InvalidPasswordException {
-        if (this.getPassword() == getStringHash(pass)) {
-            if (getStringHash(newPass1) == getStringHash(newPass2)) {
-                this.setPassword(newPass1);
-                accountsInfo.put(this.getId(), this.getPassword());
-            } else {
-                throw new InvalidPasswordException("your new passwords didnt match");
-            }
-        } else {
-            throw new InvalidPasswordException("your password is not correct");
-        }
-    }
 }

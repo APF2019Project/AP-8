@@ -4,12 +4,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import model.entity.Account;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class LogginMenuFrame implements Initializable {
@@ -53,5 +58,21 @@ public class LogginMenuFrame implements Initializable {
             login.show();
         });
         create.setOnAction(LogginMenuFrame::handleCreateMenuView);
+        leader.setOnAction(event -> {
+            Stage leader = new Stage();
+            Group root = new Group();
+            Scene scene = new Scene(root , 300 , 450);
+            ListView<String> listView = new ListView();
+            Account.getAccounts().sort(Comparator.comparingInt(Account::getNumberOfKiledZombies));
+            for (Account ac: Account.getAccounts()) {
+                listView.getItems().add(ac.getName() + "----------" + ac.getNumberOfKiledZombies());
+            }
+            if(listView.getItems().size()==0)
+                listView.getItems().add("not loaded any account");
+            HBox box = new HBox(listView );
+            root.getChildren().add(box);
+            leader.setScene(scene);
+            leader.show();
+        });
     }
 }

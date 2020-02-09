@@ -1,6 +1,9 @@
 <component name="libraryTable">
   <library name="com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:1.8.0" type="repository">
     <properties maven-id="com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:1.8.0" />
+    <ANNOTATIONS>
+      <root url="file://$PROJECT_DIR$/lib" />
+    </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/gson-jodatime-serialisers-1.8.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/joda-time-2.6.jar!/" />
