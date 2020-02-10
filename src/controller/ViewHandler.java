@@ -54,4 +54,10 @@ public class ViewHandler {
         stage.setScene(new Scene(FXMLLoader.load(ViewHandler.class.getResource("/controller/FXMLS/RenameMenu.fxml"))));
         stage.show();
     }
+    public static void createP() throws IOException {
+        stage.close();
+        stage.setTitle("createAccount");
+        stage.setScene(new Scene(FXMLLoader.load(ViewHandler.class.getResource("/controller/FXMLS/CreateAccountP.fxml"))));
+        stage.show();
+    }
 }

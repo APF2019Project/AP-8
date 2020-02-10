@@ -63,6 +63,13 @@ public class ProfileMenu implements Initializable {
                 CreateAccountFrame.errorMessage("an error in rename menu");
             }
         });
+        create.setOnAction(event -> {
+            try {
+                ViewHandler.createP();
+            } catch (IOException e) {
+                CreateAccountFrame.errorMessage("an error in createP");
+            }
+        });
     }
 
     public void showProfile() {
