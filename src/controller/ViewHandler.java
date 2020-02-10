@@ -38,8 +38,20 @@ public class ViewHandler {
     }
     public static void deleteMenu() throws IOException {
         stage.close();
-        stage.setTitle("Profile");
+        stage.setTitle("deleteMenu");
         stage.setScene(new Scene(FXMLLoader.load(ViewHandler.class.getResource("/controller/FXMLS/DeleteMenu.fxml"))));
+        stage.show();
+    }
+    public static void changeMenu() throws IOException {
+        stage.close();
+        stage.setTitle("changeMenu");
+        stage.setScene(new Scene(FXMLLoader.load(ViewHandler.class.getResource("/controller/FXMLS/ChangeMenu.fxml"))));
+        stage.show();
+    }
+    public static void renameMenu() throws IOException {
+        stage.close();
+        stage.setTitle("renameMenu");
+        stage.setScene(new Scene(FXMLLoader.load(ViewHandler.class.getResource("/controller/FXMLS/RenameMenu.fxml"))));
         stage.show();
     }
 }

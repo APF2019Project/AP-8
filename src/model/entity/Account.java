@@ -82,7 +82,7 @@ public class Account {
     }
 
     public static void logOut() {
-        accountsInfo.put(loggedInAccount.getId(), loggedInAccount.getPassword());
+      //  accountsInfo.put(loggedInAccount.getId(), loggedInAccount.getPassword());
         setLoggedInAccount(null);
         //saveAccountsInfo();
     }

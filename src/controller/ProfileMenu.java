@@ -49,6 +49,20 @@ public class ProfileMenu implements Initializable {
                 CreateAccountFrame.errorMessage("an error in delete menu");
             }
         });
+        change.setOnAction(event -> {
+            try {
+                ViewHandler.changeMenu();
+            } catch (IOException e) {
+                CreateAccountFrame.errorMessage("an error in change menu");
+            }
+        });
+        rename.setOnAction(event -> {
+            try {
+                ViewHandler.renameMenu();
+            } catch (IOException e) {
+                CreateAccountFrame.errorMessage("an error in rename menu");
+            }
+        });
     }
 
     public void showProfile() {
