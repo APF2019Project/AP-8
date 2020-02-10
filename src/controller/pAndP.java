@@ -23,7 +23,11 @@ public class pAndP implements Initializable {
             }
         });
         play.setOnAction(event -> {
-
+            try {
+                ViewHandler.playMenu();
+            } catch (IOException e) {
+                CreateAccountFrame.errorMessage("an error in play menu");
+            }
         });
     }
 }

@@ -60,4 +60,11 @@ public class ViewHandler {
         stage.setScene(new Scene(FXMLLoader.load(ViewHandler.class.getResource("/controller/FXMLS/CreateAccountP.fxml"))));
         stage.show();
     }
+    public static void playMenu() throws IOException {
+        stage.close();
+        stage.setTitle("PlayMenu");
+        stage.setScene(new Scene(FXMLLoader.load(ViewHandler.class.getResource("/controller/FXMLS/PlayMenu.fxml"))));
+        stage.show();
+    }
+
 }

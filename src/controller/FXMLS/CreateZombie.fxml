@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="38.0" layoutY="33.0" promptText="name" />
+      <TextField layoutX="38.0" layoutY="200.0" promptText="health" />
+      <TextField layoutX="38.0" layoutY="95.0" promptText="bumper" />
+      <TextField layoutX="38.0" layoutY="145.0" promptText="Type" />
+      <TextField layoutX="38.0" layoutY="266.0" promptText="HasCap" />
+      <TextField layoutX="300.0" layoutY="200.0" promptText="isWater" />
+      <TextField layoutX="300.0" layoutY="145.0" promptText="speed" />
+      <TextField layoutX="300.0" layoutY="95.0" promptText="bumperNumber" />
+      <TextField layoutX="300.0" layoutY="33.0" promptText="isBaloon" />
+      <Button layoutX="300.0" layoutY="303.0" mnemonicParsing="false" text="createPlant" />
+      <Button layoutX="415.0" layoutY="303.0" mnemonicParsing="false" text="back" />
+   </children>
+</AnchorPane>
