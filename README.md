@@ -1,6 +1,3 @@
-# AP-8
-|name|student_number|
-| --- | ------------- |
-|Diba Masihi|97110274|
-|Jafar Sadeghi|97106079|
-|MohammadAli Pashanj|97110036|
+-this project is for the university advanced programming course
+- the goal of project was develping plants .vs zombies game 
+- our score from this project was 5.54 from 5
